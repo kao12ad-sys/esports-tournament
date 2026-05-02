@@ -50,6 +50,13 @@ class Dashboard extends BaseController
                 $html
             );
 
+            $html = preg_replace(
+                '#<ul class="sidemenu\s+page-header-fixed slimscroll-style".*?</ul>\s*</div>\s*</div>\s*</div>\s*<!-- end sidebar menu -->#s',
+                $this->sidebarMenuHtml($assetBase) . "\n\t\t\t<!-- end sidebar menu -->",
+                $html,
+                1
+            ) ?? $html;
+
             return $html;
         }
 
@@ -63,5 +70,56 @@ class Dashboard extends BaseController
                 'schedules' => (new ScheduleModel())->countAllResults(),
             ],
         ]);
+    }
+
+    private function sidebarMenuHtml(string $assetBase): string
+    {
+        $items = [
+            ['url' => site_url('adminz'), 'icon' => 'airplay', 'label' => 'Dashboard'],
+            ['url' => site_url('adminz/tournaments'), 'icon' => 'award', 'label' => 'จัดการข้อมูลการแข่งขัน'],
+            ['url' => site_url('adminz/tournaments/new'), 'icon' => 'plus-square', 'label' => 'เพิ่มการแข่งขัน'],
+            ['url' => site_url('tournaments'), 'icon' => 'eye', 'label' => 'แสดงข้อมูลการแข่งขัน'],
+            ['url' => site_url('adminz/people?role=team_manager'), 'icon' => 'briefcase', 'label' => 'จัดการข้อมูลผู้จัดการทีม'],
+            ['url' => site_url('adminz/people?role=athletes'), 'icon' => 'users', 'label' => 'จัดการข้อมูลนักกีฬา'],
+            ['url' => site_url('adminz/people?role=amateur_athlete'), 'icon' => 'user', 'label' => 'จัดการข้อมูลนักกีฬาทั่วไป'],
+            ['url' => site_url('adminz/teams'), 'icon' => 'shield', 'label' => 'จัดการข้อมูลทีม'],
+            ['url' => site_url('adminz/registrations'), 'icon' => 'clipboard', 'label' => 'จัดการข้อมูลผู้สมัครแข่งขัน'],
+            ['url' => site_url('adminz/schedules'), 'icon' => 'calendar', 'label' => 'จัดการข้อมูลตารางแข่งขัน'],
+            ['url' => site_url('adminz/reports'), 'icon' => 'bar-chart-2', 'label' => 'ออกรายงาน'],
+        ];
+
+        $menu = '';
+        foreach ($items as $item) {
+            $menu .= sprintf(
+                "\n\t\t\t\t\t\t\t<li class=\"nav-item\"><a href=\"%s\" class=\"nav-link\"><i data-feather=\"%s\"></i><span class=\"title\">%s</span></a></li>",
+                esc($item['url'], 'attr'),
+                esc($item['icon'], 'attr'),
+                esc($item['label'])
+            );
+        }
+
+        $username = esc((string) $this->session->get('username'));
+        $avatar = esc($assetBase . 'assets/img/dp.jpg', 'attr');
+
+        return <<<HTML
+			<div class="sidebar-container">
+				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+					<div class="left-sidemenu">
+						<ul class="sidemenu page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+							<li class="sidebar-toggler-wrapper hide"><div class="sidebar-toggler"><span></span></div></li>
+							<li class="sidebar-user-panel">
+								<div class="sidebar-user">
+									<div class="sidebar-user-picture"><img alt="image" src="{$avatar}"></div>
+									<div class="sidebar-user-details">
+										<div class="user-name">{$username}</div>
+										<div class="user-role">Administrator</div>
+									</div>
+								</div>
+							</li>{$menu}
+						</ul>
+					</div>
+				</div>
+			</div>
+HTML;
     }
 }

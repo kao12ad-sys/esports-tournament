@@ -11,18 +11,34 @@ class People extends BaseController
 {
     public function index(): string
     {
-        $users = (new UserModel())
+        $role = $this->request->getGet('role');
+        $builder = (new UserModel())
             ->select('users.*, teams.name AS team_name, member_profiles.display_name, member_profiles.contact_channel, member_profiles.birth_date')
             ->join('teams', 'teams.id = users.team_id', 'left')
             ->join('member_profiles', 'member_profiles.user_id = users.id', 'left')
-            ->where('users.role !=', 'admin')
-            ->orderBy('users.id', 'DESC')
-            ->findAll();
+            ->where('users.role !=', 'admin');
+
+        if ($role === 'athletes') {
+            $builder->whereIn('users.role', ['amateur_athlete', 'pro_athlete']);
+        } elseif (in_array($role, ['team_manager', 'coach', 'amateur_athlete', 'pro_athlete'], true)) {
+            $builder->where('users.role', $role);
+        }
+
+        $users = $builder->orderBy('users.id', 'DESC')->findAll();
+
+        $titles = [
+            'team_manager' => 'จัดการข้อมูลผู้จัดการทีม',
+            'coach' => 'จัดการข้อมูลผู้ฝึกสอน',
+            'athletes' => 'จัดการข้อมูลนักกีฬา',
+            'amateur_athlete' => 'จัดการข้อมูลนักกีฬาทั่วไป',
+            'pro_athlete' => 'จัดการข้อมูลนักกีฬาอาชีพ',
+        ];
 
         return view('admin/people/index', [
-            'title' => 'จัดการผู้จัดการทีม ผู้ฝึกสอน และนักกีฬา',
+            'title' => $titles[$role] ?? 'จัดการผู้จัดการทีม ผู้ฝึกสอน และนักกีฬา',
             'items' => $users,
             'teams' => (new TeamModel())->findAll(),
+            'selectedRole' => $role,
         ]);
     }
 
