@@ -10,6 +10,7 @@ $routes->get('tournaments', 'Home::tournaments');
 $routes->get('tournaments/(:num)', 'Home::show/$1');
 
 $routes->match(['get', 'post'], 'login', 'Auth::login');
+$routes->match(['get', 'post'], 'register', 'Auth::register');
 $routes->get('logout', 'Auth::logout');
 $routes->match(['get', 'post'], 'adminz/login', 'Auth::adminLogin');
 $routes->get('adminz/logout', 'Auth::logout');

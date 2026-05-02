@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\MemberProfileModel;
+use App\Models\TeamHistoryModel;
+use App\Models\TeamModel;
 use App\Models\UserModel;
 
 class Auth extends BaseController
@@ -23,16 +26,7 @@ class Auth extends BaseController
                 return redirect()->back()->withInput()->with('error', 'บัญชีผู้ดูแลระบบหรือรหัสผ่านไม่ถูกต้อง');
             }
 
-            session()->regenerate(true);
-            session()->set([
-                'isLoggedIn' => true,
-                'user_id' => $user['id'],
-                'team_id' => $user['team_id'],
-                'username' => $user['username'],
-                'role' => $user['role'],
-            ]);
-
-            (new UserModel())->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
+            $this->startUserSession($user);
 
             return redirect()->to('/adminz');
         }
@@ -57,21 +51,92 @@ class Auth extends BaseController
                 return redirect()->back()->withInput()->with('error', 'อีเมลหรือรหัสผ่านไม่ถูกต้อง');
             }
 
-            session()->regenerate(true);
-            session()->set([
-                'isLoggedIn' => true,
-                'user_id' => $user['id'],
-                'team_id' => $user['team_id'],
-                'username' => $user['username'],
-                'role' => $user['role'],
-            ]);
-
-            (new UserModel())->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
+            $this->startUserSession($user);
 
             return redirect()->to($user['role'] === 'admin' ? '/adminz' : '/member');
         }
 
-        return view('auth/login', ['title' => 'เข้าสู่ระบบ']);
+        return view('auth/login', ['title' => 'เข้าสู่ระบบสมาชิก']);
+    }
+
+    public function register()
+    {
+        $teamModel = new TeamModel();
+
+        if ($this->request->getMethod() === 'POST') {
+            $rules = [
+                'username' => 'required|min_length[3]|max_length[80]|is_unique[users.username]',
+                'email' => 'required|valid_email|max_length[190]|is_unique[users.email]',
+                'password' => 'required|min_length[8]',
+                'password_confirm' => 'required|matches[password]',
+                'role' => 'required|in_list[team_manager,coach,amateur_athlete,pro_athlete]',
+                'display_name' => 'permit_empty|max_length[120]',
+                'birth_date' => 'permit_empty|valid_date[Y-m-d]',
+                'contact_channel' => 'permit_empty|max_length[190]',
+                'team_id' => 'permit_empty|is_natural_no_zero',
+                'team_name' => 'permit_empty|max_length[150]',
+            ];
+
+            if (! $this->validate($rules)) {
+                return redirect()->back()->withInput()->with('error', implode('<br>', $this->validator->getErrors()));
+            }
+
+            $role = (string) $this->request->getPost('role');
+            $teamId = $this->request->getPost('team_id') ?: null;
+
+            if ($role === 'team_manager' && $this->request->getPost('team_name')) {
+                $teamId = $teamModel->insert([
+                    'name' => $this->request->getPost('team_name'),
+                    'tag' => $this->request->getPost('team_tag'),
+                    'description' => $this->request->getPost('team_description'),
+                    'contact_channel' => $this->request->getPost('contact_channel'),
+                    'status' => 'active',
+                ]);
+            }
+
+            $userId = (new UserModel())->insert([
+                'team_id' => $teamId,
+                'username' => $this->request->getPost('username'),
+                'email' => $this->request->getPost('email'),
+                'password_hash' => password_hash((string) $this->request->getPost('password'), PASSWORD_DEFAULT),
+                'role' => $role,
+                'status' => 'active',
+            ]);
+
+            if (! $userId) {
+                return redirect()->back()->withInput()->with('error', 'ไม่สามารถสร้างบัญชีได้ กรุณาตรวจสอบข้อมูลอีกครั้ง');
+            }
+
+            (new MemberProfileModel())->insert([
+                'user_id' => $userId,
+                'team_id' => $teamId,
+                'display_name' => $this->request->getPost('display_name') ?: $this->request->getPost('username'),
+                'bio' => $this->request->getPost('bio'),
+                'birth_date' => $this->request->getPost('birth_date') ?: null,
+                'contact_channel' => $this->request->getPost('contact_channel'),
+                'athlete_level' => $role === 'pro_athlete' ? 'professional' : ($role === 'amateur_athlete' ? 'general' : null),
+                'current_role' => $this->roleLabel($role),
+                'status' => 'active',
+            ]);
+
+            if ($teamId) {
+                (new TeamHistoryModel())->insert([
+                    'user_id' => $userId,
+                    'team_id' => $teamId,
+                    'role' => $this->roleLabel($role),
+                    'joined_at' => date('Y-m-d'),
+                    'note' => 'สมัครสมาชิกและเข้าร่วมทีม',
+                ]);
+            }
+
+            return redirect()->to('/login')->with('success', 'สร้างบัญชีสมาชิกเรียบร้อยแล้ว กรุณาเข้าสู่ระบบ');
+        }
+
+        return view('auth/register', [
+            'title' => 'สมัครสมาชิก',
+            'roles' => $this->memberRoleOptions(),
+            'teams' => $teamModel->where('status', 'active')->orderBy('name', 'ASC')->findAll(),
+        ]);
     }
 
     public function logout()
@@ -79,5 +144,34 @@ class Auth extends BaseController
         session()->destroy();
 
         return redirect()->to('/login')->with('success', 'ออกจากระบบเรียบร้อย');
+    }
+
+    private function startUserSession(array $user): void
+    {
+        session()->regenerate(true);
+        session()->set([
+            'isLoggedIn' => true,
+            'user_id' => $user['id'],
+            'team_id' => $user['team_id'],
+            'username' => $user['username'],
+            'role' => $user['role'],
+        ]);
+
+        (new UserModel())->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
+    }
+
+    private function memberRoleOptions(): array
+    {
+        return [
+            'team_manager' => 'ผู้จัดการทีม',
+            'coach' => 'ผู้ฝึกสอน',
+            'amateur_athlete' => 'นักกีฬาทั่วไป',
+            'pro_athlete' => 'นักกีฬาอาชีพ',
+        ];
+    }
+
+    private function roleLabel(string $role): string
+    {
+        return $this->memberRoleOptions()[$role] ?? $role;
     }
 }
