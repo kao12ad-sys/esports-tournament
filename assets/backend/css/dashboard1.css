@@ -1,0 +1,604 @@
+/* School Dashboard Widgets CSS */
+.school-dashboard {
+    margin-top: 20px;
+}
+.school-dashboard .card-head .tools {
+    display: none;
+}
+
+.school-dashboard .stat-card {
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.school-dashboard .stat-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.school-dashboard .stat-card.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.school-dashboard .stat-card.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.school-dashboard .stat-card.bg-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.school-dashboard .stat-card.bg-info {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.school-dashboard .stat-card.bg-danger {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.school-dashboard .stat-card .stat-icon {
+    font-size: 40px;
+    opacity: 0.3;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.rtl .school-dashboard .stat-card .stat-icon {
+    left: 20px;
+    right: auto;
+}
+
+.school-dashboard .stat-card .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.school-dashboard .stat-card .stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.school-dashboard .chart-container {
+    min-height: 230px;
+}
+
+.school-dashboard .chart-container-sm {
+    padding: 15px;
+    min-height: 180px;
+}
+
+.school-dashboard .event-item,
+.school-dashboard .announcement-item,
+.school-dashboard .transport-item {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.school-dashboard .event-item:hover,
+.school-dashboard .announcement-item:hover,
+.school-dashboard .transport-item:hover {
+    background: #f8f9fa;
+}
+
+.school-dashboard .event-item:last-child,
+.school-dashboard .announcement-item:last-child,
+.school-dashboard .transport-item:last-child {
+    border-bottom: none;
+}
+
+.school-dashboard .event-date {
+    min-width: 60px;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    color: white;
+    margin-right: 15px;
+    background-color: rgba(255, 68, 0, 0.2);
+    border-color: transparent;
+    color: #fa6c39;
+}
+.rtl .school-dashboard .event-date {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.school-dashboard .event-date .day {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.school-dashboard .event-date .month {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.school-dashboard .event-details h6,
+.school-dashboard .announcement-details h6 {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.school-dashboard .announcement-details {
+    flex: 1;
+}
+
+.school-dashboard .event-details p,
+.school-dashboard .announcement-details p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.school-dashboard .announcement-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.school-dashboard .announcement-badge.important {
+    background: #fee140;
+    color: #333;
+}
+
+.school-dashboard .announcement-badge.general {
+    background: #4facfe;
+    color: white;
+}
+
+.school-dashboard .announcement-badge.urgent {
+    background: #fa709a;
+    color: white;
+}
+
+.school-dashboard .timetable-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.school-dashboard .timetable-item:last-child {
+    border-bottom: none;
+}
+
+.school-dashboard .timetable-time {
+    min-width: 70px;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.school-dashboard .timetable-subject {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.school-dashboard .timetable-subject h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.school-dashboard .timetable-subject span {
+    font-size: 12px;
+    color: #666;
+}
+
+.school-dashboard .timetable-room {
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+.school-dashboard .student-rank {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.school-dashboard .student-rank:last-child {
+    border-bottom: none;
+}
+
+.school-dashboard .student-rank:hover,
+.school-dashboard .fee-alert:hover,
+.school-dashboard .event-item:hover {
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.school-dashboard .rank-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-right: 15px;
+}
+.rtl .school-dashboard .rank-number {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.school-dashboard .rank-number.gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #333;
+}
+
+.school-dashboard .rank-number.silver {
+    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+    color: #333;
+}
+
+.school-dashboard .rank-number.bronze {
+    background: linear-gradient(135deg, #cd7f32 0%, #daa06d 100%);
+    color: white;
+}
+
+.school-dashboard .rank-number.default {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.school-dashboard .student-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.school-dashboard .student-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+.rtl .school-dashboard .student-avatar {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+.school-dashboard .student-details h6 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.school-dashboard .student-details span {
+    font-size: 12px;
+    color: #666;
+}
+
+.school-dashboard .student-score {
+    text-align: right;
+}
+.rtl .school-dashboard .student-score {
+     text-align: left;
+}
+
+.school-dashboard .student-score .percentage {
+    font-size: 18px;
+    font-weight: 700;
+    color: #737770;
+}
+
+.school-dashboard .student-score .label {
+    font-size: 11px;
+    color: #fff;
+    background-color: rgb(51 0 255 / 20%);
+    border-color: transparent;
+    color: #6e4caf;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.school-dashboard .fee-alert {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+
+.school-dashboard .fee-alert:last-child {
+    margin-bottom: 0;
+}
+
+.school-dashboard .fee-alert.paid {
+    background: #f0fff4;
+    border-left-color: #38ef7d;
+}
+
+.school-dashboard .fee-alert-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    background: #fa709a;
+    color: white;
+}
+.rtl .school-dashboard .fee-alert-icon {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.school-dashboard .fee-alert.paid .fee-alert-icon {
+    background: #38ef7d;
+}
+
+.school-dashboard .fee-alert-details {
+    flex: 1;
+}
+
+.school-dashboard .fee-alert-details h6 {
+    margin: 0 0 3px 0;
+    font-weight: 600;
+}
+
+.school-dashboard .fee-alert-details p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.school-dashboard .fee-amount {
+    font-weight: 700;
+    font-size: 16px;
+    color: #fa709a;
+}
+
+.school-dashboard .fee-alert.paid .fee-amount {
+    color: #38ef7d;
+}
+
+.school-dashboard .transport-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.school-dashboard .transport-status.on-time {
+    background: #d4edda;
+    color: #155724;
+}
+
+.school-dashboard .transport-status.delayed {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.school-dashboard .attendance-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.school-dashboard .attendance-legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+.school-dashboard .attendance-legend-item .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+
+.school-dashboard .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #667eea;
+    display: inline-block;
+}
+
+.school-dashboard .icon-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 15px;
+}
+.rtl .school-dashboard .icon-box {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.school-dashboard .icon-box.blue {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.school-dashboard .icon-box.green {
+    background: rgba(56, 239, 125, 0.1);
+    color: #38ef7d;
+}
+
+.school-dashboard .icon-box.purple {
+    background: rgba(118, 75, 162, 0.1);
+    color: #764ba2;
+}
+
+.school-dashboard .icon-box.orange {
+    background: rgba(250, 112, 154, 0.1);
+    color: #fa709a;
+}
+
+.school-dashboard .exam-toppers-table {
+  height:300px;
+}
+
+.dashboard-card-scroll {
+    height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.rtl .dashboard-card-scroll {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+.recent-transaction-table{
+     height: 370px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.rtl .recent-transaction-table {
+    padding-left: 10px;
+    padding-right: 0;
+}
+.teacher-list-table {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.teacher-list-table table td,
+.teacher-list-table table th {
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 12px 15px !important;
+}
+
+/* Custom scrollbar for webkit browsers */
+.teacher-list-table::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.teacher-list-table::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.teacher-list-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .school-dashboard .stat-card .stat-icon {
+        font-size: 30px;
+    }
+    
+    .school-dashboard .stat-card .stat-value {
+        font-size: 24px;
+    }
+    
+    .school-dashboard .chart-container {
+        min-height: 250px;
+    }
+}
+
+/* Dark Theme Overrides */
+.dark-theme .school-dashboard .card-head h6,
+.dark-theme .school-dashboard .card-head h4,
+.dark-theme .school-dashboard .card-head header {
+    color: #ffffff;
+}
+
+.dark-theme .school-dashboard .event-item,
+.dark-theme .school-dashboard .announcement-item,
+.dark-theme .school-dashboard .transport-item,
+.dark-theme .school-dashboard .timetable-item,
+.dark-theme .school-dashboard .student-rank,
+.dark-theme .school-dashboard .fee-alert {
+    border-bottom-color: #3d404c;
+    border-color: #3d404c;
+}
+
+.dark-theme .school-dashboard .event-item:hover,
+.dark-theme .school-dashboard .announcement-item:hover,
+.dark-theme .school-dashboard .transport-item:hover,
+.dark-theme .school-dashboard .student-rank:hover,
+.dark-theme .school-dashboard .fee-alert:hover {
+    background: #2a2e3e;
+}
+
+.dark-theme .school-dashboard .event-details h6,
+.dark-theme .school-dashboard .announcement-details h6,
+.dark-theme .school-dashboard .timetable-subject h6,
+.dark-theme .school-dashboard .student-details h6,
+.dark-theme .school-dashboard .fee-alert-details h6,
+.dark-theme .school-dashboard .section-title {
+    color: #e0e0e0;
+}
+
+.dark-theme .school-dashboard .event-details p,
+.dark-theme .school-dashboard .announcement-details p,
+.dark-theme .school-dashboard .timetable-subject span,
+.dark-theme .school-dashboard .student-details span,
+.dark-theme .school-dashboard .fee-alert-details p,
+.dark-theme .school-dashboard .timetable-room,
+.dark-theme .school-dashboard .rank-number.default {
+    color: #aab0bc;
+}
+
+.dark-theme .school-dashboard .timetable-room,
+.dark-theme .school-dashboard .rank-number.default {
+    background: #3d404c;
+}
+
+.dark-theme .school-dashboard .student-score .percentage {
+    color: #ffffff;
+}
+
+.dark-theme .school-dashboard .fee-alert {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dark-theme .school-dashboard .fee-alert.paid {
+    background: rgba(56, 239, 125, 0.05);
+}
+
+.dark-theme .school-dashboard .teacher-list-table::-webkit-scrollbar-track {
+    background: #1e212d;
+}
+
+.dark-theme .school-dashboard .teacher-list-table::-webkit-scrollbar-thumb {
+    background: #3d404c;
+}
+
+.dark-theme .school-dashboard .event-date {
+    background-color: rgba(250, 108, 57, 0.15);
+}

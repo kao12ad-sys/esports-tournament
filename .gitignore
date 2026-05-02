@@ -1,0 +1,41 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime/writeable files
+writable/cache/*
+writable/debugbar/*
+writable/logs/*
+writable/session/*
+writable/uploads/*
+writable/*.log
+/public/writable/
+!writable/cache/index.html
+!writable/debugbar/index.html
+!writable/logs/index.html
+!writable/session/index.html
+!writable/uploads/index.html
+
+# Dependencies and generated packages
+/vendor/
+/node_modules/
+.composer/
+composer.phar
+composer-setup.php
+*.zip
+
+# Temporary scaffold/download folders
+ci4-release/
+ci4-tmp/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Local backups
+*.bak
+*.bak-*

@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Smart University | View Report Card</title>
+	<script src="assets/js/early-theme-init.js"></script>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/font-awesome/v6/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="assets/plugins/material/material.min.css">
+	<link rel="stylesheet" href="assets/css/material_style.css">
+	<!-- Theme Styles -->
+	<link href="assets/css/theme/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="assets/css/theme/style.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/plugins.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/theme/theme-color.css" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+	<link rel="shortcut icon" href="assets/img/favicon.ico" />
+	<link href="assets/css/setting-panel.css" rel="stylesheet" type="text/css" />
+	<style>
+		.report-card {
+			background: #fff;
+			padding: 40px;
+			margin: 20px auto;
+			max-width: 900px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+		}
+
+		.report-header {
+			text-align: center;
+			border-bottom: 3px double #333;
+			padding-bottom: 25px;
+			margin-bottom: 30px;
+		}
+
+		.report-header h1 {
+			color: #2c3e50;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+
+		.report-header h2 {
+			color: #34495e;
+			font-size: 1.5rem;
+			margin-bottom: 5px;
+		}
+
+		.report-header p {
+			margin: 3px 0;
+			color: #666;
+			font-size: 0.9rem;
+		}
+
+		.student-photo {
+			width: 100px;
+			height: 100px;
+			border: 2px solid #333;
+			object-fit: cover;
+		}
+
+		.student-photo-lg {
+			width: 120px;
+			height: 120px;
+			border: 3px solid #007bff;
+			object-fit: cover;
+		}
+
+		.student-info-table {
+			width: 100%;
+			margin-bottom: 25px;
+		}
+
+		.student-info-table td {
+			padding: 8px 12px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.student-info-table .label {
+			font-weight: 600;
+			width: 150px;
+			color: #555;
+		}
+
+		.grades-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 25px;
+		}
+
+		.grades-table th,
+		.grades-table td {
+			padding: 12px;
+			text-align: center;
+			border: 1px solid #ddd;
+		}
+
+		.grades-table th {
+			background-color: #3498db;
+			color: white;
+			font-weight: 600;
+		}
+
+		.grades-table tbody tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+
+		.grades-table tbody tr:hover {
+			background-color: #f1f1f1;
+		}
+
+		.grade-A {
+			color: #27ae60;
+			font-weight: bold;
+		}
+
+		.grade-B {
+			color: #2980b9;
+			font-weight: bold;
+		}
+
+		.grade-C {
+			color: #f39c12;
+			font-weight: bold;
+		}
+
+		.grade-D {
+			color: #e67e22;
+			font-weight: bold;
+		}
+
+		.grade-F {
+			color: #e74c3c;
+			font-weight: bold;
+		}
+
+		.summary-box {
+			background: rgba(106, 154, 255, 0.2);
+			color: rgb(0, 0, 0);
+			padding: 25px;
+			border-radius: 10px;
+			margin-bottom: 25px;
+		}
+
+		.summary-box h4 {
+			margin-bottom: 20px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+			padding-bottom: 10px;
+		}
+
+		.summary-item {
+			text-align: center;
+			padding: 10px;
+		}
+
+		.summary-value {
+			font-size: 28px;
+			font-weight: bold;
+			display: block;
+		}
+
+		.summary-label {
+			font-size: 12px;
+			opacity: 0.9;
+		}
+
+		.attendance-bar {
+			height: 25px;
+			background: #ecf0f1;
+			border-radius: 15px;
+			overflow: hidden;
+			margin: 10px 0;
+		}
+
+		.attendance-fill {
+			height: 100%;
+			background: linear-gradient(90deg, #27ae60, #2ecc71);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			font-weight: bold;
+		}
+
+		.remarks-box {
+			background: #f8f9fa;
+			border-left: 4px solid #3498db;
+			padding: 15px 20px;
+			margin: 20px 0;
+		}
+
+		.signature-section {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 50px;
+			padding-top: 20px;
+		}
+
+		.signature-box {
+			text-align: center;
+			width: 180px;
+		}
+
+		.signature-line {
+			border-top: 1px solid #333;
+			margin-top: 60px;
+			padding-top: 8px;
+			font-size: 0.9rem;
+		}
+
+		.print-header {
+			display: none;
+		}
+
+		@media print {
+			.no-print {
+				display: none !important;
+			}
+
+			.report-card {
+				box-shadow: none;
+				margin: 0;
+				padding: 20px;
+			}
+
+			.print-header {
+				display: block;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+		}
+
+		.honor-badge {
+			display: inline-block;
+			padding: 5px 15px;
+			background: linear-gradient(135deg, #f1c40f, #f39c12);
+			color: #fff;
+			border-radius: 20px;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+
+		.dark-theme .report-card {
+			background: #020617;
+			color: #e5e7eb;
+			box-shadow: 0 0 25px rgba(15, 23, 42, 0.6);
+		}
+
+		.dark-theme .report-header {
+			border-bottom-color: #374151;
+		}
+
+		.dark-theme .report-header h1 {
+			color: #e5e7eb;
+		}
+
+		.dark-theme .report-header h2 {
+			color: #cbd5f5;
+		}
+
+		.dark-theme .report-header p {
+			color: #9ca3af;
+		}
+
+		.dark-theme .summary-box {
+			background: linear-gradient(135deg, #4f46e5, #06b6d4);
+			color: #f9fafb;
+		}
+
+		.dark-theme .summary-box h4 {
+			border-bottom-color: rgba(15, 23, 42, 0.4);
+		}
+
+		.dark-theme .grades-table th,
+		.dark-theme .grades-table td {
+			border-color: #374151;
+		}
+
+		.dark-theme .grades-table th {
+			background-color: #111827;
+			color: #e5e7eb;
+		}
+
+		.dark-theme .grades-table tbody tr:nth-child(even) {
+			background-color: #020617;
+		}
+
+		.dark-theme .grades-table tbody tr:hover {
+			background-color: #111827;
+		}
+
+		.dark-theme .remarks-box {
+			background: #020617;
+			border-left-color: #60a5fa;
+		}
+
+		.dark-theme .attendance-bar {
+			background: #111827;
+		}
+
+		.dark-theme .attendance-fill {
+			background: linear-gradient(90deg, #16a34a, #22c55e);
+		}
+
+		.dark-theme .signature-line {
+			border-top-color: #4b5563;
+			color: #9ca3af;
+		}
+
+		.dark-theme .table.table-bordered td,
+		.dark-theme .table.table-bordered th {
+			border-color: #374151;
+		}
+
+		.dark-theme .table.table-bordered {
+			color: #e5e7eb;
+			background-color: #020617;
+		}
+
+		.dark-theme .alert.alert-success {
+			background-color: #064e3b;
+			border-color: #10b981;
+			color: #d1fae5;
+		}
+
+		.dark-theme .alert.alert-info {
+			background-color: #0f172a;
+			border-color: #38bdf8;
+			color: #e0f2fe;
+		}
+
+		.dark-theme .badge.bg-success,
+		.dark-theme .badge.bg-info,
+		.dark-theme .badge.bg-warning {
+			color: #0b1120;
+		}
+	</style>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
+	<div class="page-wrapper">
+		<!-- start header -->
+		<div class="page-header navbar navbar-fixed-top">
+			<div class="page-header-inner ">
+				<!-- logo start -->
+				<div class="page-logo">
+					<a href="index.html">
+						<img class="logo-icon" src="assets/img/logo.png" alt="logo" height="40px">
+						<span class="logo-default">Smart</span> </a>
+				</div>
+				<!-- logo end -->
+				<ul class="nav navbar-nav navbar-left in">
+					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+				</ul>
+				<form class="search-form-opened" action="#" method="GET">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search..." name="query">
+						<span class="input-group-btn">
+							<a href="javascript:;" class="btn submit">
+								<i class="icon-magnifier"></i>
+							</a>
+						</span>
+					</div>
+				</form>
+				<!-- start mobile menu -->
+				<a class="menu-toggler responsive-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+					<span></span>
+				</a>
+				<!-- end mobile menu -->
+				<!-- start header menu -->
+				<div class="top-menu">
+					<ul class="nav navbar-nav pull-right">
+						<li><a class="fullscreen-btn"><i data-feather="maximize"></i></a></li>
+						<!-- start language menu -->
+						<li class="dropdown language-switch">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <img
+									src="assets/img/flags/gb.png" class="position-left" alt=""> English
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="german"><img src="assets/img/flags/de.png" alt=""> German</a>
+								</li>
+								<li>
+									<a class="french"><img src="assets/img/flags/fr.png" alt=""> French</a>
+								</li>
+								<li>
+									<a class="english"><img src="assets/img/flags/gb.png" alt=""> English</a>
+								</li>
+							</ul>
+						</li>
+						<!-- end language menu -->
+						<!-- start notification dropdown -->
+						<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i data-feather="bell"></i>
+								<span class="badge headerBadgeColor1"> 6 </span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="external">
+									<h3><span class="bold">Notifications</span></h3>
+									<span class="notification-label purple-bgcolor">New 6</span>
+								</li>
+								<li>
+									<ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
+										<li>
+											<a href="javascript:;">
+												<span class="time">just now</span>
+												<span class="details">
+													<span class="notification-icon circle deepPink-bgcolor"><i
+															class="fa fa-check"></i></span>
+													Congratulations!. </span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="time">3 mins</span>
+												<span class="details">
+													<span class="notification-icon circle purple-bgcolor"><i
+															class="fa fa-user o"></i></span>
+													<b>John Micle </b>is now following you. </span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="time">7 mins</span>
+												<span class="details">
+													<span class="notification-icon circle blue-bgcolor"><i
+															class="fa fa-comments-o"></i></span>
+													<b>Sneha Jogi </b>sent you a message. </span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="time">12 mins</span>
+												<span class="details">
+													<span class="notification-icon circle pink"><i
+															class="fa fa-heart"></i></span>
+													<b>Ravi Patel </b>like your photo. </span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="time">15 mins</span>
+												<span class="details">
+													<span class="notification-icon circle yellow"><i
+															class="fa fa-warning"></i></span> Warning! </span>
+											</a>
+										</li>
+										<li>
+											<a href="javascript:;">
+												<span class="time">10 hrs</span>
+												<span class="details">
+													<span class="notification-icon circle red"><i
+															class="fa fa-times"></i></span> Application error. </span>
+											</a>
+										</li>
+									</ul>
+									<div class="dropdown-menu-footer">
+										<a href="javascript:void(0)"> All notifications </a>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<!-- end notification dropdown -->
+						<!-- start message dropdown -->
+						<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i data-feather="mail"></i>
+								<span class="badge headerBadgeColor2"> 2 </span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="external">
+									<h3><span class="bold">Messages</span></h3>
+									<span class="notification-label cyan-bgcolor">New 2</span>
+								</li>
+								<li>
+									<ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
+										<li>
+											<a href="#">
+												<span class="photo">
+													<img src="assets/img/user/user2.jpg" class="img-circle" alt="">
+												</span>
+												<span class="subject">
+													<span class="from"> Sarah Smith </span>
+													<span class="time">Just Now </span>
+												</span>
+												<span class="message"> Jatin I found you on LinkedIn... </span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="photo">
+													<img src="assets/img/user/user3.jpg" class="img-circle" alt="">
+												</span>
+												<span class="subject">
+													<span class="from"> John Deo </span>
+													<span class="time">16 mins </span>
+												</span>
+												<span class="message"> Fwd: Important Notice Regarding Your Domain
+													Name... </span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="photo">
+													<img src="assets/img/user/user1.jpg" class="img-circle" alt="">
+												</span>
+												<span class="subject">
+													<span class="from"> Rajesh </span>
+													<span class="time">2 hrs </span>
+												</span>
+												<span class="message"> pls take a print of attachments. </span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="photo">
+													<img src="assets/img/user/user8.jpg" class="img-circle" alt="">
+												</span>
+												<span class="subject">
+													<span class="from"> Lina Smith </span>
+													<span class="time">40 mins </span>
+												</span>
+												<span class="message"> Apply for Ortho Surgeon </span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="photo">
+													<img src="assets/img/user/user5.jpg" class="img-circle" alt="">
+												</span>
+												<span class="subject">
+													<span class="from"> Jacob Ryan </span>
+													<span class="time">46 mins </span>
+												</span>
+												<span class="message"> Request for leave application. </span>
+											</a>
+										</li>
+									</ul>
+									<div class="dropdown-menu-footer">
+										<a href="#"> All Messages </a>
+									</div>
+								</li>
+							</ul>
+						</li>
+						<!-- end message dropdown -->
+						<!-- start manage user dropdown -->
+						<li class="dropdown dropdown-user">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<img alt="" class="img-circle " src="assets/img/dp.jpg" />
+								<span class="username username-hide-on-mobile"> Sneha
+							</a>
+							<ul class="dropdown-menu dropdown-menu-default">
+								<li>
+									<a href="user_profile.html">
+										<i class="icon-user"></i> Profile </a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-settings"></i> Settings
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-directions"></i> Help
+									</a>
+								</li>
+								<li class="divider"> </li>
+								<li>
+									<a href="lock_screen.html">
+										<i class="icon-lock"></i> Lock
+									</a>
+								</li>
+								<li>
+									<a href="login.html">
+										<i class="icon-logout"></i> Log Out </a>
+								</li>
+							</ul>
+						</li>
+						<!-- end manage user dropdown -->
+						<li class="dropdown dropdown-quick-sidebar-toggler">
+							<a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+								data-upgraded=",MaterialButton">
+								<i class="material-icons">more_vert</i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- end header -->
+		<!-- start color quick setting -->
+		<div class="settingSidebar">
+			<a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+			</a>
+			<div class="settingSidebar-body ps-container ps-theme-default">
+				<div class=" fade show active">
+					<div class="setting-panel-header">
+						<div class="setting-panel-header-title">
+							<i class="fas fa-cog"></i> Settings
+						</div>
+						<p class="setting-panel-header-subtitle">Customize your preferences</p>
+					</div>
+
+					<!-- Theme Mode Toggle -->
+					<div class="setting-section">
+						<div class="setting-section-title">
+							<i class="fas fa-moon"></i> Appearance
+						</div>
+						<div class="theme-toggle-wrapper">
+							<div class="theme-toggle-option">
+								<input type="radio" name="themeMode" id="themeLight" value="light" checked>
+								<label for="themeLight" class="theme-toggle-label">
+									<span class="theme-toggle-icon"><i class="fas fa-sun"></i></span>
+									<span class="theme-toggle-text">Light</span>
+								</label>
+							</div>
+							<div class="theme-toggle-option">
+								<input type="radio" name="themeMode" id="themeDark" value="dark">
+								<label for="themeDark" class="theme-toggle-label">
+									<span class="theme-toggle-icon"><i class="fas fa-moon"></i></span>
+									<span class="theme-toggle-text">Dark</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Layout Direction Toggle -->
+					<div class="setting-section">
+						<div class="setting-section-title">
+							<i class="fas fa-random"></i> Layout Direction
+						</div>
+						<div class="layout-toggle-wrapper">
+							<div class="layout-toggle-option">
+								<input type="radio" name="layoutDir" id="layoutLTR" value="ltr" checked>
+								<label for="layoutLTR" class="layout-toggle-label">
+									<span class="layout-toggle-text">LTR</span>
+									<span class="layout-toggle-desc">Left to Right</span>
+								</label>
+							</div>
+							<div class="layout-toggle-option">
+								<input type="radio" name="layoutDir" id="layoutRTL" value="rtl">
+								<label for="layoutRTL" class="layout-toggle-label">
+									<span class="layout-toggle-text">RTL</span>
+									<span class="layout-toggle-desc">Right to Left</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="quick-setting">
+						<ul id="themecolors">
+							<li>
+								<p class="sidebarSettingTitle"><i class="fas fa-bars"></i> Sidebar Color</p>
+							</li>
+							<li class="complete">
+								<div class="theme-color sidebar-theme">
+									<a href="#" class="color-dot" data-theme="white" title="White"><span
+											class="color-dot-inner white"></span></a>
+									<a href="#" class="color-dot" data-theme="dark" title="Dark"><span
+											class="color-dot-inner dark"></span></a>
+									<a href="#" class="color-dot" data-theme="blue" title="Blue"><span
+											class="color-dot-inner blue"></span></a>
+									<a href="#" class="color-dot" data-theme="indigo" title="Indigo"><span
+											class="color-dot-inner indigo"></span></a>
+									<a href="#" class="color-dot" data-theme="cyan" title="Cyan"><span
+											class="color-dot-inner cyan"></span></a>
+									<a href="#" class="color-dot" data-theme="green" title="Green"><span
+											class="color-dot-inner green"></span></a>
+									<a href="#" class="color-dot" data-theme="red" title="Red"><span
+											class="color-dot-inner red"></span></a>
+								</div>
+							</li>
+							<li>
+								<p class="sidebarSettingTitle"><i class="fas fa-heading"></i> Header Color</p>
+							</li>
+							<li class="theme-option">
+								<div class="theme-color header-theme">
+									<a href="#" class="color-dot" data-theme="header-white" title="White"><span
+											class="color-dot-inner white"></span></a>
+									<a href="#" class="color-dot" data-theme="header-dark" title="Dark"><span
+											class="color-dot-inner dark"></span></a>
+									<a href="#" class="color-dot" data-theme="header-blue" title="Blue"><span
+											class="color-dot-inner blue"></span></a>
+									<a href="#" class="color-dot" data-theme="header-indigo" title="Indigo"><span
+											class="color-dot-inner indigo"></span></a>
+									<a href="#" class="color-dot" data-theme="header-cyan" title="Cyan"><span
+											class="color-dot-inner cyan"></span></a>
+									<a href="#" class="color-dot" data-theme="header-green" title="Green"><span
+											class="color-dot-inner green"></span></a>
+									<a href="#" class="color-dot" data-theme="header-red" title="Red"><span
+											class="color-dot-inner red"></span></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end color quick setting -->
+		<!-- start page container -->
+		<div class="page-container">
+			<!-- start sidebar menu -->
+			<div class="sidebar-container no-print">
+				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+					<div class="left-sidemenu">
+						<ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false"
+							data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+							<li class="sidebar-toggler-wrapper hide">
+								<div class="sidebar-toggler">
+									<span></span>
+								</div>
+							</li>
+							<li class="sidebar-user-panel">
+								<div class="sidebar-user">
+									<div class="sidebar-user-picture">
+										<img alt="image" src="assets/img/dp.jpg">
+									</div>
+									<div class="sidebar-user-details">
+										<div class="user-name">Sneha Patel</div>
+										<div class="user-role">Administrator</div>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item start">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="airplay"></i>
+									<span class="title">Dashboard</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="index.html" class="nav-link ">
+											<span class="title">Dashboard 1</span>
+										</a>
+									</li>
+									<li class="nav-item ">
+										<a href="dashboard2.html" class="nav-link ">
+											<span class="title">Dashboard 2</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="dashboard3.html" class="nav-link ">
+											<span class="title">Dashboard 3</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="event.html" class="nav-link nav-toggle"> <i data-feather="calendar"></i>
+									<span class="title">Event Management</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="clock"></i>
+									<span class="title">Class</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="schedule_calendar.html" class="nav-link "> <span class="title">Schedule
+												Calendar</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="all_schedules.html" class="nav-link "> <span class="title">All
+												Schedules</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_schedule.html" class="nav-link "> <span class="title">Add
+												Schedule</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="user"></i>
+									<span class="title">Professors</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_professors.html" class="nav-link "> <span class="title">All
+												Professors</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_professor.html" class="nav-link "> <span class="title">Add
+												Professor</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_professor_bootstrap.html" class="nav-link "> <span
+												class="title">Add Professor Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_professor.html" class="nav-link "> <span class="title">Edit
+												Professor</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="professor_profile.html" class="nav-link "> <span class="title">About
+												Professor</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"><i data-feather="users"></i>
+									<span class="title">Students</span><span class="arrow"></span></a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_students.html" class="nav-link "> <span class="title">All
+												Students</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_student.html" class="nav-link "> <span class="title">Add
+												Student</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_student_bootstrap.html" class="nav-link "> <span class="title">Add
+												Student Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_student.html" class="nav-link "> <span class="title">Edit
+												Student</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_profile.html" class="nav-link "> <span class="title">About
+												Student</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="book"></i>
+									<span class="title">Courses</span> <span class="arrow"></span>
+									<span class="label label-rouded label-menu label-success">new</span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_courses.html" class="nav-link "> <span class="title">All
+												Courses</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_course.html" class="nav-link "> <span class="title">Add
+												Course</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_course_bootstrap.html" class="nav-link "> <span class="title">Add
+												Course Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_course.html" class="nav-link "> <span class="title">Edit
+												Course</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="course_details.html" class="nav-link "> <span class="title">About
+												Course</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="book-open"></i>
+									<span class="title">Library</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_assets.html" class="nav-link "> <span class="title">All Library
+												Assets</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_library.html" class="nav-link "> <span class="title">Add Library
+												Asset</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_library_bootstrap.html" class="nav-link "> <span class="title">Add
+												Asset Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_library.html" class="nav-link "> <span class="title">Edit
+												Asset</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="briefcase"></i>
+									<span class="title">Departments</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_department.html" class="nav-link "> <span class="title">All
+												Departments</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_department.html" class="nav-link "> <span class="title">Add
+												Department</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_department_bootstrap.html" class="nav-link "> <span
+												class="title">Add Department Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_department.html" class="nav-link "> <span class="title">Edit
+												Department</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="smile"></i>
+									<span class="title">Staff</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_staffs.html" class="nav-link "> <span class="title">All
+												Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_staff.html" class="nav-link "> <span class="title">Add Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_staff_bootstrap.html" class="nav-link "> <span class="title">Add
+												Staff Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_staff.html" class="nav-link "> <span class="title">Edit
+												Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="staff_profile.html" class="nav-link "> <span class="title">Staff
+												Profile</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="coffee"></i>
+									<span class="title">Holiday</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_holidays.html" class="nav-link "> <span class="title">All
+												Holiday</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_holiday.html" class="nav-link "> <span class="title">Add
+												Holiday</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_holiday_bootstrap.html" class="nav-link "> <span class="title">Add
+												Holiday Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_holiday.html" class="nav-link "> <span class="title">Edit
+												Holiday</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="check-square"></i>
+									<span class="title">Attendance</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="mark_attendance.html" class="nav-link "> <span class="title">Mark
+												Attendance</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="view_attendance.html" class="nav-link "> <span class="title">View
+												Attendance</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_attendance_history.html" class="nav-link "> <span
+												class="title">Student
+												Attendance History</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item active open">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="award"></i>
+									<span class="title">Grade Management</span> <span class="selected"></span>
+									<span class="arrow open"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="enter_grades.html" class="nav-link "> <span class="title">Enter
+												Grades</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="view_grades.html" class="nav-link "> <span class="title">View
+												Grades</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="generate_report_card.html" class="nav-link "> <span
+												class="title">Generate
+												Report Card</span>
+										</a>
+									</li>
+									<li class="nav-item active">
+										<a href="view_report_card.html" class="nav-link "> <span class="title">View
+												Report Card</span>
+											<span class="selected"></span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="mail"></i>
+									<span class="title">Email</span>
+									<span class="arrow"></span>
+									<span class="label label-rouded label-menu label-danger">new</span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="email_inbox.html" class="nav-link ">
+											<span class="title">Inbox</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="email_view.html" class="nav-link ">
+											<span class="title">View Mail</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="email_compose.html" class="nav-link ">
+											<span class="title">Compose Mail</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="settings"></i>
+									<span class="title">System Settings</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="system_settings.html" class="nav-link "> <span class="title">General
+												Settings</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="academic_year_settings.html" class="nav-link "> <span
+												class="title">Academic
+												Year Settings</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="dollar-sign"></i>
+									<span class="title">Fees</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="fees_collection.html" class="nav-link "> <span class="title">Fees
+												Collection</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_fees.html" class="nav-link "> <span class="title">Add Fees </span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_fees_bootstrap.html" class="nav-link "> <span class="title">Add
+												Fees Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="fees_receipt.html" class="nav-link "> <span class="title">Fee
+												Receipt</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="home"></i>
+									<span class="title">Hostel Management</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_hostels.html" class="nav-link "> <span class="title">All
+												Hostels</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="manage_rooms.html" class="nav-link "> <span class="title">Manage
+												Rooms</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="allocate_room.html" class="nav-link "> <span class="title">Allocate
+												Room</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_accommodation.html" class="nav-link "> <span
+												class="title">Student
+												Accommodation</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
+								<a href="widget.html" class="nav-link nav-toggle"> <i data-feather="gift"></i>
+									<span class="title">Widget</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="copy"></i>
+									<span class="title">UI Elements</span>
+									<span class="label label-rouded label-menu label-warning">new</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="ui_buttons.html" class="nav-link ">
+											<span class="title">Buttons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_sweet_alert.html" class="nav-link ">
+											<span class="title">Sweet Alert</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_tabs_accordions_navs.html" class="nav-link ">
+											<span class="title">Tabs &amp; Accordions</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_typography.html" class="nav-link ">
+											<span class="title">Typography</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="notification.html" class="nav-link ">
+											<span class="title">Notification</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_icons.html" class="nav-link ">
+											<span class="title">Icons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_panels.html" class="nav-link ">
+											<span class="title">Panels</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_grid.html" class="nav-link ">
+											<span class="title">Grids</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_tree.html" class="nav-link ">
+											<span class="title">Tree View</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_carousel.html" class="nav-link ">
+											<span class="title">Carousel</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="layers"></i>
+									<span class="title">Material Elements</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="material_button.html" class="nav-link ">
+											<span class="title">Buttons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_tab.html" class="nav-link ">
+											<span class="title">Tabs</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_chips.html" class="nav-link ">
+											<span class="title">Chips</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_grid.html" class="nav-link ">
+											<span class="title">Grid</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_icons.html" class="nav-link ">
+											<span class="title">Icon</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_form.html" class="nav-link ">
+											<span class="title">Form</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_datepicker.html" class="nav-link ">
+											<span class="title">DatePicker</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_select.html" class="nav-link ">
+											<span class="title">Select Item</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_loading.html" class="nav-link ">
+											<span class="title">Loading</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_menu.html" class="nav-link ">
+											<span class="title">Menu</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_slider.html" class="nav-link ">
+											<span class="title">Slider</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_tables.html" class="nav-link ">
+											<span class="title">Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_toggle.html" class="nav-link ">
+											<span class="title">Toggle</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_badges.html" class="nav-link ">
+											<span class="title">Badges</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="server"></i>
+									<span class="title">Forms </span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="layouts_form.html" class="nav-link ">
+											<span class="title">Form Layout</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="advance_form.html" class="nav-link ">
+											<span class="title">Advance Component</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="wizard.html" class="nav-link ">
+											<span class="title">Form Wizard</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="validation_form.html" class="nav-link ">
+											<span class="title">Form Validation</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="editable_form.html" class="nav-link ">
+											<span class="title">Editor</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="grid"></i>
+									<span class="title">Data Tables</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="basic_table.html" class="nav-link ">
+											<span class="title">Basic Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="advanced_table.html" class="nav-link ">
+											<span class="title">Advance Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="export_table.html" class="nav-link ">
+											<span class="title">Export Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="child_row_table.html" class="nav-link ">
+											<span class="title">Child Row Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="group_table.html" class="nav-link ">
+											<span class="title">Grouping</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="tableData.html" class="nav-link ">
+											<span class="title">Tables With Sourced Data</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="pie-chart"></i>
+									<span class="title">Charts</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="charts_apexchart.html" class="nav-link ">
+											<span class="title">Apex chart</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_amchart.html" class="nav-link ">
+											<span class="title">amChart</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_plotly.html" class="nav-link ">
+											<span class="title">Plotly Charts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_echarts.html" class="nav-link ">
+											<span class="title">eCharts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_morris.html" class="nav-link ">
+											<span class="title">Morris Charts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_chartjs.html" class="nav-link ">
+											<span class="title">Chartjs</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="map-pin"></i>
+									<span class="title">Maps</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="google_maps.html" class="nav-link ">
+											<span class="title">Google Maps</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="vector_maps.html" class="nav-link ">
+											<span class="title">Vector Maps</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle"> <i data-feather="anchor"></i>
+									<span class="title">Extra pages</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item  ">
+										<a href="login.html" class="nav-link "> <span class="title">Login</span>
+										</a>
+									</li>
+									<li class="nav-item  ">
+										<a href="sign_up.html" class="nav-link "> <span class="title">Sign Up</span>
+										</a>
+									</li>
+									<li class="nav-item  ">
+										<a href="forgot_password.html" class="nav-link "> <span class="title">Forgot
+												Password</span>
+										</a>
+									</li>
+									<li class="nav-item"><a href="user_profile.html" class="nav-link "><span
+												class="title">Profile</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="contact.html" class="nav-link "> <span class="title">Contact Us</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="lock_screen.html" class="nav-link "> <span class="title">Lock
+												Screen</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="page-404.html" class="nav-link "> <span class="title">404 Page</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="page-500.html" class="nav-link "> <span class="title">500 Page</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="blank_page.html" class="nav-link "> <span class="title">Blank
+												Page</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="chevrons-down"></i>
+									<span class="title">Multi Level Menu</span>
+									<span class="arrow "></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="javascript:;" class="nav-link nav-toggle">
+											<i data-feather="alert-octagon"></i> Item 1
+											<span class="arrow"></span>
+										</a>
+										<ul class="sub-menu">
+											<li class="nav-item">
+												<a href="javascript:;" class="nav-link nav-toggle">
+													<i data-feather="aperture"></i> Arrow Toggle
+													<span class="arrow "></span>
+												</a>
+												<ul class="sub-menu">
+													<li class="nav-item">
+														<a href="javascript:;" class="nav-link">
+															<i data-feather="battery"></i> Sample Link 1</a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link">
+															<i data-feather="award"></i> Sample Link 2</a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link">
+															<i data-feather="box"></i> Sample Link 3</a>
+													</li>
+												</ul>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="clock"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="database"></i> Sample Link 2</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="edit"></i> Sample Link 3</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-item">
+										<a href="javascript:;" class="nav-link nav-toggle">
+											<i data-feather="folder"></i> Arrow Toggle
+											<span class="arrow"></span>
+										</a>
+										<ul class="sub-menu">
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="film"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="file"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="heart"></i> Sample Link 1
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i data-feather="lock"></i> Item 3 </a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- end sidebar menu -->
+			<!-- start page content -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar no-print">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">View Report Card</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li><a class="parent-item" href="">Grade Management</a>&nbsp;<i
+										class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">View Report Card</li>
+							</ol>
+						</div>
+					</div>
+					<div class="row no-print mb-3">
+						<div class="col-md-12">
+							<div class="btn-group">
+								<a href="generate_report_card.html" class="btn btn-default">
+									<i class="fa fa-arrow-left"></i> Back
+								</a>
+								<button type="button" class="btn btn-primary" onclick="window.print()">
+									<i class="fa fa-print"></i> Print
+								</button>
+								<button type="button" class="btn btn-success" onclick="downloadPDF()">
+									<i class="fa fa-file-pdf-o"></i> Download PDF
+								</button>
+								<button type="button" class="btn btn-info" onclick="emailReport()">
+									<i class="fa fa-envelope"></i> Email
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="report-card">
+						<div class="print-header">
+							<p>Printed on: <span id="printDate"></span></p>
+						</div>
+						<div class="report-header">
+							<h1>SMART UNIVERSITY</h1>
+							<h2>Academic Report Card</h2>
+							<p>123 Education Street, Academic City, State 12345</p>
+							<p>Phone: (555) 123-4567 | Email: info@smartuniversity.edu</p>
+							<p>Website: www.smartuniversity.edu</p>
+						</div>
+
+						<div class="row mb-4 align-items-center">
+							<div class="col-md-2 text-center">
+								<img src="assets/img/user/user1.jpg" alt="Student Photo"
+									class="img-fluid rounded-circle shadow-sm student-photo-lg">
+							</div>
+							<div class="col-md-10">
+								<div class="row">
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-user fa-lg text-primary me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Student Name:</small>
+												<strong>Rahul Sharma</strong>
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-id-badge fa-lg text-info me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Roll No:</small>
+												<strong>CS2025101</strong>
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-book fa-lg text-success me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Program:</small>
+												Bachelor of Computer Science
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-calendar fa-lg text-warning me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Year:</small>
+												2nd Year (Semester 3)
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-calendar-alt fa-lg text-danger me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Academic Year:</small>
+												2025-2026
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-users fa-lg text-secondary me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Section:</small>
+												A
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-birthday-cake fa-lg text-primary me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Date of Birth:</small>
+												15th June 2004
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6 mb-2">
+										<div class="d-flex align-items-center">
+											<i class="fa fa-male fa-lg text-info me-2"></i>
+											<p class="mb-0">
+												<small class="text-muted">Father's Name:</small>
+												Mr. Rajesh Sharma
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="summary-box">
+							<h4>Academic Summary</h4>
+							<div class="row">
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">3.85</span>
+										<span class="summary-label">Semester GPA</span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">3.78</span>
+										<span class="summary-label">Cumulative GPA</span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">87.5%</span>
+										<span class="summary-label">Average</span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">5th</span>
+										<span class="summary-label">Class Rank</span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">17</span>
+										<span class="summary-label">Total Credits</span>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="summary-item">
+										<span class="summary-value">PASS</span>
+										<span class="summary-label">Status</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<h4 style="margin-bottom: 15px;"><i class="fa fa-graduation-cap"></i> Course Performance</h4>
+						<table class="grades-table">
+							<thead>
+								<tr>
+									<th>Course Code</th>
+									<th>Course Name</th>
+									<th>Credits</th>
+									<th>Internal</th>
+									<th>External</th>
+									<th>Total</th>
+									<th>Grade</th>
+									<th>GPA</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>CS101</td>
+									<td>Introduction to Programming</td>
+									<td>4</td>
+									<td>45</td>
+									<td>47</td>
+									<td>92</td>
+									<td class="grade-A">A</td>
+									<td>4.0</td>
+								</tr>
+								<tr>
+									<td>CS102</td>
+									<td>Computer Organization</td>
+									<td>3</td>
+									<td>40</td>
+									<td>42</td>
+									<td>82</td>
+									<td class="grade-B">B</td>
+									<td>3.5</td>
+								</tr>
+								<tr>
+									<td>MA101</td>
+									<td>Calculus I</td>
+									<td>4</td>
+									<td>42</td>
+									<td>43</td>
+									<td>85</td>
+									<td class="grade-B">B</td>
+									<td>3.5</td>
+								</tr>
+								<tr>
+									<td>MA102</td>
+									<td>Linear Algebra</td>
+									<td>3</td>
+									<td>48</td>
+									<td>47</td>
+									<td>95</td>
+									<td class="grade-A">A</td>
+									<td>4.0</td>
+								</tr>
+								<tr>
+									<td>PH101</td>
+									<td>Physics I</td>
+									<td>3</td>
+									<td>38</td>
+									<td>40</td>
+									<td>78</td>
+									<td class="grade-C">C</td>
+									<td>3.0</td>
+								</tr>
+								<tr>
+									<td>EN101</td>
+									<td>English Communication</td>
+									<td>2</td>
+									<td>46</td>
+									<td>49</td>
+									<td>95</td>
+									<td class="grade-A">A</td>
+									<td>4.0</td>
+								</tr>
+								<tr style="background-color: #f1f1f1; font-weight: bold;">
+									<td colspan="2">TOTAL / SEMESTER</td>
+									<td>19</td>
+									<td>259</td>
+									<td>268</td>
+									<td>527</td>
+									<td>-</td>
+									<td>3.67</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="row">
+							<div class="col-md-6">
+								<h5><i class="fa fa-calendar-check"></i> Attendance Record</h5>
+								<table class="table table-bordered table-sm">
+									<tr>
+										<td><strong>Total Working Days:</strong></td>
+										<td>120</td>
+									</tr>
+									<tr>
+										<td><strong>Days Present:</strong></td>
+										<td>115</td>
+									</tr>
+									<tr>
+										<td><strong>Days Absent:</strong></td>
+										<td>5</td>
+									</tr>
+									<tr>
+										<td><strong>Leaves Taken:</strong></td>
+										<td>3</td>
+									</tr>
+								</table>
+								<div class="attendance-bar">
+									<div class="attendance-fill" style="width: 95.8%;">95.8%</div>
+								</div>
+								<p class="text-success"><i class="fa fa-check-circle"></i> Attendance is above minimum
+									requirement (75%)</p>
+							</div>
+							<div class="col-md-6">
+								<h5><i class="fa fa-star"></i> Achievements & Awards</h5>
+								<ul class="list-group">
+									<li class="list-group-item d-flex justify-content-between align-items-center">
+										Dean's List Honor
+										<span class="badge bg-warning">Fall 2025</span>
+									</li>
+									<li class="list-group-item d-flex justify-content-between align-items-center">
+										Programming Contest Winner
+										<span class="badge bg-info">2nd Place</span>
+									</li>
+									<li class="list-group-item d-flex justify-content-between align-items-center">
+										Perfect Attendance Award
+										<span class="badge bg-success">Certificate</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="remarks-box mt-4">
+							<h5><i class="fa fa-comment"></i> Teacher Remarks</h5>
+							<p><strong>Class Teacher (Prof. Sharma):</strong> Rahul is an exceptionally bright and
+								dedicated student. He consistently demonstrates excellent programming skills and has
+								shown remarkable improvement throughout the semester. His participation in class
+								discussions and lab work is commendable. He is a good team player and helps fellow
+								students. Keep up the excellent work!</p>
+							<p><strong>HOD Remarks:</strong> Rahul has shown consistent academic excellence. We look
+								forward to his continued success in the coming semesters. Recommended for advanced
+								programming elective courses.</p>
+						</div>
+
+						<div class="row mt-4">
+							<div class="col-md-6">
+								<h5>Grade Distribution</h5>
+								<table class="table table-sm table-bordered">
+									<tr>
+										<td>A Grade (90-100)</td>
+										<td>3 courses</td>
+									</tr>
+									<tr>
+										<td>B Grade (80-89)</td>
+										<td>2 courses</td>
+									</tr>
+									<tr>
+										<td>C Grade (70-79)</td>
+										<td>1 course</td>
+									</tr>
+									<tr>
+										<td>D Grade (60-69)</td>
+										<td>0 courses</td>
+									</tr>
+									<tr>
+										<td>F Grade (0-59)</td>
+										<td>0 courses</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-md-6">
+								<h5>Academic Standing</h5>
+								<div class="alert alert-success">
+									<h6><i class="fa fa-trophy"></i> Good Academic Standing</h6>
+									<p class="mb-0">Student meets all academic requirements and is eligible for the next
+										semester.</p>
+								</div>
+								<div class="alert alert-info">
+									<h6><i class="fa fa-info-circle"></i> Notes</h6>
+									<ul class="mb-0">
+										<li>GPA above 3.5 qualifies for Dean's List</li>
+										<li>Eligible for scholarship renewal</li>
+										<li>Recommended for honor courses</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="signature-section">
+							<div class="signature-box">
+								<div class="signature-line">
+									Class Teacher<br>
+									<small>Prof. Sharma</small>
+								</div>
+							</div>
+							<div class="signature-box">
+								<div class="signature-line">
+									Head of Department<br>
+									<small>Dr. Patel</small>
+								</div>
+							</div>
+							<div class="signature-box">
+								<div class="signature-line">
+									Controller of Examinations<br>
+									<small>Dr. Singh</small>
+								</div>
+							</div>
+							<div class="signature-box">
+								<div class="signature-line">
+									Principal<br>
+									<small>Dr. Verma</small>
+								</div>
+							</div>
+						</div>
+
+						<div class="mt-4 text-center" style="border-top: 2px solid #333; padding-top: 15px;">
+							<p class="text-muted mb-1"><small>This is a computer-generated document. No physical
+									signature is required.</small></p>
+							<p class="text-muted"><small>Report generated on: <span id="generatedDate"></span> |
+									Document ID: RC-2025-2026-FALL-CS101-101</small></p>
+							<p><strong>SMART UNIVERSITY</strong> - Empowering Future Leaders</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end page content -->
+		</div>
+		<!-- end page container -->
+		<!-- start footer -->
+		<div class="page-footer no-print">
+			<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
+				<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- start js include path -->
+	<script src="assets/plugins/jquery/jquery.min.js"></script>
+	<script src="assets/plugins/popper/popper.js"></script>
+	<script src="assets/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+	<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script src="assets/plugins/feather/feather.min.js"></script>
+	<!-- bootstrap -->
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+	<!-- Common js-->
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/layout.js"></script>
+	<script src="assets/js/theme-color.js"></script>
+	<!-- Material -->
+	<script src="assets/plugins/material/material.min.js"></script>
+	<script>
+		// Set dates
+		document.getElementById('printDate').textContent = new Date().toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		});
+		document.getElementById('generatedDate').textContent = new Date().toLocaleString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit'
+		});
+
+		// Download PDF
+		function downloadPDF() {
+			alert('Downloading PDF... This feature requires a PDF generation library.');
+		}
+
+		// Email report
+		function emailReport() {
+			if (confirm('Send this report card to student\'s registered email?')) {
+				alert('Report card sent successfully!');
+			}
+		}
+	</script>
+	<!-- end js include path -->
+</body>
+
+</html>

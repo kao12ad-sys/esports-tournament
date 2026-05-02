@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Smart University | System Settings</title>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/font-awesome/v6/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="assets/plugins/material/material.min.css">
+	<link rel="stylesheet" href="assets/css/material_style.css">
+	<!-- Theme Styles -->
+	<link href="assets/css/theme/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="assets/css/theme/style.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/plugins.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/pages/formlayout.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/theme/theme-color.css" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+	<link rel="shortcut icon" href="assets/img/favicon.ico" />
+	<link href="assets/css/setting-panel.css" rel="stylesheet" type="text/css" />
+	<style>
+		.settings-section {
+			margin-bottom: 30px;
+		}
+
+		.settings-section .card-head {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+		}
+
+		.settings-section .card-head header {
+			color: white;
+		}
+
+		.settings-section .card-head .tools a {
+			color: white;
+		}
+
+		.nav-pills .nav-link.active {
+			background-color: #667eea;
+		}
+
+		.nav-pills .nav-link {
+			color: #333;
+		}
+
+		.color-option {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			display: inline-block;
+			margin-right: 10px;
+			cursor: pointer;
+			border: 2px solid transparent;
+		}
+
+		.color-option.selected {
+			border-color: #333;
+		}
+
+		.setting-item {
+			padding: 15px 0;
+			border-bottom: 1px solid #eee;
+		}
+
+		.setting-item:last-child {
+			border-bottom: none;
+		}
+
+		.setting-label {
+			font-weight: 600;
+			margin-bottom: 5px;
+		}
+
+		.setting-desc {
+			font-size: 0.85rem;
+			color: #888;
+		}
+	</style>
+	<script src="assets/js/early-theme-init.js"></script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
+	<div class="page-wrapper">
+		<!-- start header -->
+		<div class="page-header navbar navbar-fixed-top">
+			<div class="page-header-inner ">
+				<!-- logo start -->
+				<div class="page-logo">
+					<a href="index.html">
+						<img class="logo-icon" src="assets/img/logo.png" alt="logo" height="40px">
+						<span class="logo-default">Smart</span> </a>
+				</div>
+				<!-- logo end -->
+				<ul class="nav navbar-nav navbar-left in">
+					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+				</ul>
+				<form class="search-form-opened" action="#" method="GET">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search..." name="query">
+						<span class="input-group-btn">
+							<a href="javascript:;" class="btn submit">
+								<i class="icon-magnifier"></i>
+							</a>
+						</span>
+					</div>
+				</form>
+				<!-- start mobile menu -->
+				<a class="menu-toggler responsive-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+					<span></span>
+				</a>
+				<!-- end mobile menu -->
+				<!-- start header menu -->
+				<div class="top-menu">
+					<ul class="nav navbar-nav pull-right">
+						<li><a class="fullscreen-btn"><i data-feather="maximize"></i></a></li>
+						<li class="dropdown language-switch">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <img
+									src="assets/img/flags/gb.png" class="position-left" alt=""> English
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="german"><img src="assets/img/flags/de.png" alt=""> German</a>
+								</li>
+								<li>
+									<a class="french"><img src="assets/img/flags/fr.png" alt=""> French</a>
+								</li>
+								<li>
+									<a class="english"><img src="assets/img/flags/gb.png" alt=""> English</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<i data-feather="bell"></i>
+								<span class="badge headerBadgeColor1"> 6 </span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="external">
+									<h3><span class="bold">12 pending</span> notifications</h3>
+									<a href="#">view all</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown dropdown-user">
+							<a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown"
+								data-close-others="true">
+								<img alt="" class="img-circle " src="assets/img/dp.jpg" />
+								<span class="username username-hide-on-mobile"> Admin
+							</a>
+							<ul class="dropdown-menu dropdown-menu-default">
+								<li>
+									<a href="user_profile.html">
+										<i class="icon-user"></i> Profile </a>
+								</li>
+								<li>
+									<a href="login.html">
+										<i class="icon-logout"></i> Log Out </a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown dropdown-quick-sidebar-toggler">
+							<a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+								data-upgraded=",MaterialButton">
+								<i class="material-icons">more_vert</i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- end header -->
+
+		<!-- start color quick setting -->
+		<div class="settingSidebar">
+			<a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+			</a>
+			<div class="settingSidebar-body ps-container ps-theme-default">
+				<div class=" fade show active">
+					<div class="setting-panel-header">
+						<div class="setting-panel-header-title">
+							<i class="fas fa-cog"></i> Settings
+						</div>
+						<p class="setting-panel-header-subtitle">Customize your preferences</p>
+					</div>
+
+					<!-- Theme Mode Toggle -->
+					<div class="setting-section">
+						<div class="setting-section-title">
+							<i class="fas fa-moon"></i> Appearance
+						</div>
+						<div class="theme-toggle-wrapper">
+							<div class="theme-toggle-option">
+								<input type="radio" name="themeMode" id="themeLight" value="light" checked>
+								<label for="themeLight" class="theme-toggle-label">
+									<span class="theme-toggle-icon"><i class="fas fa-sun"></i></span>
+									<span class="theme-toggle-text">Light</span>
+								</label>
+							</div>
+							<div class="theme-toggle-option">
+								<input type="radio" name="themeMode" id="themeDark" value="dark">
+								<label for="themeDark" class="theme-toggle-label">
+									<span class="theme-toggle-icon"><i class="fas fa-moon"></i></span>
+									<span class="theme-toggle-text">Dark</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Layout Direction Toggle -->
+					<div class="setting-section">
+						<div class="setting-section-title">
+							<i class="fas fa-random"></i> Layout Direction
+						</div>
+						<div class="layout-toggle-wrapper">
+							<div class="layout-toggle-option">
+								<input type="radio" name="layoutDir" id="layoutLTR" value="ltr" checked>
+								<label for="layoutLTR" class="layout-toggle-label">
+									<span class="layout-toggle-text">LTR</span>
+									<span class="layout-toggle-desc">Left to Right</span>
+								</label>
+							</div>
+							<div class="layout-toggle-option">
+								<input type="radio" name="layoutDir" id="layoutRTL" value="rtl">
+								<label for="layoutRTL" class="layout-toggle-label">
+									<span class="layout-toggle-text">RTL</span>
+									<span class="layout-toggle-desc">Right to Left</span>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="quick-setting">
+						<ul id="themecolors">
+							<li>
+								<p class="sidebarSettingTitle"><i class="fas fa-bars"></i> Sidebar Color</p>
+							</li>
+							<li class="complete">
+								<div class="theme-color sidebar-theme">
+									<a href="#" class="color-dot" data-theme="white" title="White"><span
+											class="color-dot-inner white"></span></a>
+									<a href="#" class="color-dot" data-theme="dark" title="Dark"><span
+											class="color-dot-inner dark"></span></a>
+									<a href="#" class="color-dot" data-theme="blue" title="Blue"><span
+											class="color-dot-inner blue"></span></a>
+									<a href="#" class="color-dot" data-theme="indigo" title="Indigo"><span
+											class="color-dot-inner indigo"></span></a>
+									<a href="#" class="color-dot" data-theme="cyan" title="Cyan"><span
+											class="color-dot-inner cyan"></span></a>
+									<a href="#" class="color-dot" data-theme="green" title="Green"><span
+											class="color-dot-inner green"></span></a>
+									<a href="#" class="color-dot" data-theme="red" title="Red"><span
+											class="color-dot-inner red"></span></a>
+								</div>
+							</li>
+							<li>
+								<p class="sidebarSettingTitle"><i class="fas fa-heading"></i> Header Color</p>
+							</li>
+							<li class="theme-option">
+								<div class="theme-color header-theme">
+									<a href="#" class="color-dot" data-theme="header-white" title="White"><span
+											class="color-dot-inner white"></span></a>
+									<a href="#" class="color-dot" data-theme="header-dark" title="Dark"><span
+											class="color-dot-inner dark"></span></a>
+									<a href="#" class="color-dot" data-theme="header-blue" title="Blue"><span
+											class="color-dot-inner blue"></span></a>
+									<a href="#" class="color-dot" data-theme="header-indigo" title="Indigo"><span
+											class="color-dot-inner indigo"></span></a>
+									<a href="#" class="color-dot" data-theme="header-cyan" title="Cyan"><span
+											class="color-dot-inner cyan"></span></a>
+									<a href="#" class="color-dot" data-theme="header-green" title="Green"><span
+											class="color-dot-inner green"></span></a>
+									<a href="#" class="color-dot" data-theme="header-red" title="Red"><span
+											class="color-dot-inner red"></span></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end color quick setting -->
+		<!-- start page container -->
+		<div class="page-container">
+			<!-- start sidebar menu -->
+			<div class="sidebar-container">
+				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+					<div class="left-sidemenu">
+						<ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false"
+							data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+							<li class="sidebar-toggler-wrapper hide">
+								<div class="sidebar-toggler">
+									<span></span>
+								</div>
+							</li>
+							<li class="sidebar-user-panel">
+								<div class="sidebar-user">
+									<div class="sidebar-user-picture">
+										<img alt="image" src="assets/img/dp.jpg">
+									</div>
+									<div class="sidebar-user-details">
+										<div class="user-name">Sneha Patel</div>
+										<div class="user-role">Administrator</div>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item start">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="airplay"></i>
+									<span class="title">Dashboard</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="index.html" class="nav-link ">
+											<span class="title">Dashboard 1</span>
+										</a>
+									</li>
+									<li class="nav-item ">
+										<a href="dashboard2.html" class="nav-link ">
+											<span class="title">Dashboard 2</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="dashboard3.html" class="nav-link ">
+											<span class="title">Dashboard 3</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="event.html" class="nav-link nav-toggle"> <i data-feather="calendar"></i>
+									<span class="title">Event Management</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="clock"></i>
+									<span class="title">Class</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="schedule_calendar.html" class="nav-link "> <span class="title">Schedule
+												Calendar</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="all_schedules.html" class="nav-link "> <span class="title">All
+												Schedules</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_schedule.html" class="nav-link "> <span class="title">Add
+												Schedule</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="user"></i>
+									<span class="title">Professors</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_professors.html" class="nav-link "> <span class="title">All
+												Professors</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_professor.html" class="nav-link "> <span class="title">Add
+												Professor</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_professor_bootstrap.html" class="nav-link "> <span
+												class="title">Add Professor Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_professor.html" class="nav-link "> <span class="title">Edit
+												Professor</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="professor_profile.html" class="nav-link "> <span class="title">About
+												Professor</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"><i data-feather="users"></i>
+									<span class="title">Students</span><span class="arrow"></span></a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_students.html" class="nav-link "> <span class="title">All
+												Students</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_student.html" class="nav-link "> <span class="title">Add
+												Student</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_student_bootstrap.html" class="nav-link "> <span class="title">Add
+												Student Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_student.html" class="nav-link "> <span class="title">Edit
+												Student</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_profile.html" class="nav-link "> <span class="title">About
+												Student</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="book"></i>
+									<span class="title">Courses</span> <span class="arrow"></span>
+									<span class="label label-rouded label-menu label-success">new</span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_courses.html" class="nav-link "> <span class="title">All
+												Courses</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_course.html" class="nav-link "> <span class="title">Add
+												Course</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_course_bootstrap.html" class="nav-link "> <span class="title">Add
+												Course Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_course.html" class="nav-link "> <span class="title">Edit
+												Course</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="course_details.html" class="nav-link "> <span class="title">About
+												Course</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="book-open"></i>
+									<span class="title">Library</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_assets.html" class="nav-link "> <span class="title">All Library
+												Assets</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_library.html" class="nav-link "> <span class="title">Add Library
+												Asset</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_library_bootstrap.html" class="nav-link "> <span class="title">Add
+												Asset Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_library.html" class="nav-link "> <span class="title">Edit
+												Asset</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="briefcase"></i>
+									<span class="title">Departments</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_department.html" class="nav-link "> <span class="title">All
+												Departments</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_department.html" class="nav-link "> <span class="title">Add
+												Department</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_department_bootstrap.html" class="nav-link "> <span
+												class="title">Add Department Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_department.html" class="nav-link "> <span class="title">Edit
+												Department</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="smile"></i>
+									<span class="title">Staff</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_staffs.html" class="nav-link "> <span class="title">All
+												Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_staff.html" class="nav-link "> <span class="title">Add Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_staff_bootstrap.html" class="nav-link "> <span class="title">Add
+												Staff Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_staff.html" class="nav-link "> <span class="title">Edit
+												Staff</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="staff_profile.html" class="nav-link "> <span class="title">Staff
+												Profile</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="coffee"></i>
+									<span class="title">Holiday</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_holidays.html" class="nav-link "> <span class="title">All
+												Holiday</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_holiday.html" class="nav-link "> <span class="title">Add
+												Holiday</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_holiday_bootstrap.html" class="nav-link "> <span class="title">Add
+												Holiday Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="edit_holiday.html" class="nav-link "> <span class="title">Edit
+												Holiday</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="check-square"></i>
+									<span class="title">Attendance</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="mark_attendance.html" class="nav-link "> <span class="title">Mark
+												Attendance</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="view_attendance.html" class="nav-link "> <span class="title">View
+												Attendance</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_attendance_history.html" class="nav-link "> <span
+												class="title">Student
+												Attendance History</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="award"></i>
+									<span class="title">Grade Management</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="enter_grades.html" class="nav-link "> <span class="title">Enter
+												Grades</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="view_grades.html" class="nav-link "> <span class="title">View
+												Grades</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="generate_report_card.html" class="nav-link "> <span
+												class="title">Generate
+												Report Card</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="view_report_card.html" class="nav-link "> <span class="title">View
+												Report Card</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="mail"></i>
+									<span class="title">Email</span>
+									<span class="arrow"></span>
+									<span class="label label-rouded label-menu label-danger">new</span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="email_inbox.html" class="nav-link ">
+											<span class="title">Inbox</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="email_view.html" class="nav-link ">
+											<span class="title">View Mail</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="email_compose.html" class="nav-link ">
+											<span class="title">Compose Mail</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item active open">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="settings"></i>
+									<span class="title">System Settings</span> <span class="selected"></span>
+									<span class="arrow open"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item active">
+										<a href="system_settings.html" class="nav-link "> <span class="title">General
+												Settings</span>
+											<span class="selected"></span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="academic_year_settings.html" class="nav-link "> <span
+												class="title">Academic
+												Year Settings</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="dollar-sign"></i>
+									<span class="title">Fees</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="fees_collection.html" class="nav-link "> <span class="title">Fees
+												Collection</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_fees.html" class="nav-link "> <span class="title">Add Fees </span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="add_fees_bootstrap.html" class="nav-link "> <span class="title">Add
+												Fees Bootstrap</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="fees_receipt.html" class="nav-link "> <span class="title">Fee
+												Receipt</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle"> <i data-feather="home"></i>
+									<span class="title">Hostel Management</span> <span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="all_hostels.html" class="nav-link "> <span class="title">All
+												Hostels</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="manage_rooms.html" class="nav-link "> <span class="title">Manage
+												Rooms</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="allocate_room.html" class="nav-link "> <span class="title">Allocate
+												Room</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="student_accommodation.html" class="nav-link "> <span
+												class="title">Student
+												Accommodation</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item">
+								<a href="widget.html" class="nav-link nav-toggle"> <i data-feather="gift"></i>
+									<span class="title">Widget</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="copy"></i>
+									<span class="title">UI Elements</span>
+									<span class="label label-rouded label-menu label-warning">new</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="ui_buttons.html" class="nav-link ">
+											<span class="title">Buttons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_sweet_alert.html" class="nav-link ">
+											<span class="title">Sweet Alert</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_tabs_accordions_navs.html" class="nav-link ">
+											<span class="title">Tabs &amp; Accordions</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_typography.html" class="nav-link ">
+											<span class="title">Typography</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="notification.html" class="nav-link ">
+											<span class="title">Notification</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_icons.html" class="nav-link ">
+											<span class="title">Icons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_panels.html" class="nav-link ">
+											<span class="title">Panels</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_grid.html" class="nav-link ">
+											<span class="title">Grids</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_tree.html" class="nav-link ">
+											<span class="title">Tree View</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="ui_carousel.html" class="nav-link ">
+											<span class="title">Carousel</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link nav-toggle">
+									<i data-feather="layers"></i>
+									<span class="title">Material Elements</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="material_button.html" class="nav-link ">
+											<span class="title">Buttons</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_tab.html" class="nav-link ">
+											<span class="title">Tabs</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_chips.html" class="nav-link ">
+											<span class="title">Chips</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_grid.html" class="nav-link ">
+											<span class="title">Grid</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_icons.html" class="nav-link ">
+											<span class="title">Icon</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_form.html" class="nav-link ">
+											<span class="title">Form</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_datepicker.html" class="nav-link ">
+											<span class="title">DatePicker</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_select.html" class="nav-link ">
+											<span class="title">Select Item</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_loading.html" class="nav-link ">
+											<span class="title">Loading</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_menu.html" class="nav-link ">
+											<span class="title">Menu</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_slider.html" class="nav-link ">
+											<span class="title">Slider</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_tables.html" class="nav-link ">
+											<span class="title">Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_toggle.html" class="nav-link ">
+											<span class="title">Toggle</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="material_badges.html" class="nav-link ">
+											<span class="title">Badges</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="server"></i>
+									<span class="title">Forms </span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="layouts_form.html" class="nav-link ">
+											<span class="title">Form Layout</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="advance_form.html" class="nav-link ">
+											<span class="title">Advance Component</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="wizard.html" class="nav-link ">
+											<span class="title">Form Wizard</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="validation_form.html" class="nav-link ">
+											<span class="title">Form Validation</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="editable_form.html" class="nav-link ">
+											<span class="title">Editor</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="grid"></i>
+									<span class="title">Data Tables</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="basic_table.html" class="nav-link ">
+											<span class="title">Basic Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="advanced_table.html" class="nav-link ">
+											<span class="title">Advance Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="export_table.html" class="nav-link ">
+											<span class="title">Export Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="child_row_table.html" class="nav-link ">
+											<span class="title">Child Row Tables</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="group_table.html" class="nav-link ">
+											<span class="title">Grouping</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="tableData.html" class="nav-link ">
+											<span class="title">Tables With Sourced Data</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="pie-chart"></i>
+									<span class="title">Charts</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="charts_apexchart.html" class="nav-link ">
+											<span class="title">Apex chart</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_amchart.html" class="nav-link ">
+											<span class="title">amChart</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_plotly.html" class="nav-link ">
+											<span class="title">Plotly Charts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_echarts.html" class="nav-link ">
+											<span class="title">eCharts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_morris.html" class="nav-link ">
+											<span class="title">Morris Charts</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="charts_chartjs.html" class="nav-link ">
+											<span class="title">Chartjs</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="map-pin"></i>
+									<span class="title">Maps</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="google_maps.html" class="nav-link ">
+											<span class="title">Google Maps</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="vector_maps.html" class="nav-link ">
+											<span class="title">Vector Maps</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle"> <i data-feather="anchor"></i>
+									<span class="title">Extra pages</span>
+									<span class="arrow"></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item  ">
+										<a href="login.html" class="nav-link "> <span class="title">Login</span>
+										</a>
+									</li>
+									<li class="nav-item  ">
+										<a href="sign_up.html" class="nav-link "> <span class="title">Sign Up</span>
+										</a>
+									</li>
+									<li class="nav-item  ">
+										<a href="forgot_password.html" class="nav-link "> <span class="title">Forgot
+												Password</span>
+										</a>
+									</li>
+									<li class="nav-item"><a href="user_profile.html" class="nav-link "><span
+												class="title">Profile</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="contact.html" class="nav-link "> <span class="title">Contact Us</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="lock_screen.html" class="nav-link "> <span class="title">Lock
+												Screen</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="page-404.html" class="nav-link "> <span class="title">404 Page</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="page-500.html" class="nav-link "> <span class="title">500 Page</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="blank_page.html" class="nav-link "> <span class="title">Blank
+												Page</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:;" class="nav-link nav-toggle">
+									<i data-feather="chevrons-down"></i>
+									<span class="title">Multi Level Menu</span>
+									<span class="arrow "></span>
+								</a>
+								<ul class="sub-menu">
+									<li class="nav-item">
+										<a href="javascript:;" class="nav-link nav-toggle">
+											<i data-feather="alert-octagon"></i> Item 1
+											<span class="arrow"></span>
+										</a>
+										<ul class="sub-menu">
+											<li class="nav-item">
+												<a href="javascript:;" class="nav-link nav-toggle">
+													<i data-feather="aperture"></i> Arrow Toggle
+													<span class="arrow "></span>
+												</a>
+												<ul class="sub-menu">
+													<li class="nav-item">
+														<a href="javascript:;" class="nav-link">
+															<i data-feather="battery"></i> Sample Link 1</a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link">
+															<i data-feather="award"></i> Sample Link 2</a>
+													</li>
+													<li class="nav-item">
+														<a href="#" class="nav-link">
+															<i data-feather="box"></i> Sample Link 3</a>
+													</li>
+												</ul>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="clock"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="database"></i> Sample Link 2</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="edit"></i> Sample Link 3</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-item">
+										<a href="javascript:;" class="nav-link nav-toggle">
+											<i data-feather="folder"></i> Arrow Toggle
+											<span class="arrow"></span>
+										</a>
+										<ul class="sub-menu">
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="film"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="file"></i> Sample Link 1</a>
+											</li>
+											<li class="nav-item">
+												<a href="#" class="nav-link">
+													<i data-feather="heart"></i> Sample Link 1
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i data-feather="lock"></i> Item 3 </a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- end sidebar menu -->
+			<!-- start page content -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">System Settings</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">System Settings</li>
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="card card-box">
+								<div class="card-body">
+									<ul class="nav nav-pills flex-column" id="settingsTab" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" id="general-tab" data-bs-toggle="pill"
+												href="#general" role="tab">
+												<i class="fa fa-cog"></i> General Settings
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="academic-tab" data-bs-toggle="pill" href="#academic"
+												role="tab">
+												<i class="fa fa-graduation-cap"></i> Academic Settings
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="grading-tab" data-bs-toggle="pill" href="#grading"
+												role="tab">
+												<i class="fa fa-star"></i> Grading System
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="attendance-tab" data-bs-toggle="pill"
+												href="#attendance" role="tab">
+												<i class="fa fa-calendar-check"></i> Attendance Policy
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="email-tab" data-bs-toggle="pill" href="#email"
+												role="tab">
+												<i class="fa fa-envelope"></i> Email & Notifications
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="security-tab" data-bs-toggle="pill" href="#security"
+												role="tab">
+												<i class="fa fa-lock"></i> Security
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="backup-tab" data-bs-toggle="pill" href="#backup"
+												role="tab">
+												<i class="fa fa-database"></i> Backup & Restore
+											</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" id="appearance-tab" data-bs-toggle="pill"
+												href="#appearance" role="tab">
+												<i class="fa fa-paint-brush"></i> Appearance
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="tab-content" id="settingsTabContent">
+								<!-- General Settings -->
+								<div class="tab-pane fade show active" id="general" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-cog"></i> General Settings</header>
+										</div>
+										<div class="card-body">
+											<form id="generalSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Institution Name <span
+															class="required">*</span></label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="institutionName"
+															value="Smart University">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Tagline</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="tagline"
+															value="Excellence in Education">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Address <span
+															class="required">*</span></label>
+													<div class="col-md-8">
+														<textarea class="form-control" id="address"
+															rows="2">123 Education Street, Academic City, State 12345</textarea>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Phone Number</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="phone"
+															value="(555) 123-4567">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Email</label>
+													<div class="col-md-8">
+														<input type="email" class="form-control" id="institutionEmail"
+															value="info@smartuniversity.edu">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Website</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="website"
+															value="www.smartuniversity.edu">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Time Zone</label>
+													<div class="col-md-8">
+														<select class="form-select" id="timezone">
+															<option value="UTC-5">Eastern Time (UTC-5)</option>
+															<option value="UTC-6" selected>Central Time (UTC-6)</option>
+															<option value="UTC-7">Mountain Time (UTC-7)</option>
+															<option value="UTC-8">Pacific Time (UTC-8)</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Date Format</label>
+													<div class="col-md-8">
+														<select class="form-select" id="dateFormat">
+															<option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+															<option value="DD/MM/YYYY">DD/MM/YYYY</option>
+															<option value="YYYY-MM-DD">YYYY-MM-DD</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Institution Logo</label>
+													<div class="col-md-8">
+														<input type="file" class="form-control" id="logo">
+														<small class="text-muted">Recommended size: 200x80
+															pixels</small>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveGeneralSettings()">
+															<i class="fa fa-save"></i> Save Changes
+														</button>
+														<button type="reset" class="btn btn-default">
+															<i class="fa fa-refresh"></i> Reset
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Academic Settings -->
+								<div class="tab-pane fade" id="academic" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-graduation-cap"></i> Academic Settings</header>
+										</div>
+										<div class="card-body">
+											<form id="academicSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Current Academic Year</label>
+													<div class="col-md-8">
+														<select class="form-select" id="currentYear">
+															<option value="2025-2026" selected>2025-2026</option>
+															<option value="2024-2025">2024-2025</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Current Semester</label>
+													<div class="col-md-8">
+														<select class="form-select" id="currentSemester">
+															<option value="Fall" selected>Fall Semester</option>
+															<option value="Spring">Spring Semester</option>
+															<option value="Summer">Summer Semester</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Default Currency</label>
+													<div class="col-md-8">
+														<select class="form-select" id="currency">
+															<option value="USD" selected>USD ($)</option>
+															<option value="EUR">EUR (&euro;)</option>
+															<option value="GBP">GBP (&pound;)</option>
+															<option value="INR">INR (&#8377;)</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Week Start Day</label>
+													<div class="col-md-8">
+														<select class="form-select" id="weekStart">
+															<option value="Monday" selected>Monday</option>
+															<option value="Sunday">Sunday</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Allow Late Submissions</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="lateSubmission" checked>
+															<label class="form-check-label"
+																for="lateSubmission">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Late Submission Penalty
+														(%)</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="latePenalty"
+															value="10" min="0" max="100">
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveAcademicSettings()">
+															<i class="fa fa-save"></i> Save Changes
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Grading System -->
+								<div class="tab-pane fade" id="grading" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-star"></i> Grading System Configuration</header>
+										</div>
+										<div class="card-body">
+											<form id="gradingSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Grading System</label>
+													<div class="col-md-8">
+														<select class="form-select" id="gradingSystem"
+															onchange="toggleGradingOptions()">
+															<option value="letter" selected>Letter Grade (A-F)</option>
+															<option value="percentage">Percentage Only</option>
+															<option value="gpa">GPA Only</option>
+															<option value="custom">Custom Grade Scale</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Passing Grade</label>
+													<div class="col-md-8">
+														<select class="form-select" id="passingGrade">
+															<option value="D">D (60%)</option>
+															<option value="C" selected>C (70%)</option>
+															<option value="B">B (80%)</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Maximum GPA</label>
+													<div class="col-md-8">
+														<select class="form-select" id="maxGPA">
+															<option value="4.0" selected>4.0</option>
+															<option value="5.0">5.0</option>
+															<option value="10.0">10.0</option>
+														</select>
+													</div>
+												</div>
+												<hr>
+												<h5>Grade Scale Configuration</h5>
+												<table class="table table-bordered mt-3">
+													<thead>
+														<tr>
+															<th>Letter Grade</th>
+															<th>Min %</th>
+															<th>Max %</th>
+															<th>GPA Points</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td><span class="badge bg-success">A</span></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="90"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="100"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="4.0"
+																	step="0.1" style="width:70px"></td>
+														</tr>
+														<tr>
+															<td><span class="badge bg-info">B</span></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="80"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="89"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="3.5"
+																	step="0.1" style="width:70px"></td>
+														</tr>
+														<tr>
+															<td><span class="badge bg-warning">C</span></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="70"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="79"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="3.0"
+																	step="0.1" style="width:70px"></td>
+														</tr>
+														<tr>
+															<td><span class="badge bg-secondary">D</span></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="60"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="69"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="2.0"
+																	step="0.1" style="width:70px"></td>
+														</tr>
+														<tr>
+															<td><span class="badge bg-danger">F</span></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="0"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="59"
+																	style="width:70px"></td>
+															<td><input type="number"
+																	class="form-control form-control-sm" value="0.0"
+																	step="0.1" style="width:70px"></td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveGradingSettings()">
+															<i class="fa fa-save"></i> Save Grading Settings
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Attendance Policy -->
+								<div class="tab-pane fade" id="attendance" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-calendar-check"></i> Attendance Policy</header>
+										</div>
+										<div class="card-body">
+											<form id="attendanceSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Minimum Attendance %</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="minAttendance"
+															value="75" min="0" max="100">
+														<small class="text-muted">Students must maintain this attendance
+															to be eligible for exams</small>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Auto-mark Absent After
+														(mins)</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="autoAbsentTime"
+															value="15" min="0">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Allow Leave
+														Applications</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="allowLeaves" checked>
+															<label class="form-check-label"
+																for="allowLeaves">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Leave Approval
+														Required</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="leaveApproval" checked>
+															<label class="form-check-label"
+																for="leaveApproval">Yes</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Max Leaves Per
+														Semester</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="maxLeaves"
+															value="10" min="0">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Send Attendance Alerts</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="attendanceAlerts" checked>
+															<label class="form-check-label"
+																for="attendanceAlerts">Enable Email/SMS Alerts</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Alert Threshold</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="alertThreshold"
+															value="80" min="0" max="100">
+														<small class="text-muted">Send alert when attendance falls below
+															this %</small>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveAttendanceSettings()">
+															<i class="fa fa-save"></i> Save Attendance Policy
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Email & Notifications -->
+								<div class="tab-pane fade" id="email" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-envelope"></i> Email & Notification Settings
+											</header>
+										</div>
+										<div class="card-body">
+											<form id="emailSettingsForm">
+												<h5>SMTP Configuration</h5>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">SMTP Host</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="smtpHost"
+															value="smtp.gmail.com">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">SMTP Port</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="smtpPort"
+															value="587">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">SMTP Username</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" id="smtpUser"
+															value="admin@smartuniversity.edu">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">SMTP Password</label>
+													<div class="col-md-8">
+														<input type="password" class="form-control" id="smtpPass"
+															value="********">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Encryption</label>
+													<div class="col-md-8">
+														<select class="form-select" id="smtpEncryption">
+															<option value="tls" selected>TLS</option>
+															<option value="ssl">SSL</option>
+															<option value="none">None</option>
+														</select>
+													</div>
+												</div>
+												<hr>
+												<h5>Notification Preferences</h5>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Email Notifications</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="emailNotif" checked>
+															<label class="form-check-label"
+																for="emailNotif">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">SMS Notifications</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="smsNotif" checked>
+															<label class="form-check-label"
+																for="smsNotif">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Push Notifications</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="pushNotif">
+															<label class="form-check-label"
+																for="pushNotif">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveEmailSettings()">
+															<i class="fa fa-save"></i> Save Email Settings
+														</button>
+														<button type="button" class="btn btn-info"
+															onclick="testEmailConnection()">
+															<i class="fa fa-paper-plane"></i> Test Connection
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Security -->
+								<div class="tab-pane fade" id="security" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-lock"></i> Security Settings</header>
+										</div>
+										<div class="card-body">
+											<form id="securitySettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Password Expiry (days)</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="passwordExpiry"
+															value="90" min="0">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Minimum Password
+														Length</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="minPasswordLength"
+															value="8" min="6">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Require Special
+														Characters</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="specialChars" checked>
+															<label class="form-check-label"
+																for="specialChars">Yes</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Two-Factor
+														Authentication</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="twoFactor">
+															<label class="form-check-label" for="twoFactor">Enable for
+																Admin</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Session Timeout (mins)</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="sessionTimeout"
+															value="30" min="5">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Max Login Attempts</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="maxLoginAttempts"
+															value="5" min="3">
+														<small class="text-muted">Lock account after this many failed
+															attempts</small>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">IP Restriction</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="ipRestriction">
+															<label class="form-check-label"
+																for="ipRestriction">Enable</label>
+														</div>
+														<textarea class="form-control mt-2" rows="2"
+															placeholder="Enter allowed IPs (one per line)"></textarea>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveSecuritySettings()">
+															<i class="fa fa-save"></i> Save Security Settings
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Backup & Restore -->
+								<div class="tab-pane fade" id="backup" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-database"></i> Backup & Restore</header>
+										</div>
+										<div class="card-body">
+											<div class="row mb-4">
+												<div class="col-md-6">
+													<h5>Manual Backup</h5>
+													<p class="text-muted">Create a backup of your database and files</p>
+													<button type="button" class="btn btn-primary"
+														onclick="createBackup()">
+														<i class="fa fa-download"></i> Create Backup Now
+													</button>
+												</div>
+												<div class="col-md-6">
+													<h5>Restore Backup</h5>
+													<p class="text-muted">Restore from a previous backup file</p>
+													<input type="file" class="form-control mb-2" id="restoreFile"
+														accept=".zip,.sql">
+													<button type="button" class="btn btn-warning"
+														onclick="restoreBackup()">
+														<i class="fa fa-upload"></i> Restore Backup
+													</button>
+												</div>
+											</div>
+											<hr>
+											<h5>Automatic Backup Schedule</h5>
+											<form id="backupSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Auto Backup</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="autoBackup" checked>
+															<label class="form-check-label"
+																for="autoBackup">Enable</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Backup Frequency</label>
+													<div class="col-md-8">
+														<select class="form-select" id="backupFrequency">
+															<option value="daily" selected>Daily</option>
+															<option value="weekly">Weekly</option>
+															<option value="monthly">Monthly</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Backup Time</label>
+													<div class="col-md-8">
+														<input type="time" class="form-control" id="backupTime"
+															value="02:00">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Retain Backups (days)</label>
+													<div class="col-md-8">
+														<input type="number" class="form-control" id="retainDays"
+															value="30" min="7">
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveBackupSettings()">
+															<i class="fa fa-save"></i> Save Backup Settings
+														</button>
+													</div>
+												</div>
+											</form>
+											<hr>
+											<h5>Recent Backups</h5>
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>Date</th>
+														<th>Size</th>
+														<th>Type</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>2026-03-19 02:00 AM</td>
+														<td>125 MB</td>
+														<td><span class="badge bg-success">Auto</span></td>
+														<td>
+															<button class="btn btn-sm btn-info"
+																onclick="downloadBackup('1')"><i
+																	class="fa fa-download"></i></button>
+															<button class="btn btn-sm btn-warning"
+																onclick="restoreBackup('1')"><i
+																	class="fa fa-upload"></i></button>
+															<button class="btn btn-sm btn-danger"
+																onclick="deleteBackup('1')"><i
+																	class="fa fa-trash"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<td>2026-03-18 02:00 AM</td>
+														<td>124 MB</td>
+														<td><span class="badge bg-success">Auto</span></td>
+														<td>
+															<button class="btn btn-sm btn-info"
+																onclick="downloadBackup('2')"><i
+																	class="fa fa-download"></i></button>
+															<button class="btn btn-sm btn-warning"
+																onclick="restoreBackup('2')"><i
+																	class="fa fa-upload"></i></button>
+															<button class="btn btn-sm btn-danger"
+																onclick="deleteBackup('2')"><i
+																	class="fa fa-trash"></i></button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<!-- Appearance -->
+								<div class="tab-pane fade" id="appearance" role="tabpanel">
+									<div class="card card-box settings-section">
+										<div class="card-head">
+											<header><i class="fa fa-paint-brush"></i> Appearance Settings</header>
+										</div>
+										<div class="card-body">
+											<form id="appearanceSettingsForm">
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Primary Color</label>
+													<div class="col-md-8">
+														<div>
+															<span class="color-option selected"
+																style="background: #667eea;"
+																onclick="selectColor(this, '#667eea')"></span>
+															<span class="color-option" style="background: #3498db;"
+																onclick="selectColor(this, '#3498db')"></span>
+															<span class="color-option" style="background: #2ecc71;"
+																onclick="selectColor(this, '#2ecc71')"></span>
+															<span class="color-option" style="background: #e74c3c;"
+																onclick="selectColor(this, '#e74c3c')"></span>
+															<span class="color-option" style="background: #9b59b6;"
+																onclick="selectColor(this, '#9b59b6')"></span>
+															<span class="color-option" style="background: #f39c12;"
+																onclick="selectColor(this, '#f39c12')"></span>
+														</div>
+														<input type="color" class="form-control-color mt-2"
+															id="customColor" value="#667eea">
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Sidebar Style</label>
+													<div class="col-md-8">
+														<select class="form-select" id="sidebarStyle">
+															<option value="dark" selected>Dark</option>
+															<option value="light">Light</option>
+															<option value="colored">Colored</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Header Style</label>
+													<div class="col-md-8">
+														<select class="form-select" id="headerStyle">
+															<option value="fixed" selected>Fixed</option>
+															<option value="scrollable">Scrollable</option>
+															<option value="minimal">Minimal</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Layout Direction</label>
+													<div class="col-md-8">
+														<select class="form-select" id="layoutDirection">
+															<option value="ltr" selected>Left to Right (LTR)</option>
+															<option value="rtl">Right to Left (RTL)</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Default Dashboard</label>
+													<div class="col-md-8">
+														<select class="form-select" id="defaultDashboard">
+															<option value="dashboard1" selected>Dashboard 1</option>
+															<option value="dashboard2">Dashboard 2</option>
+															<option value="dashboard3">Dashboard 3</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Show Footer</label>
+													<div class="col-md-8">
+														<div class="form-check form-switch">
+															<input type="checkbox" class="form-check-input"
+																id="showFooter" checked>
+															<label class="form-check-label" for="showFooter">Yes</label>
+														</div>
+													</div>
+												</div>
+												<div class="form-group row mb-3">
+													<label class="col-md-4 control-label">Custom CSS</label>
+													<div class="col-md-8">
+														<textarea class="form-control" id="customCSS" rows="4"
+															placeholder="Enter custom CSS here..."></textarea>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-md-8 offset-md-4">
+														<button type="button" class="btn btn-primary"
+															onclick="saveAppearanceSettings()">
+															<i class="fa fa-save"></i> Save Appearance Settings
+														</button>
+														<button type="button" class="btn btn-info"
+															onclick="previewChanges()">
+															<i class="fa fa-eye"></i> Preview
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end page content -->
+		</div>
+		<!-- end page container -->
+		<!-- start footer -->
+		<div class="page-footer">
+			<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
+				<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- start js include path -->
+	<script src="assets/plugins/jquery/jquery.min.js"></script>
+	<script src="assets/plugins/popper/popper.js"></script>
+	<script src="assets/plugins/jquery-blockui/jquery.blockui.min.js"></script>
+	<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script src="assets/plugins/feather/feather.min.js"></script>
+	<!-- bootstrap -->
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+	<!-- Common js-->
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/layout.js"></script>
+	<script src="assets/js/theme-color.js"></script>
+	<!-- Material -->
+	<script src="assets/plugins/material/material.min.js"></script>
+	<script>
+		// Save functions
+		function saveGeneralSettings() {
+			alert('General settings saved successfully!');
+		}
+
+		function saveAcademicSettings() {
+			alert('Academic settings saved successfully!');
+		}
+
+		function saveGradingSettings() {
+			alert('Grading settings saved successfully!');
+		}
+
+		function saveAttendanceSettings() {
+			alert('Attendance policy saved successfully!');
+		}
+
+		function saveEmailSettings() {
+			alert('Email settings saved successfully!');
+		}
+
+		function testEmailConnection() {
+			alert('Test email sent successfully!');
+		}
+
+		function saveSecuritySettings() {
+			alert('Security settings saved successfully!');
+		}
+
+		function saveBackupSettings() {
+			alert('Backup settings saved successfully!');
+		}
+
+		function saveAppearanceSettings() {
+			alert('Appearance settings saved successfully!');
+		}
+
+		function createBackup() {
+			if (confirm('Create a full system backup now?')) {
+				alert('Backup started. You will be notified when it completes.');
+			}
+		}
+
+		function restoreBackup(id) {
+			if (confirm('Are you sure you want to restore this backup? Current data will be overwritten.')) {
+				alert('Restore process started...');
+			}
+		}
+
+		function downloadBackup(id) {
+			alert('Downloading backup file...');
+		}
+
+		function deleteBackup(id) {
+			if (confirm('Are you sure you want to delete this backup?')) {
+				alert('Backup deleted successfully!');
+			}
+		}
+
+		function selectColor(element, color) {
+			document.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
+			element.classList.add('selected');
+			document.getElementById('customColor').value = color;
+		}
+
+		function previewChanges() {
+			alert('Preview functionality would show live preview of appearance changes.');
+		}
+
+		function toggleGradingOptions() {
+			// Toggle grading system options based on selection
+		}
+	</script>
+	<!-- end js include path -->
+</body>
+
+</html>

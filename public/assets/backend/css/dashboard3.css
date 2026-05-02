@@ -1,0 +1,379 @@
+
+.stat-card {
+  padding: 20px;
+  border-radius: 12px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: scale(1.5);
+}
+
+.stat-card .stat-icon {
+  font-size: 40px;
+  opacity: 0.3;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.stat-card .stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.stat-card .stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-card .stat-change {
+  font-size: 12px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-card.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card.bg-success {
+  background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+}
+
+.stat-card.bg-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.stat-card.bg-info {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.stat-card.bg-danger {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.stat-card.bg-secondary {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Attendance Summary */
+.attendance-summary .att-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.attendance-summary .att-item:last-child {
+  border-bottom: none;
+}
+
+.attendance-summary .att-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendance-summary .att-item.present .att-icon {
+  background: rgba(56, 239, 125, 0.15);
+  color: #38ef7d;
+}
+
+.attendance-summary .att-item.absent .att-icon {
+  background: rgba(250, 112, 154, 0.15);
+  color: #fa709a;
+}
+
+.attendance-summary .att-item.late .att-icon {
+  background: rgba(254, 225, 64, 0.15);
+  color: #fee140;
+}
+
+.attendance-summary .att-item.leave .att-icon {
+  background: rgba(79, 172, 254, 0.15);
+  color: #4facfe;
+}
+
+.attendance-summary .att-count {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.attendance-summary .att-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Fee Progress */
+.fee-progress-card .fee-progress-item .progress {
+  border-radius: 5px;
+}
+
+/* Holiday List */
+.holiday-list .holiday-item {
+  display: flex;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.holiday-list .holiday-item:last-child {
+  border-bottom: none;
+}
+
+.holiday-list .holiday-date {
+  min-width: 50px;
+  text-align: center;
+  padding: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.holiday-list .holiday-date .day {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.holiday-list .holiday-date .month {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.holiday-list .holiday-info h6 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.holiday-list .holiday-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Bus Status */
+.bus-status-card .bus-stat,
+.library-stats .lib-stat,
+.digital-stats .digital-item,
+.complaint-stats .complaint-item,
+.parent-stats .parent-item,
+.health-stats .health-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bus-status-card .bus-icon,
+.library-stats .lib-icon,
+.digital-stats .digital-icon,
+.complaint-stats .complaint-icon,
+.parent-stats .parent-icon,
+.health-stats .health-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+}
+
+.bus-status-card .bus-icon.bg-primary,
+.digital-stats .digital-icon.bg-purple {
+  background: #667eea;
+}
+
+.bus-status-card .bus-icon.bg-success {
+  background: #38ef7d;
+}
+
+.bus-status-card .bus-icon.bg-info {
+  background: #4facfe;
+}
+
+.library-stats .lib-icon.bg-warning {
+  background: #ffc107;
+}
+
+.library-stats .lib-icon.bg-success {
+  background: #38ef7d;
+}
+
+.library-stats .lib-icon.bg-danger {
+  background: #fa709a;
+}
+
+.digital-stats .digital-icon.bg-info {
+  background: #4facfe;
+}
+
+.digital-stats .digital-icon.bg-success {
+  background: #38ef7d;
+}
+
+.complaint-stats .complaint-icon.bg-warning {
+  background: #ffc107;
+}
+
+.complaint-stats .complaint-icon.bg-info {
+  background: #4facfe;
+}
+
+.parent-stats .parent-icon.bg-primary {
+  background: #667eea;
+}
+
+.parent-stats .parent-icon.bg-info {
+  background: #4facfe;
+}
+
+.health-stats .health-icon.bg-warning {
+  background: #ffc107;
+}
+
+.health-stats .health-icon.bg-danger {
+  background: #fa709a;
+}
+
+.bus-status-card .bus-count,
+.library-stats .lib-count,
+.digital-stats .digital-value,
+.complaint-stats .complaint-count,
+.parent-stats .parent-count,
+.health-stats .health-count {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.bus-status-card .bus-label,
+.library-stats .lib-label,
+.digital-stats .digital-label,
+.complaint-stats .complaint-label,
+.parent-stats .parent-label,
+.health-stats .health-label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Activity Feed */
+.activity-feed .activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-feed .activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-feed .activity-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.activity-feed .activity-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.activity-feed .activity-content strong {
+  color: #667eea;
+}
+
+.activity-feed .activity-time {
+  font-size: 11px;
+  color: #999;
+}
+
+/* Recent Table */
+.recent-table {
+  width: 100%;
+}
+
+.recent-table th {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  padding: 8px;
+}
+
+.recent-table td {
+  padding: 8px;
+  font-size: 13px;
+}
+
+/* BG Colors */
+.bg-purple {
+  background: #667eea !important;
+}  
+/* Dark Theme Overrides */  
+.dark-theme .attendance-summary .att-item,  
+.dark-theme .holiday-list .holiday-item,  
+.dark-theme .activity-feed .activity-item,  
+.dark-theme .recent-table td {  
+    border-bottom-color: #3d404c;  
+}  
+  
+.dark-theme .attendance-summary .att-count,  
+.dark-theme .holiday-list .holiday-info h6,  
+.dark-theme .activity-feed .activity-content p,  
+.dark-theme .bus-status-card .bus-count,  
+.dark-theme .library-stats .lib-count,  
+.dark-theme .digital-stats .digital-value,  
+.dark-theme .complaint-stats .complaint-count,  
+.dark-theme .parent-stats .parent-count,  
+.dark-theme .health-stats .health-count,  
+.dark-theme .recent-table td {  
+    color: #e0e0e0;  
+}  
+  
+.dark-theme .attendance-summary .att-label,  
+.dark-theme .holiday-list .holiday-info p,  
+.dark-theme .activity-feed .activity-time,  
+.dark-theme .bus-status-card .bus-label,  
+.dark-theme .library-stats .lib-label,  
+.dark-theme .digital-stats .digital-label,  
+.dark-theme .complaint-stats .complaint-label,  
+.dark-theme .parent-stats .parent-label,  
+.dark-theme .health-stats .health-label,  
+.dark-theme .recent-table th {  
+    color: #aab0bc;  
+} 

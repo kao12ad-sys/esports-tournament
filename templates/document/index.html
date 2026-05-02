@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Smart University Admin Template Documentation">
+    <meta name="author" content="RedstarTheme">
+    <title>Documentation | Smart University - Bootstrap Admin & Dashboard Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #4a5568;
+            background-color: #f8f9fa;
+        }
+
+        /* Sidebar Styles */
+        .docs-sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 280px;
+            overflow-y: auto;
+            background: #fff;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 1.5rem;
+            z-index: 1000;
+        }
+
+        .docs-logo {
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .docs-nav .nav-link {
+            color: #718096;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .docs-nav .nav-link:hover,
+        .docs-nav .nav-link.active {
+            color: #3182ce;
+            background-color: #ebf8ff;
+        }
+
+        .docs-nav .nav-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .docs-nav .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #a0aec0;
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Main Content Styles */
+        .docs-content {
+            margin-left: 280px;
+            padding: 3rem 4rem;
+            max-width: 1200px;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-block {
+            background: #fff;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background-color: #edf2f7;
+            color: #d53f8c;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25em;
+            font-size: 0.875em;
+        }
+
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-list li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+        }
+
+        .alert-info {
+            background-color: #ebf8ff;
+            border-color: #bee3f8;
+            color: #2c5282;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .docs-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .docs-sidebar.show {
+                transform: translateX(0);
+            }
+
+            .docs-content {
+                margin-left: 0;
+                padding: 2rem;
+            }
+
+            .sidebar-toggle {
+                display: block !important;
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1050;
+                background: #3182ce;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                border: none;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .sidebar-toggle {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" onclick="document.querySelector('.docs-sidebar').classList.toggle('show')">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <nav class="docs-sidebar">
+        <div class="docs-logo">
+            <img src="images/logo.png" alt="Smart University Admin Template" style="height: 35px;" class="me-2">
+            Smart University
+        </div>
+
+        <div class="docs-nav">
+            <div class="nav-group">
+                <div class="nav-title">Getting Started</div>
+                <nav class="nav flex-column">
+                    <a class="nav-link active" href="#introduction">Introduction</a>
+                    <a class="nav-link" href="#overview">Overview</a>
+                    <a class="nav-link" href="#features">Features</a>
+                    <a class="nav-link" href="#folder-structure">Folder Structure</a>
+                </nav>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Usage</div>
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="#installation">Installation</a>
+                    <a class="nav-link" href="#theme-config">Theme Configuration</a>
+                    <a class="nav-link" href="#customization">Customization</a>
+                </nav>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-title">Resources</div>
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="#credits">Credits & Plugins</a>
+                    <a class="nav-link" href="#changelog">Changelog</a>
+                    <a class="nav-link" href="#support">Support</a>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+
+        <!-- Introduction -->
+        <section id="introduction" class="mb-5">
+            <div class="section-header">
+                <h1 class="section-title">Introduction</h1>
+                <p class="text-muted lead">Welcome to Smart University Admin Template Documentation</p>
+            </div>
+            <div class="content-block">
+                <p class="lead">Hello & Welcome! Thank you for purchasing!</p>
+                <p>If you have any questions that are beyond the scope of this help file, please feel free to email via
+                    our user page contact form. Thank you so much!</p>
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-clock me-2"></i> <strong>Approx Read Time:</strong> 15 Min
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section id="overview" class="mb-5">
+            <h3>Overview</h3>
+            <div class="content-block">
+                <p><strong>Smart University</strong> is a modern, feature‑rich and fully responsive Bootstrap Admin &
+                    Dashboard template built specifically for schools, colleges and universities.</p>
+                <p>The template provides a complete back‑office interface for education institutes: you can manage
+                    students, professors, staff, departments, courses, academic years, fees, hostels, library assets,
+                    exams, report cards and much more from a single, consistent admin panel.</p>
+                <p>The layout is built on Bootstrap 5 with clean HTML, CSS and JavaScript, using reusable components,
+                    cards, tables, charts and forms. It is ideal for building a Student Information System (SIS),
+                    college/university ERP or any education‑focused admin dashboard.</p>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="mb-5">
+            <h3>Template Features</h3>
+            <div class="content-block">
+                <ul class="feature-list">
+                    <li>Built with Bootstrap v5.x and modern HTML5/CSS3</li>
+                    <li>Clean & modern design for schools, colleges and universities</li>
+                    <li>Multiple layouts and themes (Light, Dark, RTL)</li>
+                    <li>Responsive and mobile‑friendly pages</li>
+                    <li>Student Information Management (add, edit and list students)</li>
+                    <li>Course, program and department management</li>
+                    <li>Professor / faculty and staff management modules</li>
+                    <li>Academic year, timetable and class schedule management</li>
+                    <li>Library management (books, categories, issue/return pages)</li>
+                    <li>Hostel and room allocation management</li>
+                    <li>Fees and payment management (fee setup, collections and reports)</li>
+                    <li>Attendance, examinations and report card pages</li>
+                    <li>Full calendar integration for events, holidays and schedules</li>
+                    <li>Dynamic charts and analytics (ApexCharts, Chart.js, ECharts, etc.)</li>
+                    <li>Ready‑to‑use forms, validations, wizards and UI components</li>
+                    <li>Built‑in email, chat and notification UI</li>
+                    <li>Well‑structured HTML for easy customization to your institution</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Folder Structure -->
+        <section id="folder-structure" class="mb-5">
+            <h3>Folder Structure</h3>
+            <div class="content-block">
+                <pre>
+smart-university\
+├── documents\                       Documentation (this guide)
+└── source\                          Main HTML admin template
+    ├── assets\
+    │   ├── css\                     Core styles
+    │   │   ├── theme\              Theme variants (light/dark, RTL, etc.)
+    │   │   ├── pages\              Page‑level styles
+    │   │   ├── plugins.min.css
+    │   │   ├── theme_style.css
+    │   │   ├── style.css
+    │   │   └── responsive.css
+    │   ├── js\
+    │   │   ├── app.js              General UI behaviour and helpers
+    │   │   ├── config.js           Theme configuration (SmartConfig / ThemeStorage)
+    │   │   ├── early-theme-init.js Early theme and direction initialisation
+    │   │   └── pages\              Page‑specific scripts (charts, tables, forms, etc.)
+    │   ├── img\                    Logos, banners, sliders, avatars and flags
+    │   └── plugins\                Third‑party libraries (ApexCharts, DataTables, FullCalendar, etc.)
+    ├── fonts\                      Icon fonts (Font Awesome, Material Icons, Simple Line Icons)
+    ├── index.html                  Main dashboard
+    ├── all_students.html           Student listing page
+    ├── add_student.html            Add/edit student form
+    ├── all_courses.html            Course listing page
+    ├── add_course.html             Add course form
+    ├── all_professors.html         Professor listing page
+    ├── add_professor.html          Add professor form
+    ├── add_library.html            Library management pages
+    ├── all_hostels.html            Hostel and room allocation pages
+    ├── system_settings.html        Global institution settings
+    └── ...                         Many other academic and utility pages
+                </pre>
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation" class="mb-5">
+            <h3>Installation</h3>
+            <div class="content-block">
+                <p>Smart University is a static HTML/CSS/JS template, so installation is straightforward:</p>
+                <ol>
+                    <li class="mb-2"><strong>Unzip the package:</strong> Extract the downloaded zip file to your local
+                        drive.</li>
+                    <li class="mb-2"><strong>Open in Editor:</strong> Open the <code>source</code> folder in your
+                        favorite code editor (VS Code, Sublime, etc.).</li>
+                    <li class="mb-2"><strong>Run locally:</strong> You can open any <code>.html</code> file directly in
+                        your browser. For better performance with modules, use a local server (like Live Server
+                        extension in VS Code).</li>
+                </ol>
+                <div class="alert alert-warning">
+                    <strong>Note:</strong> Some modern browser security policies might restrict loading local JSON files
+                    via AJAX if you just double-click the HTML file. It is recommended to use a local web server
+                    (localhost).
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme Configuration -->
+        <section id="theme-config" class="mb-5">
+            <h3>Theme Configuration</h3>
+            <div class="content-block">
+                <p>Smart University uses two small configuration scripts located in <code>source/assets/js/</code>:</p>
+                <ul>
+                    <li><code>config.js</code> stores the current theme in <code>window.SmartConfig</code> and provides
+                        a <code>ThemeStorage</code> helper for saving/loading user preferences.</li>
+                    <li><code>early-theme-init.js</code> runs early on every page to apply the saved theme and
+                        direction before the page is visible.</li>
+                </ul>
+
+                <h4>Template presets (templateConfigs in config.js)</h4>
+                <p>When the template loads for the first time, the default look & feel comes from the
+                    <code>templateConfigs</code> object in <code>config.js</code>, not directly from
+                    <code>SmartConfig</code>. A simplified version looks like this:
+                </p>
+                <pre>
+var DEFAULT_TEMPLATE_KEY = "ltr-light";
+
+var templateConfigs = {
+  "ltr-light": {
+    theme: "light",
+    direction: "ltr",
+    headerColor: "header-white",
+    logoColor: "logo-cyan",
+    sidebarColor: "white-sidebar-color"
+  },
+  "ltr-dark": {
+    theme: "dark",
+    direction: "ltr",
+    headerColor: "header-dark",
+    logoColor: "logo-dark",
+    sidebarColor: "dark-sidebar-color"
+  },
+  "rtl-light": {
+    theme: "light",
+    direction: "rtl",
+    headerColor: "header-cyan",
+    logoColor: "logo-cyan",
+    sidebarColor: "cyan-sidebar-color"
+  },
+  "rtl-dark": {
+    theme: "dark",
+    direction: "rtl",
+    headerColor: "header-dark",
+    logoColor: "logo-dark",
+    sidebarColor: "dark-sidebar-color"
+  }
+};
+                </pre>
+                <p><code>ThemeStorage.init()</code> picks the preset referenced by
+                    <code>DEFAULT_TEMPLATE_KEY</code> (for example <code>"ltr-light"</code> or
+                    <code>"ltr-dark"</code>) and copies its values into <code>SmartConfig</code> for the current user.
+                    If you want to change the default theme when the template is first used, adjust
+                    <code>DEFAULT_TEMPLATE_KEY</code> and/or the values inside the corresponding entry in
+                    <code>templateConfigs</code>, rather than editing <code>SmartConfig</code> directly.
+                </p>
+
+                <h4>SmartConfig (runtime state)</h4>
+                <p><code>SmartConfig</code> is a global object that always holds the <strong>current</strong> theme
+                    state for the open page (theme mode, direction, header/sidebar/logo colors). It is updated from
+                    <code>templateConfigs</code> on first load and then changed by the theme/RTL toggles and saved via
+                    <code>ThemeStorage.saveConfig()</code>. Normally you do not need to edit <code>SmartConfig</code>
+                    manually in the code.
+                </p>
+
+                <h4>ThemeStorage keys (config.js)</h4>
+                <p><code>ThemeStorage</code> uses dedicated keys in <code>sessionStorage</code> so different theme
+                    combinations (and even different browser tabs) do not overwrite each other:</p>
+                <pre>
+ACTIVE_TEMPLATE_KEY = "smart_active_template"
+templateKey = "smart_theme_" + direction + "_" + theme
+                </pre>
+                <p>For example, light LTR settings are stored under <code>smart_theme_ltr_light</code> in
+                    <code>sessionStorage</code>. Calling <code>ThemeStorage.saveConfig()</code> saves the current
+                    <code>SmartConfig</code>, and <code>ThemeStorage.init()</code> restores it when the page loads in
+                    that tab.
+                </p>
+
+                <h4>Early theme initialisation (early-theme-init.js)</h4>
+                <p>This script is included at the top of every page (before styles) and:</p>
+                <ul>
+                    <li>Reads the active theme and direction from <code>smart_active_template</code> in
+                        <code>sessionStorage</code>.</li>
+                    <li>Sets the <code>dir</code> attribute on the <code>&lt;html&gt;</code> element to
+                        <code>ltr</code> or <code>rtl</code>.
+                    </li>
+                    <li>Removes any existing header, sidebar, logo and theme classes from <code>&lt;body&gt;</code> and
+                        applies the correct ones (for example <code>header-dark</code>, <code>dark-sidebar-color</code>,
+                        <code>logo-dark</code> for dark mode).
+                    </li>
+                </ul>
+                <p>When the user changes options from the built‑in setting panel, the new values are saved through
+                    <code>ThemeStorage</code> so all pages open with the same appearance.
+                </p>
+
+                <h4>Changing default theme for your institution</h4>
+                <ol>
+                    <li>Open <code>source/assets/js/config.js</code>.</li>
+                    <li>Set <code>DEFAULT_TEMPLATE_KEY</code> to one of the available presets:
+                        <code>"ltr-light"</code>, <code>"ltr-dark"</code>, <code>"rtl-light"</code>,
+                        <code>"rtl-dark"</code>.</li>
+                    <li>(Optional) In the <code>templateConfigs</code> entry that matches your chosen
+                        <code>DEFAULT_TEMPLATE_KEY</code>, adjust <code>headerColor</code>, <code>logoColor</code> and
+                        <code>sidebarColor</code> using the built‑in classes:
+                        <code>header-white</code>, <code>header-dark</code>, <code>header-blue</code>,
+                        <code>header-indigo</code>, <code>header-cyan</code>, <code>header-green</code>,
+                        <code>header-red</code> and
+                        <code>white-sidebar-color</code>, <code>dark-sidebar-color</code>,
+                        <code>blue-sidebar-color</code>,
+                        <code>indigo-sidebar-color</code>, <code>cyan-sidebar-color</code>,
+                        <code>green-sidebar-color</code>, <code>red-sidebar-color</code>.
+                    </li>
+                </ol>
+                <p>These values become the new defaults for all users in your school or college. If you maintain
+                    separate “light” and “dark” copies of the template in different folders, you can set a different
+                    <code>DEFAULT_TEMPLATE_KEY</code> in each copy so that only this one line changes per variant.</p>
+
+                <h4>Institution / school settings</h4>
+                <p>Beyond visual settings, institution‑specific details are configured on the
+                    <code>System Settings</code> page (<code>system_settings.html</code>):
+                </p>
+                <ul>
+                    <li>Institution name and tagline (for example “Smart University – Excellence in Education”).</li>
+                    <li>Address, phone number, email and website.</li>
+                    <li>Default academic year and other global academic preferences.</li>
+                </ul>
+                <p>These values are reused across report cards, headers and printable documents (such as
+                    <code>view_report_card.html</code>), so update them first when adapting the template to a new
+                    school or college.
+                </p>
+            </div>
+        </section>
+
+        <!-- Credits -->
+        <section id="credits" class="mb-5">
+            <h3>Credits & Plugins</h3>
+            <div class="content-block">
+                <p>We have used the following open-source plugins and resources:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap 5</a></li>
+                            <li><a href="https://jquery.com/" target="_blank">jQuery</a></li>
+                            <li><a href="https://apexcharts.com/" target="_blank">ApexCharts</a></li>
+                            <li><a href="https://www.chartjs.org/" target="_blank">Chart.js</a></li>
+                            <li><a href="https://fullcalendar.io/" target="_blank">FullCalendar</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li><a href="https://fontawesome.com/" target="_blank">Font Awesome</a></li>
+                            <li><a href="https://fonts.google.com/" target="_blank">Google Fonts (Inter)</a></li>
+                            <li><a href="https://summernote.org/" target="_blank">Summernote</a></li>
+                            <li><a href="https://datatables.net/" target="_blank">DataTables</a></li>
+                            <li><a href="https://getmdl.io/" target="_blank">Material Design Lite</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Changelog -->
+        <section id="changelog" class="mb-5">
+            <h3>Version History (Changelog)</h3>
+            <div class="content-block">
+                <pre>
+    -----------------------------------------------------------------------------------------
+    Version 4.0.0 - March 26th, 2026
+    -----------------------------------------------------------------------------------------               
+    Added:
+    Add 16 new pages for material design components.
+
+    -- New page - schedule calendar page
+    -- New page - All schedules page
+    -- New page - Add schedule page
+    -- New page - Mark attendance page
+    -- New page - All attendance page
+    -- New page - Student attendance history page
+    -- New page - Enter grades page
+    -- New page - View grades page
+    -- New page - Generate Report Card page
+    -- New page - View report cards page
+    -- New page - General settings page
+    -- New page - Academic Year settings page
+    -- New page - All Hostels page
+    -- New page - Manage rooms page
+    -- New page - Allocate room page
+    -- New page - Student accommodation page
+    
+    Update:
+    -- Dashboard design update
+    -- Documentation
+
+    -----------------------------------------------------------------------------------------
+    Version 3.0.0 - March 04th, 2024
+    -----------------------------------------------------------------------------------------
+    -- Update Bootstrap and jQuery version
+    -- Update Apexchart, amchart and echart version
+    -- Update all other dependency to latest version
+    -- Minor Bug Solve
+    -----------------------------------------------------------------------------------------
+    Version 2.1 - March 17th, 2022
+    -----------------------------------------------------------------------------------------
+    -- Update Bootstrap and jQuery version
+    -- Change template Design
+    -- Support font awesome 6.1
+    -- Minor Bug Solve
+    -----------------------------------------------------------------------------------------
+    Version 2.0 - February 17th, 2021
+    -----------------------------------------------------------------------------------------
+    -- Update Bootstrap Version 4.1.3 to Bootstrap 5.0.
+    -- Add New Features In Calendar Page
+    -- Minor Bug Solve
+    -----------------------------------------------------------------------------------------
+    Version 1.5 - October 27th, 2018
+    -----------------------------------------------------------------------------------------
+    -- Add RTL Full Version Template
+    -- Add Export Data Table Page
+    -- Add Child Row Data Table Page
+    -- Minor Bug Solve
+    -----------------------------------------------------------------------------------------
+    Version 1.4 - September 18th, 2018
+    -----------------------------------------------------------------------------------------
+    -- Update bootstrap 4.1.3
+    -- Change full layout menu options
+    -- Date time picker bug solve
+    -- Form elements bug solve
+    -- Offline simple line icons
+    -----------------------------------------------------------------------------------------
+    Version 1.3 - June 16th, 2018
+    -----------------------------------------------------------------------------------------
+     -- Update Bootstrap Version 4.0 to Bootstrap 4.1.1.
+     -- Update Jquery version 3.2.1 to 3.3.1.
+     -- Add Left Menu Scrollbar.
+     -- Data Table Width Bug Solve.
+     -- Full Screen Scroll Bug Solve.
+     -- Add new pages sign_up.html & forgot_password.html and change extra page design.
+    -----------------------------------------------------------------------------------------
+    Version 1.2 - March 24rd, 2018
+    -----------------------------------------------------------------------------------------
+     -- Update Bootstrap Version 4 Beta to Stable Bootstrap 4.
+     -- Add new page toast notification.
+     -- Add Full Screen Window Button In Header.
+     -- Add Offline Fonts.
+     -- Chat sidebar close on esc key and focus lost.
+     -- Card Refresh Button Bug Solve.
+     -- Calendar Button Changes.
+     -- Material Date Picker Alignment Bug Solve.
+    -----------------------------------------------------------------------------------------
+    Version 1.0 - Jan 23rd, 2018
+    -----------------------------------------------------------------------------------------
+    -- Initial Release
+                </pre>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section id="support" class="mb-5">
+            <h3>Support</h3>
+            <div class="content-block">
+                <p>If you have any questions or need customization help, please contact our support team.</p>
+                <a href="mailto:support@redstartheme.com" class="btn btn-primary">Contact Support</a>
+            </div>
+        </section>
+
+        <footer class="text-center text-muted mt-5 mb-5">
+            <small>&copy; 2024 Smart University Admin Template. All Rights Reserved.</small>
+        </footer>
+
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

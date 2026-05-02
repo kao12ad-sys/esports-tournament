@@ -1,0 +1,567 @@
+.dashboard-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-chart {
+  min-height: 300px;
+}
+
+.dashboard-chart .apexcharts-tooltip {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.widget-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.widget-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.widget-title i {
+  color: #667eea;
+}
+
+.recent-table {
+  width: 100%;
+}
+
+.recent-table th {
+  font-weight: 600;
+  color: #666;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 12px 8px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.recent-table td {
+  padding: 12px 8px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.recent-table .student-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recent-table .student-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.event-item {
+  display: flex;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.event-item:last-child {
+  border-bottom: none;
+}
+
+.event-date {
+  min-width: 50px;
+  text-align: center;
+  padding: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.event-date .day {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.event-date .month {
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.event-details h6 {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.event-details p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.notice-item {
+  padding: 15px;
+  border-left: 4px solid #667eea;
+  background: #f8f9fa;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 12px;
+}
+
+.notice-item.urgent {
+  border-left-color: #fa709a;
+}
+
+.notice-item.important {
+  border-left-color: #fee140;
+}
+
+.notice-item.info {
+  border-left-color: #4facfe;
+}
+
+.notice-item h6 {
+  margin: 0 0 5px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notice-item p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.notice-item .notice-date {
+  font-size: 11px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.top-student {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.top-student:last-child {
+  border-bottom: none;
+}
+
+.student-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+}
+
+.student-rank.gold {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+}
+
+.student-rank.silver {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a8a8a8 100%);
+}
+
+.student-rank.bronze {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 100%);
+}
+
+.student-rank.default {
+  background: #667eea;
+}
+
+.top-student img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.top-student-info {
+  flex: 1;
+}
+
+.top-student-info h6 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.top-student-info span {
+  font-size: 12px;
+  color: #888;
+}
+
+.student-grade {
+  text-align: right;
+}
+
+.student-grade .grade {
+  font-size: 16px;
+  font-weight: 700;
+  color: #38ef7d;
+}
+
+.student-grade .label {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.attendance-radial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.attendance-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.attendance-stat {
+  text-align: center;
+}
+
+.attendance-stat .value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.attendance-stat .label {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.attendance-stat.present .value {
+  color: #38ef7d;
+}
+
+.attendance-stat.absent .value {
+  color: #fa709a;
+}
+
+.attendance-stat.leave .value {
+  color: #fee140;
+}
+
+.stat-card-height {
+  min-height: 185px !important;
+  margin-bottom: 25px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-box-title {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #444 !important;
+  margin-bottom: 5px !important;
+}
+
+.info-box-number {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin: 10px 0 !important;
+}
+
+.info-icon i {
+  font-size: 25px !important;
+  opacity: 0.8;
+}
+
+
+
+.homework-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.homework-status:last-child {
+    border-bottom: none;
+}
+
+.homework-status .homework-subject {
+    font-weight: 600;
+}
+
+.homework-status .homework-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.homework-status .progress-thin {
+    height: 6px;
+    border-radius: 3px;
+    background: #f0f0f0;
+    margin-top: 8px;
+}
+
+.homework-status .progress-thin .progress-bar {
+    border-radius: 3px;
+}
+
+.homework-status .homework-percentage {
+    font-weight: 700;
+    min-width: 45px;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 15px;
+    }
+    
+    .dashboard-chart {
+        min-height: 250px;
+    }
+}
+
+.homework-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.homework-subject {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.homework-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-thin {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-thin .progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.homework-percentage {
+    font-weight: 600;
+    min-width: 40px;
+    text-align: right;
+}
+
+.notice-board .notice-item {
+    padding: 15px;
+    border-left: 4px solid #667eea;
+    background: #f8f9fa;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+}
+
+.notice-board .notice-item.urgent {
+    border-left-color: #fa709a;
+}
+
+.notice-board .notice-item.important {
+    border-left-color: #fee140;
+}
+
+.notice-board .notice-item.info {
+    border-left-color: #4facfe;
+}
+
+.notice-board .notice-item h6 {
+    margin: 0 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.notice-board .notice-item p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.notice-board .notice-item .notice-date {
+    font-size: 11px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.fee-summary .fee-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.fee-summary .fee-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.fee-summary .bg-success-lighten {
+    background: rgba(56, 239, 125, 0.15);
+}
+
+.fee-summary .bg-warning-lighten {
+    background: rgba(255, 193, 7, 0.15);
+}
+
+.fee-summary .bg-danger-lighten {
+    background: rgba(250, 112, 154, 0.15);
+}
+
+.fee-summary .bg-primary-lighten {
+    background: rgba(102, 126, 234, 0.15);
+}
+
+.fee-summary .fee-details {
+    flex: 1;
+}
+
+.fee-summary .fee-amount {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.fee-summary .fee-label {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.attendance-progress .attendance-item {
+    padding: 8px 0;
+}
+.recent-admmissions-table {
+    height: 300px;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 15px;
+    }
+    
+    .dashboard-chart {
+        min-height: 250px;
+    }
+}
+
+/* Dark Theme Overrides */
+.dark-theme .widget-card {
+    background: #1e212d;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .widget-title {
+    color: #e0e0e0;
+}
+
+.dark-theme .recent-table th {
+    color: #aab0bc;
+    border-bottom-color: #3d404c;
+}
+
+.dark-theme .recent-table td {
+    color: #e0e0e0;
+    border-bottom-color: #3d404c;
+}
+
+.dark-theme .event-item,
+.dark-theme .top-student,
+.dark-theme .homework-status {
+    border-bottom-color: #3d404c;
+}
+
+.dark-theme .event-details h6,
+.dark-theme .notice-item h6,
+.dark-theme .top-student-info h6,
+.dark-theme .homework-subject,
+.dark-theme .fee-amount {
+    color: #e0e0e0;
+}
+
+.dark-theme .event-details p,
+.dark-theme .notice-item p,
+.dark-theme .top-student-info span,
+.dark-theme .student-grade .label,
+.dark-theme .homework-percentage,
+.dark-theme .fee-label,
+.dark-theme .attendance-stat .label {
+    color: #aab0bc;
+}
+
+.dark-theme .notice-item,
+.dark-theme .homework-status,
+.dark-theme .fee-item {
+    background: #2a2e3e;
+}
+
+.dark-theme .progress-thin {
+    background: #3d404c;
+}
+
+.dark-theme .attendance-stat .value {
+    color: #ffffff;
+}
+
+.dark-theme .dashboard-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.dark-theme .info-box-title{
+  color: #fff !important;
+}
