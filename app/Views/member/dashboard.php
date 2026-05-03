@@ -12,16 +12,16 @@
 
 <div class="row">
     <div class="col-lg-3 col-md-6">
-        <div class="member-stat"><div class="value"><?= esc(count($members)) ?></div><div class="label">สมาชิกในทีม</div></div>
+        <div class="member-stat"><div class="value"><?= esc(count($members)) ?></div><div class="label">สมาชิกในทีม</div><i class="las la-users icon"></i></div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="member-stat"><div class="value"><?= esc($registrationTotal) ?></div><div class="label">รายการที่เข้าร่วม</div></div>
+        <div class="member-stat"><div class="value"><?= esc($registrationTotal) ?></div><div class="label">รายการที่เข้าร่วม</div><i class="las la-trophy icon"></i></div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="member-stat"><div class="value"><?= esc($statusCounts['approved']) ?></div><div class="label">อนุมัติแล้ว</div></div>
+        <div class="member-stat"><div class="value"><?= esc($statusCounts['approved']) ?></div><div class="label">อนุมัติแล้ว</div><i class="las la-check-circle icon"></i></div>
     </div>
     <div class="col-lg-3 col-md-6">
-        <div class="member-stat"><div class="value"><?= esc(count($schedules)) ?></div><div class="label">แมตช์ที่เกี่ยวข้อง</div></div>
+        <div class="member-stat"><div class="value"><?= esc(count($schedules)) ?></div><div class="label">แมตช์ที่เกี่ยวข้อง</div><i class="las la-calendar icon"></i></div>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
         <div class="member-card">
             <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
                 <div>
-                    <p class="member-label">ทีมปัจจุบัน</p>
+                    <div class="member-label">ทีมปัจจุบัน</div>
                     <h4><?= esc($team['name'] ?? 'ยังไม่มีทีม') ?></h4>
                     <p><?= esc($team['description'] ?? 'หากยังไม่มีทีม สามารถสมัครแข่งขันเดี่ยว หรือรอผู้จัดการทีมเชิญ/ให้ admin กำหนดทีม') ?></p>
                 </div>
@@ -38,11 +38,11 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <p class="member-label">ชื่อแสดงผล</p>
+                    <div class="member-label">ชื่อแสดงผล</div>
                     <p><?= esc($profile['display_name'] ?? session('username')) ?></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="member-label">ช่องทางติดต่อ</p>
+                    <div class="member-label">ช่องทางติดต่อ</div>
                     <p><?= esc($profile['contact_channel'] ?? '-') ?></p>
                 </div>
             </div>
@@ -51,11 +51,11 @@
     <div class="col-lg-4">
         <div class="member-card">
             <h5>เมนูลัด</h5>
-            <div class="d-grid gap-2">
-                <a class="default-btn text-center" href="<?= site_url('member/tournaments') ?>">สมัครแข่งขัน</a>
-                <a class="default-btn text-center" href="<?= site_url('member/profile') ?>">แก้ไขโปรไฟล์</a>
-                <a class="default-btn text-center" href="<?= site_url('member/team') ?>">ดูข้อมูลทีม</a>
-                <a class="default-btn text-center" href="<?= site_url('member/reports') ?>">ดูรายงาน</a>
+            <div class="quick-actions">
+                <a class="default-btn" href="<?= site_url('member/tournaments') ?>">สมัครแข่งขัน</a>
+                <a class="default-btn" href="<?= site_url('member/profile') ?>">แก้ไขโปรไฟล์</a>
+                <a class="default-btn" href="<?= site_url('member/team') ?>">ดูข้อมูลทีม</a>
+                <a class="default-btn" href="<?= site_url('member/reports') ?>">ดูรายงาน</a>
             </div>
         </div>
     </div>
@@ -73,14 +73,14 @@
                     <thead><tr><th>รายการ</th><th>เกม</th><th>ประเภท</th><th>สถานะ</th></tr></thead>
                     <tbody>
                     <?php if ($registrations === []): ?>
-                        <tr><td colspan="4">ยังไม่มีรายการสมัครแข่งขัน</td></tr>
+                        <tr><td colspan="4"><div class="empty-state">ยังไม่มีรายการสมัครแข่งขัน</div></td></tr>
                     <?php endif ?>
                     <?php foreach ($registrations as $item): ?>
                         <tr>
                             <td><?= esc($item['tournament_name']) ?></td>
                             <td><?= esc($item['game_name']) ?></td>
                             <td><?= esc($item['competition_type'] === 'team' ? 'ทีม' : 'เดี่ยว') ?></td>
-                            <td><span class="status-pill"><?= esc($item['status']) ?></span></td>
+                            <td><span class="status-pill <?= esc($item['status']) ?>"><?= esc($item['status']) ?></span></td>
                         </tr>
                     <?php endforeach ?>
                     </tbody>
@@ -92,10 +92,10 @@
         <div class="member-card">
             <h5>การแข่งขันที่เปิดรับสมัคร</h5>
             <?php if ($openTournaments === []): ?>
-                <p>ยังไม่มีการแข่งขันที่เปิดรับสมัคร</p>
+                <div class="empty-state">ยังไม่มีการแข่งขันที่เปิดรับสมัคร</div>
             <?php endif ?>
             <?php foreach ($openTournaments as $tournament): ?>
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="tournament-mini">
                     <div>
                         <strong><?= esc($tournament['name']) ?></strong>
                         <p class="mb-0"><?= esc($tournament['game_name']) ?> · <?= esc($tournament['competition_type'] === 'team' ? 'ทีม' : 'เดี่ยว') ?></p>
@@ -114,7 +114,7 @@
             <div class="table-responsive">
                 <table class="table member-table">
                     <tbody>
-                    <?php if ($members === []): ?><tr><td>ยังไม่มีสมาชิกทีม</td></tr><?php endif ?>
+                    <?php if ($members === []): ?><tr><td><div class="empty-state">ยังไม่มีสมาชิกทีม</div></td></tr><?php endif ?>
                     <?php foreach ($members as $member): ?>
                         <tr><td><?= esc($member['username']) ?></td><td><?= esc($roleLabels[$member['role']] ?? $member['role']) ?></td></tr>
                     <?php endforeach ?>
@@ -130,7 +130,7 @@
                 <table class="table member-table">
                     <thead><tr><th>รายการ</th><th>คู่แข่งขัน</th><th>เวลา</th><th>สถานะ</th></tr></thead>
                     <tbody>
-                    <?php if ($schedules === []): ?><tr><td colspan="4">ยังไม่มีตารางแข่งขัน</td></tr><?php endif ?>
+                    <?php if ($schedules === []): ?><tr><td colspan="4"><div class="empty-state">ยังไม่มีตารางแข่งขัน</div></td></tr><?php endif ?>
                     <?php foreach ($schedules as $schedule): ?>
                         <tr>
                             <td><?= esc($schedule['tournament_name']) ?></td>
