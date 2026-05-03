@@ -1,5 +1,23 @@
 <?= $this->extend('layouts/admin') ?>
 <?= $this->section('content') ?>
-<div class="row"><?php foreach ($summary as $label => $total): ?><div class="col-md-3"><div class="cardx"><strong><?= esc($label) ?></strong><h2><?= esc($total) ?></h2></div></div><?php endforeach ?></div>
-<div class="cardx"><h5>สถานะการสมัคร</h5><?php foreach ($registrations as $row): ?><p><?= esc($row['status']) ?>: <?= esc($row['total']) ?></p><?php endforeach ?></div>
+<?php $colors = ['bg-primary', 'bg-success', 'bg-warning', 'bg-purple', 'bg-danger']; $i = 0; ?>
+<div class="row">
+    <?php foreach ($summary as $label => $total): ?>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="admin-stat <?= esc($colors[$i % count($colors)]) ?>">
+                <div class="number"><?= esc($total) ?></div>
+                <div class="label"><?= esc($label) ?></div>
+            </div>
+        </div>
+        <?php $i++; ?>
+    <?php endforeach ?>
+</div>
+<div class="card card-box">
+    <div class="card-head"><header>สถานะการสมัครแข่งขัน</header></div>
+    <div class="card-body">
+        <?php foreach ($registrations as $row): ?>
+            <p><strong><?= esc($row['status']) ?></strong>: <?= esc($row['total']) ?> รายการ</p>
+        <?php endforeach ?>
+    </div>
+</div>
 <?= $this->endSection() ?>

@@ -19,7 +19,12 @@ class Teams extends BaseController
         return view('admin/simple_crud', [
             'title' => 'จัดการข้อมูลทีม',
             'route' => 'teams',
-            'fields' => ['name' => 'ชื่อทีม', 'tag' => 'ตัวย่อ', 'contact_channel' => 'ช่องทางติดต่อ', 'status' => 'สถานะ'],
+            'fields' => [
+                'name' => 'ชื่อทีม',
+                'tag' => 'ตัวย่อ',
+                'contact_channel' => 'ช่องทางติดต่อ',
+                'status' => 'สถานะ',
+            ],
             'items' => $this->model->orderBy('id', 'DESC')->findAll(),
         ]);
     }
@@ -27,12 +32,14 @@ class Teams extends BaseController
     public function create()
     {
         $this->model->insert($this->request->getPost(['name', 'tag', 'description', 'contact_channel', 'status']));
+
         return redirect()->back()->with('success', 'บันทึกทีมแล้ว');
     }
 
     public function delete($id)
     {
         $this->model->delete($id);
+
         return redirect()->back()->with('success', 'ลบทีมแล้ว');
     }
 }
