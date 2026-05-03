@@ -16,6 +16,7 @@
         <a href="<?= site_url('/') ?>" class="text-white text-decoration-none fw-bold">National Esports</a>
         <nav class="d-flex gap-3">
             <a class="text-white" href="<?= site_url('tournaments') ?>">การแข่งขัน</a>
+            <a class="text-white" href="<?= site_url('member') ?>">Member</a>
             <a class="text-white" href="<?= site_url('login') ?>">เข้าสู่ระบบ</a>
         </nav>
     </div>
