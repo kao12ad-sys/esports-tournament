@@ -52,7 +52,7 @@ class Dashboard extends BaseController
         }
 
         return view('member/dashboard', [
-            'title' => 'Member Dashboard',
+            'title' => 'โปรไฟล์สมาชิก',
             'team' => $teamId ? (new TeamModel())->find($teamId) : null,
             'profile' => (new MemberProfileModel())->where('user_id', $userId)->first(),
             'members' => $teamId ? (new UserModel())->where('team_id', $teamId)->where('role !=', 'admin')->findAll(8) : [],
