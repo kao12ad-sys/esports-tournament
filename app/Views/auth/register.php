@@ -1,7 +1,8 @@
 <?= $this->extend('layouts/public') ?>
 <?= $this->section('content') ?>
 <section class="hero" style="max-width:760px">
-    <h1>สมัครสมาชิก</h1>
+    <h1>สมัครสมาชิกนักกีฬา</h1>
+    <p class="muted">บัญชีผู้จัดการทีมและผู้ฝึกสอนต้องให้ผู้ดูแลระบบเป็นผู้สร้างหรือกำหนดสิทธิ์เท่านั้น</p>
     <?php if (session('error')): ?><div class="alert alert-danger"><?= session('error') ?></div><?php endif ?>
     <form method="post" action="<?= site_url('register') ?>" class="panel">
         <?= csrf_field() ?>
@@ -23,7 +24,7 @@
                 <input class="form-control mb-3" type="password" name="password_confirm" required minlength="8">
             </div>
             <div class="col-md-6">
-                <label>Role สมาชิก</label>
+                <label>ประเภทสมาชิก</label>
                 <select class="form-control mb-3" name="role" required>
                     <?php foreach ($roles as $value => $label): ?>
                         <option value="<?= esc($value) ?>" <?= old('role') === $value ? 'selected' : '' ?>><?= esc($label) ?></option>
@@ -33,7 +34,7 @@
             <div class="col-md-6">
                 <label>ทีมที่สังกัด</label>
                 <select class="form-control mb-3" name="team_id">
-                    <option value="">ยังไม่สังกัดทีม / สร้างทีมใหม่</option>
+                    <option value="">ยังไม่สังกัดทีม</option>
                     <?php foreach ($teams as $team): ?>
                         <option value="<?= esc($team['id']) ?>" <?= (string) old('team_id') === (string) $team['id'] ? 'selected' : '' ?>>
                             <?= esc($team['name']) ?>
@@ -59,24 +60,7 @@
             </div>
         </div>
 
-        <hr>
-        <h4>สร้างทีมใหม่ สำหรับผู้จัดการทีม</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <label>ชื่อทีมใหม่</label>
-                <input class="form-control mb-3" name="team_name" value="<?= esc(old('team_name')) ?>">
-            </div>
-            <div class="col-md-6">
-                <label>ตัวย่อทีม</label>
-                <input class="form-control mb-3" name="team_tag" value="<?= esc(old('team_tag')) ?>">
-            </div>
-            <div class="col-md-12">
-                <label>คำอธิบายทีม</label>
-                <textarea class="form-control mb-3" name="team_description"><?= esc(old('team_description')) ?></textarea>
-            </div>
-        </div>
-
-        <button class="btn-main" type="submit">สร้างบัญชีสมาชิก</button>
+        <button class="btn-main" type="submit">สร้างบัญชีนักกีฬา</button>
         <a class="ms-3" href="<?= site_url('login') ?>">มีบัญชีแล้ว เข้าสู่ระบบ</a>
     </form>
 </section>

@@ -69,12 +69,11 @@ class Auth extends BaseController
                 'email' => 'required|valid_email|max_length[190]|is_unique[users.email]',
                 'password' => 'required|min_length[8]',
                 'password_confirm' => 'required|matches[password]',
-                'role' => 'required|in_list[team_manager,coach,amateur_athlete,pro_athlete]',
+                'role' => 'required|in_list[amateur_athlete,pro_athlete]',
                 'display_name' => 'permit_empty|max_length[120]',
                 'birth_date' => 'permit_empty|valid_date[Y-m-d]',
                 'contact_channel' => 'permit_empty|max_length[190]',
                 'team_id' => 'permit_empty|is_natural_no_zero',
-                'team_name' => 'permit_empty|max_length[150]',
             ];
 
             if (! $this->validate($rules)) {
@@ -83,16 +82,6 @@ class Auth extends BaseController
 
             $role = (string) $this->request->getPost('role');
             $teamId = $this->request->getPost('team_id') ?: null;
-
-            if ($role === 'team_manager' && $this->request->getPost('team_name')) {
-                $teamId = $teamModel->insert([
-                    'name' => $this->request->getPost('team_name'),
-                    'tag' => $this->request->getPost('team_tag'),
-                    'description' => $this->request->getPost('team_description'),
-                    'contact_channel' => $this->request->getPost('contact_channel'),
-                    'status' => 'active',
-                ]);
-            }
 
             $userId = (new UserModel())->insert([
                 'team_id' => $teamId,
@@ -114,7 +103,7 @@ class Auth extends BaseController
                 'bio' => $this->request->getPost('bio'),
                 'birth_date' => $this->request->getPost('birth_date') ?: null,
                 'contact_channel' => $this->request->getPost('contact_channel'),
-                'athlete_level' => $role === 'pro_athlete' ? 'professional' : ($role === 'amateur_athlete' ? 'general' : null),
+                'athlete_level' => $role === 'pro_athlete' ? 'professional' : 'general',
                 'current_role' => $this->roleLabel($role),
                 'status' => 'active',
             ]);
@@ -129,11 +118,11 @@ class Auth extends BaseController
                 ]);
             }
 
-            return redirect()->to('/login')->with('success', 'สร้างบัญชีสมาชิกเรียบร้อยแล้ว กรุณาเข้าสู่ระบบ');
+            return redirect()->to('/login')->with('success', 'สร้างบัญชีนักกีฬาเรียบร้อยแล้ว กรุณาเข้าสู่ระบบ');
         }
 
         return view('auth/register', [
-            'title' => 'สมัครสมาชิก',
+            'title' => 'สมัครสมาชิกนักกีฬา',
             'roles' => $this->memberRoleOptions(),
             'teams' => $teamModel->where('status', 'active')->orderBy('name', 'ASC')->findAll(),
         ]);
@@ -163,8 +152,6 @@ class Auth extends BaseController
     private function memberRoleOptions(): array
     {
         return [
-            'team_manager' => 'ผู้จัดการทีม',
-            'coach' => 'ผู้ฝึกสอน',
             'amateur_athlete' => 'นักกีฬาทั่วไป',
             'pro_athlete' => 'นักกีฬาอาชีพ',
         ];

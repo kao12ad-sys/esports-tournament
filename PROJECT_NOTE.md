@@ -99,6 +99,11 @@ Admin มีสิทธิ์เข้าถึง `/adminz/*`
 
 Member roles ได้แก่ `team_manager`, `coach`, `amateur_athlete`, `pro_athlete` มีสิทธิ์เข้าถึง `/member/*`
 
+หมายเหตุเรื่องการสร้างบัญชี:
+
+- สมาชิกสมัครเองผ่าน `/register` ได้เฉพาะ `amateur_athlete` และ `pro_athlete`
+- Role `team_manager` และ `coach` ต้องให้ admin เป็นผู้สร้างหรือกำหนดสิทธิ์เท่านั้น
+
 ## ฟีเจอร์ฝั่ง Admin
 
 เมนู Admin ที่ทำแล้ว:
@@ -223,4 +228,3 @@ C:\xampp\php\php.exe spark db:seed InitialSeeder
 - เพิ่ม validation รายละเอียดทุก form
 - เพิ่ม pagination และ search ในหน้ารายการ
 - เพิ่ม test coverage สำหรับ auth, role, registration และ schedule
-
