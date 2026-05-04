@@ -1,5 +1,7 @@
 <?= $this->extend('layouts/admin') ?>
 <?= $this->section('content') ?>
+<?php $canDelete = session('role') !== 'staff'; ?>
+
 <div class="card card-box">
     <div class="card-head"><header>เพิ่มตารางแข่งขัน</header></div>
     <div class="card-body">
@@ -18,6 +20,7 @@
         </form>
     </div>
 </div>
+
 <div class="card card-box">
     <div class="card-head"><header>ตารางแข่งขัน</header></div>
     <div class="card-body table-responsive">
@@ -32,7 +35,14 @@
                     <td><?= esc($item['scheduled_at'] ?: '-') ?></td>
                     <td><?= esc(($item['score_a'] ?? '-') . ' : ' . ($item['score_b'] ?? '-')) ?></td>
                     <td><span class="badge badge-secondary"><?= esc($item['status']) ?></span></td>
-                    <td><form method="post" action="<?= site_url('adminz/schedules/' . $item['id']) ?>"><?= csrf_field() ?><input type="hidden" name="_method" value="DELETE"><button class="btn btn-sm btn-outline-danger" onclick="return confirm('ยืนยันการลบตาราง?')">ลบ</button></form></td>
+                    <td>
+                        <?php if ($canDelete): ?>
+                            <form method="post" action="<?= site_url('adminz/schedules/' . $item['id']) ?>">
+                                <?= csrf_field() ?><input type="hidden" name="_method" value="DELETE">
+                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('ยืนยันการลบตาราง?')">ลบ</button>
+                            </form>
+                        <?php endif ?>
+                    </td>
                 </tr>
             <?php endforeach ?>
             </tbody>

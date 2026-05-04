@@ -15,7 +15,7 @@ $routes->get('logout', 'Auth::logout');
 $routes->match(['get', 'post'], 'adminz/login', 'Auth::adminLogin');
 $routes->get('adminz/logout', 'Auth::logout');
 
-$routes->group('adminz', ['filter' => 'auth:admin'], static function ($routes) {
+$routes->group('adminz', ['filter' => 'auth:admin,staff'], static function ($routes) {
     $routes->get('/', 'Admin\Dashboard::index');
     $routes->get('reports', 'Admin\Reports::index');
     $routes->resource('tournaments', ['controller' => 'Admin\Tournaments']);

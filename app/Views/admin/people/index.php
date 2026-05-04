@@ -1,5 +1,6 @@
 <?= $this->extend('layouts/admin') ?>
 <?= $this->section('content') ?>
+<?php $canDelete = session('role') !== 'staff'; ?>
 <div class="card card-box">
     <div class="card-head"><header>เพิ่มสมาชิกโดยผู้ดูแลระบบ</header></div>
     <div class="card-body">
@@ -12,6 +13,7 @@
                 <div class="col-md-3">
                     <label>Role</label>
                     <select class="form-select" name="role">
+                        <option value="staff" <?= ($selectedRole ?? '') === 'staff' ? 'selected' : '' ?>>Staff</option>
                         <option value="team_manager" <?= ($selectedRole ?? '') === 'team_manager' ? 'selected' : '' ?>>ผู้จัดการทีม</option>
                         <option value="coach" <?= ($selectedRole ?? '') === 'coach' ? 'selected' : '' ?>>ผู้ฝึกสอน</option>
                         <option value="amateur_athlete" <?= ($selectedRole ?? '') === 'amateur_athlete' ? 'selected' : '' ?>>นักกีฬาทั่วไป</option>
@@ -50,10 +52,10 @@
                     <td><?= esc($item['birth_date'] ?? '-') ?></td>
                     <td><?= esc($item['contact_channel'] ?? '-') ?></td>
                     <td>
-                        <form method="post" action="<?= site_url('adminz/people/' . $item['id']) ?>">
+                        <?php if ($canDelete): ?><form method="post" action="<?= site_url('adminz/people/' . $item['id']) ?>">
                             <?= csrf_field() ?><input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm btn-outline-danger" onclick="return confirm('ยืนยันการลบสมาชิก?')">ลบ</button>
-                        </form>
+                        </form><?php endif ?>
                     </td>
                 </tr>
             <?php endforeach ?>

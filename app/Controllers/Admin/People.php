@@ -20,11 +20,12 @@ class People extends BaseController
 
         if ($role === 'athletes') {
             $builder->whereIn('users.role', ['amateur_athlete', 'pro_athlete']);
-        } elseif (in_array($role, ['team_manager', 'coach', 'amateur_athlete', 'pro_athlete'], true)) {
+        } elseif (in_array($role, ['staff', 'team_manager', 'coach', 'amateur_athlete', 'pro_athlete'], true)) {
             $builder->where('users.role', $role);
         }
 
         $titles = [
+            'staff' => 'จัดการข้อมูล Staff',
             'team_manager' => 'จัดการข้อมูลผู้จัดการทีม',
             'coach' => 'จัดการข้อมูลผู้ฝึกสอน',
             'athletes' => 'จัดการข้อมูลนักกีฬา',
@@ -71,6 +72,10 @@ class People extends BaseController
 
     public function delete($id)
     {
+        if (session('role') === 'staff') {
+            return redirect()->back()->with('error', 'บัญชี Staff ไม่มีสิทธิ์ลบข้อมูล');
+        }
+
         (new UserModel())->delete($id);
 
         return redirect()->back()->with('success', 'ลบสมาชิกแล้ว');
@@ -79,6 +84,7 @@ class People extends BaseController
     private function roleLabel(string $role): string
     {
         return [
+            'staff' => 'Staff',
             'team_manager' => 'ผู้จัดการทีม',
             'coach' => 'ผู้ฝึกสอน',
             'amateur_athlete' => 'นักกีฬาทั่วไป',

@@ -38,25 +38,31 @@ class Auth extends BaseController
     {
         if ($this->request->getMethod() === 'POST') {
             $rules = [
+                'login_role' => 'required|in_list[staff,member,manager,coach]',
                 'email' => 'required|valid_email',
                 'password' => 'required|min_length[8]',
             ];
 
             if (! $this->validate($rules)) {
-                return redirect()->back()->withInput()->with('error', 'ข้อมูลเข้าสู่ระบบไม่ถูกต้อง');
+                return redirect()->back()->withInput()->with('error', 'กรุณาเลือกประเภทผู้ใช้งาน และกรอกอีเมล/รหัสผ่านให้ถูกต้อง');
             }
 
+            $loginRole = (string) $this->request->getPost('login_role');
             $user = (new UserModel())->where('email', $this->request->getPost('email'))->first();
             if (! $user || $user['status'] !== 'active' || ! password_verify((string) $this->request->getPost('password'), $user['password_hash'])) {
                 return redirect()->back()->withInput()->with('error', 'อีเมลหรือรหัสผ่านไม่ถูกต้อง');
             }
 
+            if (! $this->roleMatchesLoginType($user['role'], $loginRole)) {
+                return redirect()->back()->withInput()->with('error', 'บัญชีนี้ไม่ตรงกับประเภทผู้ใช้งานที่เลือก');
+            }
+
             $this->startUserSession($user);
 
-            return redirect()->to($user['role'] === 'admin' ? '/adminz' : '/member');
+            return redirect()->to($user['role'] === 'staff' ? '/adminz' : '/member');
         }
 
-        return view('auth/login', ['title' => 'เข้าสู่ระบบสมาชิก']);
+        return view('auth/login', ['title' => 'เข้าสู่ระบบ']);
     }
 
     public function register()
@@ -160,5 +166,16 @@ class Auth extends BaseController
     private function roleLabel(string $role): string
     {
         return $this->memberRoleOptions()[$role] ?? $role;
+    }
+
+    private function roleMatchesLoginType(string $role, string $loginRole): bool
+    {
+        return match ($loginRole) {
+            'staff' => $role === 'staff',
+            'manager' => $role === 'team_manager',
+            'coach' => $role === 'coach',
+            'member' => in_array($role, ['amateur_athlete', 'pro_athlete'], true),
+            default => false,
+        };
     }
 }

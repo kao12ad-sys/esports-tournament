@@ -27,7 +27,7 @@ class CreateTournamentSchema extends Migration
             'username' => ['type' => 'VARCHAR', 'constraint' => 80],
             'email' => ['type' => 'VARCHAR', 'constraint' => 190],
             'password_hash' => ['type' => 'VARCHAR', 'constraint' => 255],
-            'role' => ['type' => 'ENUM', 'constraint' => ['admin', 'team_manager', 'coach', 'amateur_athlete', 'pro_athlete']],
+            'role' => ['type' => 'ENUM', 'constraint' => ['admin', 'staff', 'team_manager', 'coach', 'amateur_athlete', 'pro_athlete']],
             'status' => ['type' => 'ENUM', 'constraint' => ['active', 'suspended'], 'default' => 'active'],
             'last_login_at' => ['type' => 'DATETIME', 'null' => true],
             'created_at' => ['type' => 'DATETIME', 'null' => true],

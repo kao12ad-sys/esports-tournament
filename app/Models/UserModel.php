@@ -16,7 +16,7 @@ class UserModel extends Model
     protected $validationRules = [
         'username' => 'required|min_length[3]|max_length[80]',
         'email'    => 'required|valid_email|max_length[190]',
-        'role'     => 'required|in_list[admin,team_manager,coach,amateur_athlete,pro_athlete]',
+        'role'     => 'required|in_list[admin,staff,team_manager,coach,amateur_athlete,pro_athlete]',
         'status'   => 'required|in_list[active,suspended]',
     ];
 }

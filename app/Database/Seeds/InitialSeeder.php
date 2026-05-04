@@ -25,6 +25,7 @@ class InitialSeeder extends Seeder
 
         $users = [
             ['id' => 1, 'team_id' => null, 'username' => 'admin', 'email' => 'admin@example.test', 'role' => 'admin'],
+            ['id' => 5, 'team_id' => null, 'username' => 'staff', 'email' => 'staff@example.test', 'role' => 'staff'],
             ['id' => 2, 'team_id' => 1, 'username' => 'manager', 'email' => 'manager@example.test', 'role' => 'team_manager'],
             ['id' => 3, 'team_id' => 1, 'username' => 'coach', 'email' => 'coach@example.test', 'role' => 'coach'],
             ['id' => 4, 'team_id' => 1, 'username' => 'player', 'email' => 'player@example.test', 'role' => 'amateur_athlete'],

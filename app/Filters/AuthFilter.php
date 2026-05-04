@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
+use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\Filters\FilterInterface;
 
 class AuthFilter implements FilterInterface
 {
@@ -27,9 +27,33 @@ class AuthFilter implements FilterInterface
                 return redirect()->to('/member')->with('error', 'บัญชีนี้ไม่มีสิทธิ์เข้าถึงหน้านี้');
             }
         }
+
+        if ($session->get('role') === 'staff' && strtoupper($request->getMethod()) === 'DELETE') {
+            return redirect()->back()->with('error', 'บัญชี Staff ไม่มีสิทธิ์ลบข้อมูล');
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
+        $path = '/' . trim($request->getUri()->getPath(), '/');
+        if (session('role') !== 'staff' || ! str_contains($path, '/adminz')) {
+            return;
+        }
+
+        $body = $response->getBody();
+        if (! is_string($body) || ! str_contains($body, '</body>')) {
+            return;
+        }
+
+        $script = <<<'HTML'
+<script>
+document.querySelectorAll('form').forEach(function (form) {
+    if (form.querySelector('input[name="_method"][value="DELETE"]')) {
+        form.style.display = 'none';
+    }
+});
+</script>
+HTML;
+        $response->setBody(str_replace('</body>', $script . '</body>', $body));
     }
 }

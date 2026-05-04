@@ -55,6 +55,10 @@ class Schedules extends BaseController
 
     public function delete($id)
     {
+        if (session('role') === 'staff') {
+            return redirect()->back()->with('error', 'บัญชี Staff ไม่มีสิทธิ์ลบข้อมูล');
+        }
+
         $this->model->delete($id);
         return redirect()->back()->with('success', 'ลบตารางแข่งขันแล้ว');
     }
