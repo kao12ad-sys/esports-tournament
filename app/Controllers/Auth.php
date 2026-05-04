@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\MemberProfileModel;
-use App\Models\TeamHistoryModel;
-use App\Models\TeamModel;
 use App\Models\UserModel;
 
 class Auth extends BaseController
@@ -67,7 +65,7 @@ class Auth extends BaseController
 
     public function register()
     {
-        $teamModel = new TeamModel();
+        $botChallenge = $this->getBotChallenge();
 
         if ($this->request->getMethod() === 'POST') {
             $rules = [
@@ -75,22 +73,22 @@ class Auth extends BaseController
                 'email' => 'required|valid_email|max_length[190]|is_unique[users.email]',
                 'password' => 'required|min_length[8]',
                 'password_confirm' => 'required|matches[password]',
-                'role' => 'required|in_list[amateur_athlete,pro_athlete]',
-                'display_name' => 'permit_empty|max_length[120]',
-                'birth_date' => 'permit_empty|valid_date[Y-m-d]',
-                'contact_channel' => 'permit_empty|max_length[190]',
-                'team_id' => 'permit_empty|is_natural_no_zero',
+                'bot_answer' => 'required|integer',
             ];
 
             if (! $this->validate($rules)) {
+                $this->resetBotChallenge();
                 return redirect()->back()->withInput()->with('error', implode('<br>', $this->validator->getErrors()));
             }
 
-            $role = (string) $this->request->getPost('role');
-            $teamId = $this->request->getPost('team_id') ?: null;
+            if ((int) $this->request->getPost('bot_answer') !== (int) session('register_bot_answer')) {
+                $this->resetBotChallenge();
+                return redirect()->back()->withInput()->with('error', 'กรุณายืนยันตัวตนด้วย bot ให้ถูกต้อง');
+            }
 
+            $role = 'amateur_athlete';
             $userId = (new UserModel())->insert([
-                'team_id' => $teamId,
+                'team_id' => null,
                 'username' => $this->request->getPost('username'),
                 'email' => $this->request->getPost('email'),
                 'password_hash' => password_hash((string) $this->request->getPost('password'), PASSWORD_DEFAULT),
@@ -99,38 +97,27 @@ class Auth extends BaseController
             ]);
 
             if (! $userId) {
+                $this->resetBotChallenge();
                 return redirect()->back()->withInput()->with('error', 'ไม่สามารถสร้างบัญชีได้ กรุณาตรวจสอบข้อมูลอีกครั้ง');
             }
 
             (new MemberProfileModel())->insert([
                 'user_id' => $userId,
-                'team_id' => $teamId,
-                'display_name' => $this->request->getPost('display_name') ?: $this->request->getPost('username'),
-                'bio' => $this->request->getPost('bio'),
-                'birth_date' => $this->request->getPost('birth_date') ?: null,
-                'contact_channel' => $this->request->getPost('contact_channel'),
-                'athlete_level' => $role === 'pro_athlete' ? 'professional' : 'general',
+                'team_id' => null,
+                'display_name' => $this->request->getPost('username'),
+                'athlete_level' => 'general',
                 'current_role' => $this->roleLabel($role),
                 'status' => 'active',
             ]);
 
-            if ($teamId) {
-                (new TeamHistoryModel())->insert([
-                    'user_id' => $userId,
-                    'team_id' => $teamId,
-                    'role' => $this->roleLabel($role),
-                    'joined_at' => date('Y-m-d'),
-                    'note' => 'สมัครสมาชิกและเข้าร่วมทีม',
-                ]);
-            }
+            $this->resetBotChallenge();
 
             return redirect()->to('/login')->with('success', 'สร้างบัญชีนักกีฬาเรียบร้อยแล้ว กรุณาเข้าสู่ระบบ');
         }
 
         return view('auth/register', [
-            'title' => 'สมัครสมาชิกนักกีฬา',
-            'roles' => $this->memberRoleOptions(),
-            'teams' => $teamModel->where('status', 'active')->orderBy('name', 'ASC')->findAll(),
+            'title' => 'สมัครสมาชิก',
+            'botQuestion' => $botChallenge['question'],
         ]);
     }
 
@@ -177,5 +164,27 @@ class Auth extends BaseController
             'member' => in_array($role, ['amateur_athlete', 'pro_athlete'], true),
             default => false,
         };
+    }
+
+    private function getBotChallenge(): array
+    {
+        if (! session()->has('register_bot_answer') || ! session()->has('register_bot_question')) {
+            $left = random_int(2, 9);
+            $right = random_int(1, 9);
+            session()->set([
+                'register_bot_question' => $left . ' + ' . $right . ' = ?',
+                'register_bot_answer' => $left + $right,
+            ]);
+        }
+
+        return [
+            'question' => session('register_bot_question'),
+            'answer' => session('register_bot_answer'),
+        ];
+    }
+
+    private function resetBotChallenge(): void
+    {
+        session()->remove(['register_bot_question', 'register_bot_answer']);
     }
 }
