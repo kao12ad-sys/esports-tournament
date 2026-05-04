@@ -47,6 +47,7 @@ class CreateTournamentSchema extends Migration
             'bio' => ['type' => 'TEXT', 'null' => true],
             'birth_date' => ['type' => 'DATE', 'null' => true],
             'contact_channel' => ['type' => 'VARCHAR', 'constraint' => 190, 'null' => true],
+            'avatar' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'athlete_level' => ['type' => 'ENUM', 'constraint' => ['general', 'professional'], 'null' => true],
             'current_role' => ['type' => 'VARCHAR', 'constraint' => 80, 'null' => true],
             'status' => ['type' => 'ENUM', 'constraint' => ['active', 'inactive'], 'default' => 'active'],

@@ -11,7 +11,7 @@ class MemberProfileModel extends Model
     protected $returnType = 'array';
     protected $useTimestamps = true;
     protected $allowedFields = [
-        'user_id', 'team_id', 'display_name', 'bio', 'birth_date', 'contact_channel',
+        'user_id', 'team_id', 'display_name', 'bio', 'birth_date', 'contact_channel', 'avatar',
         'athlete_level', 'current_role', 'status',
     ];
 }

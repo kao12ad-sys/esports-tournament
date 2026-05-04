@@ -16,6 +16,9 @@
     $roleLabel = $roleLabels[session('role')] ?? session('role');
     $displayName = $profile['display_name'] ?? session('username');
     $teamName = $team['name'] ?? 'ยังไม่มีทีม';
+    $avatar = ! empty($profile['avatar'])
+        ? base_url($profile['avatar'])
+        : base_url('templates/source/assets/img/dp.jpg');
     $birthDate = $profile['birth_date'] ?? null;
     $age = '-';
 
@@ -31,7 +34,7 @@
 <div class="profile-hero">
     <div class="row align-items-center">
         <div class="col-md-8 d-flex align-items-center gap-3">
-            <img class="profile-avatar" src="<?= base_url('templates/source/assets/img/dp.jpg') ?>" alt="member">
+            <img class="profile-avatar" src="<?= esc($avatar, 'attr') ?>" alt="member">
             <div>
                 <h3><?= esc($displayName) ?></h3>
                 <div><?= esc($roleLabel) ?> · <?= esc($teamName) ?></div>

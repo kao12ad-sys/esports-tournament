@@ -11,11 +11,17 @@ writable/session/*
 writable/uploads/*
 writable/*.log
 /public/writable/
+uploads/members/*
+public/uploads/members/*
 !writable/cache/index.html
 !writable/debugbar/index.html
 !writable/logs/index.html
 !writable/session/index.html
 !writable/uploads/index.html
+!uploads/index.html
+!uploads/members/index.html
+!public/uploads/index.html
+!public/uploads/members/index.html
 
 # Dependencies and generated packages
 /vendor/
