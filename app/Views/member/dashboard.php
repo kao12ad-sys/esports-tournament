@@ -30,6 +30,174 @@
         }
     }
 ?>
+<style>
+    body,
+    .page-content-white,
+    .page-container,
+    .page-content {
+        background: #0b1020 !important;
+        color: #f5f7fb;
+    }
+
+    .page-header.navbar,
+    .page-logo,
+    .page-footer {
+        background: #101624 !important;
+        border-color: #263149 !important;
+    }
+
+    .logo-default,
+    .page-title,
+    .page-footer-inner,
+    .username,
+    .fullscreen-btn,
+    .menu-toggler {
+        color: #f5f7fb !important;
+    }
+
+    .sidemenu-container,
+    .sidebar-container,
+    .left-sidemenu,
+    .sidebar-user-panel {
+        background: #101624 !important;
+    }
+
+    .sidemenu .nav-link {
+        color: #9aa7bd !important;
+        border: 1px solid transparent;
+    }
+
+    .sidemenu .nav-link:hover,
+    .sidemenu .nav-item.active > .nav-link {
+        background: rgba(0, 229, 255, .08) !important;
+        border-color: rgba(0, 229, 255, .25);
+        color: #00e5ff !important;
+    }
+
+    .sidemenu .nav-link svg,
+    .sidemenu .nav-link i {
+        color: inherit !important;
+    }
+
+    .sidebar-user-details .user-name,
+    .member-card h4,
+    .member-card h5,
+    .member-card strong {
+        color: #f5f7fb !important;
+    }
+
+    .sidebar-user-details .user-role,
+    .text-muted,
+    .page-breadcrumb,
+    .page-breadcrumb a,
+    .page-breadcrumb li {
+        color: #9aa7bd !important;
+    }
+
+    .page-bar {
+        background: transparent;
+        border-bottom: 1px solid #263149;
+        margin-bottom: 22px;
+    }
+
+    .profile-hero {
+        background:
+            radial-gradient(circle at 82% 16%, rgba(255, 46, 136, .24), transparent 28%),
+            linear-gradient(135deg, #101624, #161d2f) !important;
+        border: 1px solid #263149;
+        box-shadow: 0 20px 54px rgba(0, 0, 0, .28);
+    }
+
+    .profile-hero:after {
+        background: rgba(0, 229, 255, .10) !important;
+    }
+
+    .member-card {
+        background: #161d2f !important;
+        border: 1px solid #263149 !important;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, .22) !important;
+    }
+
+    .member-label {
+        color: #00e5ff !important;
+    }
+
+    .member-table {
+        color: #d8dfef;
+    }
+
+    .member-table thead th {
+        background: #101624 !important;
+        color: #9aa7bd !important;
+        border-color: #263149 !important;
+    }
+
+    .member-table td {
+        border-color: #263149 !important;
+    }
+
+    .member-table tbody tr:hover {
+        background: rgba(255, 255, 255, .035) !important;
+    }
+
+    .member-stat {
+        border: 1px solid rgba(255, 255, 255, .08);
+        box-shadow: 0 18px 44px rgba(0, 0, 0, .22);
+    }
+
+    .bg-member-blue {
+        background: linear-gradient(135deg, #00a7ff, #00e5ff) !important;
+    }
+
+    .bg-member-purple {
+        background: linear-gradient(135deg, #7c3aed, #ff2e88) !important;
+    }
+
+    .bg-member-green {
+        background: linear-gradient(135deg, #08b982, #18d39e) !important;
+    }
+
+    .bg-member-orange {
+        background: linear-gradient(135deg, #ffb02e, #ffc857) !important;
+    }
+
+    .btn.default-btn,
+    .btn-primary {
+        background: #00e5ff !important;
+        border-color: #00e5ff !important;
+        color: #06111c !important;
+        font-weight: 700;
+    }
+
+    .btn-outline-primary,
+    .btn-light {
+        background: transparent !important;
+        border-color: #263149 !important;
+        color: #f5f7fb !important;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-light:hover {
+        border-color: #00e5ff !important;
+        color: #00e5ff !important;
+    }
+
+    .status-pill {
+        background: rgba(0, 229, 255, .10) !important;
+        border: 1px solid rgba(0, 229, 255, .28);
+        color: #00e5ff !important;
+    }
+
+    .empty-state {
+        background: #101624 !important;
+        border-color: #263149 !important;
+        color: #9aa7bd !important;
+    }
+
+    .tournament-mini {
+        border-bottom-color: #263149 !important;
+    }
+</style>
 
 <div class="profile-hero">
     <div class="row align-items-center">
