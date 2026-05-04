@@ -1,90 +1,153 @@
-<!doctype html>
-<html class="no-js" lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="National Esports Tournament Member">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="National Esports Tournament Member" />
     <title><?= esc($title ?? 'Member') ?> | National Esports</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('template/html/assets/img/favicon.png') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/animate.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/fontawesome.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/line-awesome.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/odometer.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/venobox.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/keyframe-animation.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/swiper.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/header.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/blog.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/shop.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/elements.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/main.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('template/html/assets/css/responsive.css') ?>">
+    <script src="<?= base_url('templates/source/assets/js/early-theme-init.js') ?>"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/fonts/simple-line-icons/simple-line-icons.min.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/fonts/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/fonts/font-awesome/v6/css/all.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/fonts/material-design-icons/material-icon.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('templates/source/assets/plugins/material/material.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('templates/source/assets/css/material_style.css') ?>">
+    <link href="<?= base_url('templates/source/assets/css/theme/theme_style.css') ?>" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/css/plugins.min.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/css/theme/style.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/css/responsive.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/css/theme/theme-color.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/assets/css/setting-panel.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('templates/source/css/dashboard1.css') ?>" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="<?= base_url('templates/source/assets/img/favicon.ico') ?>" />
     <style>
-        body{background:#070b13;color:#dce4f6}.header{background:#070b13}.member-hero{position:relative;padding:150px 0 54px;background:linear-gradient(180deg,rgba(8,12,23,.82),rgba(8,12,23,.96)),url("<?= base_url('template/html/assets/img/page-header-bg.jpg') ?>") center/cover no-repeat;overflow:hidden}.member-hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,61,113,.75),transparent)}.member-kicker{color:#ff3d71;font-weight:700;text-transform:uppercase;font-size:13px;margin-bottom:8px}.member-hero h1{color:#fff;margin:0;font-size:42px}.member-hero p{color:#aeb8cd}.member-wrap{padding:0 0 76px}.member-player-details{margin-top:-28px}.member-grid{display:grid;gap:22px}.member-card{position:relative;background:linear-gradient(180deg,#111827,#0d1423);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:24px;margin-bottom:22px;box-shadow:0 18px 42px rgba(0,0,0,.22)}.member-card:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#ff3d71,#45d3ff);border-radius:8px 8px 0 0}.member-card h4,.member-card h5{color:#fff}.member-card p{color:#b8c2d8}.member-player-card{position:relative;z-index:3;background:linear-gradient(180deg,#121b2e,#0d1423);border:1px solid rgba(255,255,255,.1);border-radius:8px;margin-bottom:58px;box-shadow:0 24px 60px rgba(0,0,0,.3)}.member-player-card .team-details-wrap{padding:26px 28px}.member-player-card .player-team span{display:block;color:#7f8ba5;font-size:13px;font-weight:800;letter-spacing:0;text-transform:uppercase;margin-top:4px}.member-player-card .player-info li h4{color:#fff}.member-player-card .social-list a{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#101a2c;color:#fff;border:1px solid rgba(255,255,255,.12)}.member-about-panel{padding:0 0 42px}.member-about-panel .section-heading h2{color:#fff}.member-about-panel .section-heading p{color:#b8c2d8}.member-profile-art{position:relative;border-radius:8px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.35)}.member-profile-art:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.1);border-radius:8px}.member-profile-art img{width:100%;display:block}.member-contact-strip{display:inline-flex;align-items:center;gap:9px;color:#fff;background:#101a2c;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:9px 16px;margin:6px 0 22px}.member-contact-strip i{color:#ff3d71;font-size:22px}.member-action-row{display:flex;gap:12px;flex-wrap:wrap}.member-action-row .default-btn{display:inline-flex;align-items:center;gap:7px}.member-action-row .default-btn.alt{background:#101a2c;border:1px solid rgba(255,255,255,.12)}.member-stat{position:relative;min-height:132px;background:linear-gradient(135deg,#141d31,#0d1423);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:22px;overflow:hidden;margin-bottom:22px}.member-stat:after{content:"";position:absolute;right:-34px;top:-38px;width:116px;height:116px;border-radius:50%;background:rgba(255,61,113,.13)}.member-stat .value{color:#fff;font-size:34px;font-weight:800;line-height:1}.member-stat .label{color:#aeb8cd;margin-top:10px}.member-stat .icon{position:absolute;right:18px;bottom:14px;color:#ff3d71;font-size:30px;opacity:.9}.member-label{color:#7f8ba5;font-size:13px;text-transform:uppercase;font-weight:700;margin-bottom:6px}.status-pill{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 12px;color:#fff;background:#121b2d;font-size:13px}.status-pill.approved{border-color:rgba(0,214,143,.5);color:#64f0c4}.status-pill.pending{border-color:rgba(255,193,7,.5);color:#ffd86b}.status-pill.rejected{border-color:rgba(255,61,113,.5);color:#ff91ad}.member-table{color:#d8dfef;margin-bottom:0}.member-table thead th{color:#fff;border-color:rgba(255,255,255,.12);font-size:13px;text-transform:uppercase}.member-table td{border-color:rgba(255,255,255,.08)}.member-table tbody tr:hover{background:rgba(255,255,255,.035)}.member-gameplay{padding:28px 0 34px}.member-gameplay .section-heading h2{color:#fff}.member-gameplay .section-heading p{color:#b8c2d8}.member-gameplay .gameplay-card{border-radius:8px;overflow:hidden;background:#0d1423;border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 44px rgba(0,0,0,.22)}.member-card-link{color:#fff;font-weight:800;border-bottom:1px solid rgba(255,255,255,.25)}.quick-actions{display:grid;gap:12px}.quick-actions .default-btn{display:block;text-align:center;width:100%;padding:13px 14px}.form-control,.form-select{background:#0b1220;border-color:rgba(255,255,255,.16);color:#fff;margin-bottom:14px}.form-control:focus,.form-select:focus{background:#0b1220;color:#fff;border-color:#ff3d71;box-shadow:none}.alert{border-radius:6px}.empty-state{border:1px dashed rgba(255,255,255,.16);border-radius:8px;padding:18px;color:#aeb8cd}.tournament-mini{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}.tournament-mini:last-child{border-bottom:0}.header .nav-menu li a{font-size:13px}.default-btn{white-space:nowrap;border:0}.copyright-wrap p{margin:0}.mobile-menu-icon{min-width:32px}@media(max-width:991px){.member-player-card .team-details-wrap{gap:22px}.member-player-card .player-info{width:100%}}@media(max-width:767px){.member-hero{padding-top:128px}.member-hero h1{font-size:30px}.member-player-details{margin-top:-16px}.member-player-card .team-details-wrap{padding:22px 18px}.member-player-card .player-info{grid-template-columns:1fr}.tournament-mini{align-items:flex-start;flex-direction:column}.quick-actions .default-btn{text-align:center}}
+        .page-content{background:#f4f6f9;min-height:calc(100vh - 117px)}.card-box,.member-card{background:#fff;border:0;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.05);margin-bottom:30px;padding:22px}.member-card h4,.member-card h5{font-weight:600;color:#263238}.card-head{border-bottom:1px solid #eef1f5;padding:15px 20px}.card-head header{font-size:18px;font-weight:600}.member-stat{position:relative;overflow:hidden;border-radius:12px;color:#fff;padding:24px;margin-bottom:25px;min-height:128px;box-shadow:0 8px 22px rgba(30,50,90,.12)}.member-stat:after{content:"";position:absolute;right:-32px;top:-32px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.16)}.member-stat .value{font-size:30px;font-weight:700;line-height:1}.member-stat .label{margin-top:9px;opacity:.92}.member-stat .icon{position:absolute;right:22px;bottom:18px;font-size:38px;opacity:.35}.member-stat:nth-child(1),.bg-member-blue{background:linear-gradient(45deg,#1e88e5,#42a5f5)}.bg-member-purple{background:linear-gradient(45deg,#6f42c1,#9c6ade)}.bg-member-green{background:linear-gradient(45deg,#16a085,#35c7a5)}.bg-member-orange{background:linear-gradient(45deg,#f39c12,#ffba4d)}.member-label{color:#78909c;font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:6px}.member-table{margin-bottom:0}.member-table thead th{background:#f8f9fa;border-top:0;color:#546e7a;font-size:12px;text-transform:uppercase}.member-table td{vertical-align:middle}.status-pill{display:inline-flex;align-items:center;border-radius:999px;padding:5px 11px;background:#eef2f7;color:#455a64;font-size:12px;font-weight:600}.status-pill.approved{background:#e6f7ef;color:#0b8f5a}.status-pill.pending{background:#fff7df;color:#9a6a00}.status-pill.rejected{background:#fdecef;color:#c62842}.empty-state{border:1px dashed #cfd8dc;border-radius:10px;padding:18px;color:#78909c;background:#fbfcfd}.quick-actions{display:grid;gap:10px}.quick-actions .btn{justify-content:flex-start}.tournament-mini{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #eef1f5}.tournament-mini:last-child{border-bottom:0}.profile-hero{background:linear-gradient(135deg,#263238,#455a64);color:#fff;border-radius:12px;padding:26px;margin-bottom:25px;position:relative;overflow:hidden}.profile-hero:after{content:"";position:absolute;right:-60px;top:-80px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.1)}.profile-hero h3{color:#fff;margin-bottom:6px}.profile-avatar{width:86px;height:86px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.45);background:#fff}.sidemenu-container{background:#fff!important}.sidemenu .nav-link{border-radius:8px;margin:2px 10px}.sidemenu .nav-item.active>.nav-link{background:#e8f0fe;color:#1a73e8}.logo-default{font-weight:700;font-size:20px;letter-spacing:-.5px}.btn.default-btn{background:#188ae2;color:#fff;border:0;border-radius:6px;padding:9px 14px}.btn.default-btn:hover{color:#fff;background:#0f77c7}@media(max-width:767px){.profile-hero{padding:20px}.tournament-mini{align-items:flex-start;flex-direction:column}}
     </style>
 </head>
-<body>
-<div class="site-preloader"><div class="spinner"></div></div>
-<header class="header">
-    <div class="primary-header">
-        <div class="container">
-            <div class="primary-header-inner">
-                <div class="header-logo">
-                    <a href="<?= site_url('member') ?>"><img class="logo" src="<?= base_url('template/html/assets/img/logo.png') ?>" alt="Logo"></a>
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
+<div class="page-wrapper">
+    <div class="page-header navbar navbar-fixed-top">
+        <div class="page-header-inner">
+            <div class="page-logo">
+                <a href="<?= site_url('member') ?>">
+                    <img class="logo-icon" src="<?= base_url('templates/source/assets/img/logo.png') ?>" alt="logo" height="35">
+                    <span class="logo-default">MEMBER</span>
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-left in">
+                <li><a href="#" class="menu-toggler sidebar-toggler"><i data-feather="menu"></i></a></li>
+            </ul>
+            <form class="search-form-opened" action="<?= site_url('member/tournaments') ?>" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="ค้นหาการแข่งขัน..." name="q">
+                    <span class="input-group-btn"><button class="btn submit" type="submit"><i class="icon-magnifier"></i></button></span>
                 </div>
-                <div class="header-menu-wrap">
-                    <ul class="nav-menu">
-                        <li><a href="<?= site_url('/') ?>">หน้าแรก</a></li>
-                        <li><a href="<?= site_url('member') ?>">Member</a>
-                            <ul>
-                                <li><a href="<?= site_url('member/profile') ?>">ข้อมูลส่วนตัว</a></li>
-                                <li><a href="<?= site_url('member/team') ?>">ทีมของฉัน</a></li>
-                                <li><a href="<?= site_url('member/tournaments') ?>">การแข่งขัน</a></li>
-                                <li><a href="<?= site_url('member/reports') ?>">รายงาน</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="<?= site_url('tournaments') ?>">รายการแข่งขัน</a></li>
-                    </ul>
-                </div>
-                <div class="header-right">
-                    <a class="default-btn" href="<?= site_url('logout') ?>">ออกจากระบบ</a>
-                    <div class="mobile-menu-icon"><div class="burger-menu"><div class="line-menu line-half first-line"></div><div class="line-menu"></div><div class="line-menu line-half last-line"></div></div></div>
-                </div>
+            </form>
+            <a class="menu-toggler responsive-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"><span></span></a>
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li><a class="fullscreen-btn"><i data-feather="maximize"></i></a></li>
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img alt="" class="img-circle" src="<?= base_url('templates/source/assets/img/dp.jpg') ?>" />
+                            <span class="username username-hide-on-mobile"><?= esc(session('username') ?? 'Member') ?></span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li><a href="<?= site_url('/') ?>"><i class="icon-globe"></i> หน้าเว็บไซต์</a></li>
+                            <li><a href="<?= site_url('member/profile') ?>"><i class="icon-user"></i> โปรไฟล์</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<?= site_url('logout') ?>"><i class="icon-logout"></i> ออกจากระบบ</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-</header>
-<section class="member-hero">
-    <div class="container">
-        <div class="member-kicker">National Esports Member</div>
-        <h1><?= esc($title ?? 'Member') ?></h1>
-        <p class="mt-2 mb-0">เข้าสู่ระบบในชื่อ <?= esc(session('username')) ?> · <?= esc(session('role')) ?></p>
+
+    <div class="page-container">
+        <div class="sidebar-container">
+            <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+                <div class="left-sidemenu">
+                    <ul class="sidemenu page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top:20px">
+                        <li class="sidebar-toggler-wrapper hide"><div class="sidebar-toggler"><span></span></div></li>
+                        <li class="sidebar-user-panel">
+                            <div class="sidebar-user">
+                                <div class="sidebar-user-picture"><img alt="image" src="<?= base_url('templates/source/assets/img/dp.jpg') ?>"></div>
+                                <div class="sidebar-user-details">
+                                    <div class="user-name"><?= esc(session('username') ?? 'Member') ?></div>
+                                    <div class="user-role"><?= esc(session('role') ?? 'member') ?></div>
+                                </div>
+                            </div>
+                        </li>
+                        <?php
+                            $currentUrl = current_url();
+                            $menuItems = [
+                                ['url' => site_url('member'), 'icon' => 'home', 'label' => 'Dashboard'],
+                                ['url' => site_url('member/profile'), 'icon' => 'user', 'label' => 'ข้อมูลส่วนตัว'],
+                                ['url' => site_url('member/team'), 'icon' => 'users', 'label' => 'ทีมของฉัน'],
+                                ['url' => site_url('member/tournaments'), 'icon' => 'award', 'label' => 'สมัครแข่งขัน'],
+                                ['url' => site_url('member/reports'), 'icon' => 'bar-chart-2', 'label' => 'รายงาน'],
+                            ];
+                        ?>
+                        <?php foreach ($menuItems as $item): ?>
+                            <?php $active = rtrim($currentUrl, '/') === rtrim($item['url'], '/') ? 'active' : ''; ?>
+                            <li class="nav-item <?= $active ?>">
+                                <a href="<?= esc($item['url'], 'attr') ?>" class="nav-link">
+                                    <i data-feather="<?= esc($item['icon'], 'attr') ?>"></i>
+                                    <span class="title"><?= esc($item['label']) ?></span>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="page-bar">
+                    <div class="page-title-breadcrumb">
+                        <div class="pull-left"><div class="page-title"><?= esc($title ?? 'Member') ?></div></div>
+                        <ol class="breadcrumb page-breadcrumb pull-right">
+                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="<?= site_url('member') ?>">Member</a>&nbsp;<i class="fa fa-angle-right"></i></li>
+                            <li class="active"><?= esc($title ?? 'Dashboard') ?></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <?php if (session('success')): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert"><?= session('success') ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                <?php endif ?>
+                <?php if (session('error')): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert"><?= session('error') ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+                <?php endif ?>
+
+                <?= $this->renderSection('content') ?>
+            </div>
+        </div>
     </div>
-</section>
-<main class="member-wrap">
-    <div class="container">
-        <?php if (session('success')): ?><div class="alert alert-success"><?= session('success') ?></div><?php endif ?>
-        <?php if (session('error')): ?><div class="alert alert-danger"><?= session('error') ?></div><?php endif ?>
-        <?= $this->renderSection('content') ?>
+
+    <div class="page-footer">
+        <div class="page-footer-inner">2026 &copy; National Esports Tournament Member</div>
+        <div class="scroll-to-top"><i class="icon-arrow-up"></i></div>
     </div>
-</main>
-<footer class="footer-section">
-    <div class="copyright-wrap">
-        <div class="container"><p>© <span id="currentYear"></span> National Esports Tournament</p></div>
-    </div>
-</footer>
-<div id="scrollup"><button id="scroll-top" class="scroll-to-top hover-target"><i class="las la-arrow-up"></i></button></div>
-<script src="<?= base_url('template/html/assets/js/vendor/jquary-3.6.0.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/bootstrap.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/popper.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/odometer.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/waypoints.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/venobox.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/swiper.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/smooth-scroll.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/vendor/wow.min.js') ?>"></script>
-<script src="<?= base_url('template/html/assets/js/main.js') ?>"></script>
+</div>
+
+<script src="<?= base_url('templates/source/assets/plugins/jquery/jquery.min.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/popper/popper.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/jquery-blockui/jquery.blockui.min.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/jquery-slimscroll/jquery.slimscroll.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/feather/feather.min.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/bootstrap/js/bootstrap.min.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/js/app.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/js/layout.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/js/theme-color.js') ?>"></script>
+<script src="<?= base_url('templates/source/assets/plugins/material/material.min.js') ?>"></script>
+<script>if (window.feather) { feather.replace(); }</script>
 </body>
 </html>
