@@ -297,4 +297,61 @@
         </div>
     </div>
 </div>
+<style {csp-style-nonce}>
+html,
+body,
+.page-wrapper,
+.page-container,
+.page-content-wrapper,
+.page-content {
+    background: #0b1020 !important;
+    color: #f5f7fb !important;
+}
+
+.page-header,
+.page-logo,
+.sidebar-container,
+.sidemenu-container,
+.left-sidemenu,
+.page-footer {
+    background: #101624 !important;
+    border-color: #263149 !important;
+}
+
+.card-box {
+    background: #161d2f !important;
+    border: 1px solid #263149 !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, .22) !important;
+}
+
+.card-head,
+.table td,
+.table th {
+    border-color: #263149 !important;
+}
+
+.card-head header,
+.card-box strong,
+.page-title,
+.logo-default {
+    color: #f5f7fb !important;
+}
+
+.sidemenu .nav-link,
+.text-muted,
+.page-breadcrumb,
+.page-breadcrumb a,
+.table td,
+.table th {
+    color: #9aa7bd !important;
+}
+
+.btn-primary,
+.btn-info,
+.btn-success {
+    background: #00e5ff !important;
+    border-color: #00e5ff !important;
+    color: #06111c !important;
+}
+</style>
 <?= $this->endSection() ?>

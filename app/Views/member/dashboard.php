@@ -353,4 +353,75 @@
         </div>
     </div>
 </div>
+<style {csp-style-nonce}>
+html,
+body,
+.page-wrapper,
+.page-container,
+.page-content-wrapper,
+.page-content {
+    background: #0b1020 !important;
+    color: #f5f7fb !important;
+}
+
+.page-header,
+.page-logo,
+.sidebar-container,
+.sidemenu-container,
+.left-sidemenu,
+.page-footer {
+    background: #101624 !important;
+    border-color: #263149 !important;
+}
+
+.member-card,
+.member-stat,
+.empty-state {
+    background: #161d2f !important;
+    border: 1px solid #263149 !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, .22) !important;
+}
+
+.profile-hero {
+    background: linear-gradient(135deg, #101624, #161d2f) !important;
+    border: 1px solid #263149 !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, .24) !important;
+}
+
+.member-label {
+    color: #00e5ff !important;
+}
+
+.member-card h4,
+.member-card h5,
+.member-card strong,
+.profile-hero h3,
+.page-title,
+.logo-default {
+    color: #f5f7fb !important;
+}
+
+.text-muted,
+.page-breadcrumb,
+.page-breadcrumb a,
+.member-table td,
+.member-table th,
+.sidemenu .nav-link {
+    color: #9aa7bd !important;
+    border-color: #263149 !important;
+}
+
+.default-btn,
+.btn-primary {
+    background: #00e5ff !important;
+    border-color: #00e5ff !important;
+    color: #06111c !important;
+}
+
+.status-pill {
+    background: rgba(0, 229, 255, .10) !important;
+    border: 1px solid rgba(0, 229, 255, .35) !important;
+    color: #00e5ff !important;
+}
+</style>
 <?= $this->endSection() ?>
