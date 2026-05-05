@@ -16,15 +16,8 @@ class Teams extends BaseController
 
     public function index(): string
     {
-        return view('admin/simple_crud', [
+        return view('admin/teams/index', [
             'title' => 'จัดการข้อมูลทีม',
-            'route' => 'teams',
-            'fields' => [
-                'name' => 'ชื่อทีม',
-                'tag' => 'ตัวย่อ',
-                'contact_channel' => 'ช่องทางติดต่อ',
-                'status' => 'สถานะ',
-            ],
             'items' => $this->model->orderBy('id', 'DESC')->findAll(),
         ]);
     }
@@ -36,8 +29,29 @@ class Teams extends BaseController
         return redirect()->back()->with('success', 'บันทึกทีมแล้ว');
     }
 
+    public function update($id)
+    {
+        if (! $this->model->find($id)) {
+            return redirect()->back()->with('error', 'Team not found');
+        }
+
+        $this->model->update($id, [
+            'name' => $this->request->getPost('name'),
+            'tag' => $this->request->getPost('tag'),
+            'description' => $this->request->getPost('description'),
+            'contact_channel' => $this->request->getPost('contact_channel'),
+            'status' => $this->request->getPost('status') ?: 'active',
+        ]);
+
+        return redirect()->back()->with('success', 'Updated team details');
+    }
+
     public function delete($id)
     {
+        if (session('role') === 'staff') {
+            return redirect()->back()->with('error', 'บัญชี Staff ไม่มีสิทธิ์ลบข้อมูล');
+        }
+
         $this->model->delete($id);
 
         return redirect()->back()->with('success', 'ลบทีมแล้ว');

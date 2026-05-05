@@ -52,10 +52,54 @@
                     <td><?= esc($item['birth_date'] ?? '-') ?></td>
                     <td><?= esc($item['contact_channel'] ?? '-') ?></td>
                     <td>
-                        <?php if ($canDelete): ?><form method="post" action="<?= site_url('adminz/people/' . $item['id']) ?>">
+                        <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#person-edit-<?= esc($item['id'], 'attr') ?>">เธเนเนเธ</button>
+                        <?php if ($canDelete): ?><form class="d-inline" method="post" action="<?= site_url('adminz/people/' . $item['id']) ?>">
                             <?= csrf_field() ?><input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm btn-outline-danger" onclick="return confirm('ยืนยันการลบสมาชิก?')">ลบ</button>
                         </form><?php endif ?>
+                    </td>
+                </tr>
+                <tr class="collapse" id="person-edit-<?= esc($item['id'], 'attr') ?>">
+                    <td colspan="7">
+                        <form method="post" action="<?= site_url('adminz/people/' . $item['id']) ?>">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="selected_role" value="<?= esc($selectedRole ?? '', 'attr') ?>">
+                            <div class="row">
+                                <div class="col-md-3"><label>เธเธทเนเธญเธเธนเนเนเธเน/เธเธฒเธกเนเธเธ</label><input class="form-control" name="username" value="<?= esc($item['username'], 'attr') ?>" required></div>
+                                <div class="col-md-3"><label>เธญเธตเน€เธกเธฅ</label><input class="form-control" type="email" name="email" value="<?= esc($item['email'], 'attr') ?>" required></div>
+                                <div class="col-md-3"><label>เธฃเธซเธฑเธชเธเนเธฒเธเนเธซเธกเน</label><input class="form-control" type="password" name="password" minlength="8" placeholder="เว้นว่างถ้าไม่เปลี่ยน"></div>
+                                <div class="col-md-3">
+                                    <label>Role</label>
+                                    <select class="form-select" name="role">
+                                        <?php foreach (['staff' => 'Staff', 'team_manager' => 'เธเธนเนเธเธฑเธ”เธเธฒเธฃเธ—เธตเธก', 'coach' => 'เธเธนเนเธเธถเธเธชเธญเธ', 'amateur_athlete' => 'เธเธฑเธเธเธตเธฌเธฒเธ—เธฑเนเธงเนเธ', 'pro_athlete' => 'เธเธฑเธเธเธตเธฌเธฒเธญเธฒเธเธตเธ'] as $value => $label): ?>
+                                            <option value="<?= esc($value, 'attr') ?>" <?= ($item['role'] ?? '') === $value ? 'selected' : '' ?>><?= esc($label) ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>เธ—เธตเธก</label>
+                                    <select class="form-select" name="team_id">
+                                        <option value="">เนเธกเนเธชเธฑเธเธเธฑเธ”เธ—เธตเธก</option>
+                                        <?php foreach ($teams as $team): ?><option value="<?= esc($team['id'], 'attr') ?>" <?= (string) ($item['team_id'] ?? '') === (string) $team['id'] ? 'selected' : '' ?>><?= esc($team['name']) ?></option><?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-3"><label>เธเธทเนเธญเนเธชเธ”เธเธเธฅ</label><input class="form-control" name="display_name" value="<?= esc($item['display_name'] ?: $item['username'], 'attr') ?>"></div>
+                                <div class="col-md-3"><label>เธงเธฑเธเน€เธเธดเธ”</label><input class="form-control" type="date" name="birth_date" value="<?= esc($item['birth_date'] ?? '', 'attr') ?>"></div>
+                                <div class="col-md-3"><label>เธเนเธญเธเธ—เธฒเธเธ•เธดเธ”เธ•เนเธญ</label><input class="form-control" name="contact_channel" value="<?= esc($item['contact_channel'] ?? '', 'attr') ?>"></div>
+                                <div class="col-md-3">
+                                    <label>เธชเธ–เธฒเธเธฐ</label>
+                                    <select class="form-select" name="status">
+                                        <option value="active" <?= ($item['status'] ?? '') === 'active' ? 'selected' : '' ?>>Active</option>
+                                        <option value="suspended" <?= ($item['status'] ?? '') === 'suspended' ? 'selected' : '' ?>>Suspended</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="m-t-10">
+                                <button class="btn btn-primary">เธเธฑเธเธ—เธถเธเธเธฒเธฃเนเธเนเนเธ</button>
+                                <button class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#person-edit-<?= esc($item['id'], 'attr') ?>">เธขเธเน€เธฅเธดเธ</button>
+                            </div>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach ?>

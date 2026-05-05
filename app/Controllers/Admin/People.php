@@ -70,6 +70,54 @@ class People extends BaseController
         return redirect()->back()->with('success', 'เพิ่มสมาชิกแล้ว');
     }
 
+    public function update($id)
+    {
+        $userModel = new UserModel();
+        $profileModel = new MemberProfileModel();
+        $user = $userModel->find($id);
+
+        if (! $user || $user['role'] === 'admin') {
+            return redirect()->back()->with('error', 'Member not found');
+        }
+
+        $role = (string) $this->request->getPost('role');
+        $teamId = $this->request->getPost('team_id') ?: null;
+        $password = trim((string) $this->request->getPost('password'));
+        $userData = [
+            'team_id' => $teamId,
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'role' => $role,
+            'status' => $this->request->getPost('status') ?: 'active',
+        ];
+
+        if ($password !== '') {
+            $userData['password_hash'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $userModel->update($id, $userData);
+
+        $profileData = [
+            'user_id' => $id,
+            'team_id' => $teamId,
+            'display_name' => $this->request->getPost('display_name') ?: $this->request->getPost('username'),
+            'birth_date' => $this->request->getPost('birth_date') ?: null,
+            'contact_channel' => $this->request->getPost('contact_channel'),
+            'current_role' => $this->roleLabel($role),
+            'athlete_level' => $role === 'pro_athlete' ? 'professional' : ($role === 'amateur_athlete' ? 'general' : null),
+        ];
+
+        $profile = $profileModel->where('user_id', $id)->first();
+        if ($profile) {
+            $profileModel->update($profile['id'], $profileData);
+        } else {
+            $profileModel->insert($profileData);
+        }
+
+        return redirect()->to(site_url('adminz/people?role=' . ($this->request->getPost('selected_role') ?: 'athletes')))
+            ->with('success', 'Updated member details');
+    }
+
     public function delete($id)
     {
         if (session('role') === 'staff') {
