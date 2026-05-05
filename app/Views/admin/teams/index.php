@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/admin') ?>
 <?= $this->section('content') ?>
 <?php $canDelete = session('role') !== 'staff'; ?>
+
 <div class="card card-box">
     <div class="card-head"><header>เพิ่มทีมใหม่</header></div>
     <div class="card-body">
@@ -70,10 +71,13 @@
                         <button class="btn btn-xs btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#team-edit-<?= esc($item['id'], 'attr') ?>">
                             <i class="fa fa-pen"></i>
                         </button>
-                        <?php if ($canDelete): ?><form class="d-inline" method="post" action="<?= site_url('adminz/teams/' . $item['id']) ?>">
-                            <?= csrf_field() ?><input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-xs btn-danger" onclick="return confirm('ยืนยันการลบทีม?')"><i class="fa fa-trash"></i></button>
-                        </form><?php endif ?>
+                        <?php if ($canDelete): ?>
+                            <form class="d-inline" method="post" action="<?= site_url('adminz/teams/' . $item['id']) ?>">
+                                <?= csrf_field() ?>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class="btn btn-xs btn-danger" onclick="return confirm('ยืนยันการลบทีม?')"><i class="fa fa-trash"></i></button>
+                            </form>
+                        <?php endif ?>
                     </td>
                 </tr>
                 <tr class="collapse" id="team-edit-<?= esc($item['id'], 'attr') ?>">
@@ -83,32 +87,32 @@
                             <input type="hidden" name="_method" value="PUT">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>เธเธทเนเธญเธ—เธตเธก</label>
+                                    <label>ชื่อทีม</label>
                                     <input class="form-control" name="name" value="<?= esc($item['name'], 'attr') ?>" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Tag</label>
+                                    <label>ตัวย่อ (Tag)</label>
                                     <input class="form-control" name="tag" value="<?= esc($item['tag'] ?? '', 'attr') ?>">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>เธเนเธญเธเธ—เธฒเธเธ•เธดเธ”เธ•เนเธญ</label>
+                                    <label>ช่องทางติดต่อ</label>
                                     <input class="form-control" name="contact_channel" value="<?= esc($item['contact_channel'] ?? '', 'attr') ?>">
                                 </div>
                                 <div class="col-md-2">
-                                    <label>เธชเธ–เธฒเธเธฐ</label>
+                                    <label>สถานะ</label>
                                     <select class="form-select" name="status">
                                         <option value="active" <?= ($item['status'] ?? '') === 'active' ? 'selected' : '' ?>>Active</option>
                                         <option value="inactive" <?= ($item['status'] ?? '') === 'inactive' ? 'selected' : '' ?>>Inactive</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12">
-                                    <label>เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เธ—เธตเธก / เธเธฃเธฐเธงเธฑเธ•เธด</label>
+                                    <label>รายละเอียดทีม / ประวัติ</label>
                                     <textarea class="form-control" name="description" rows="3"><?= esc($item['description'] ?? '') ?></textarea>
                                 </div>
                             </div>
                             <div class="m-t-10">
-                                <button class="btn btn-primary">เธเธฑเธเธ—เธถเธเธเธฒเธฃเนเธเนเนเธ</button>
-                                <button class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#team-edit-<?= esc($item['id'], 'attr') ?>">เธขเธเน€เธฅเธดเธ</button>
+                                <button class="btn btn-primary">บันทึกการแก้ไข</button>
+                                <button class="btn btn-default" type="button" data-bs-toggle="collapse" data-bs-target="#team-edit-<?= esc($item['id'], 'attr') ?>">ยกเลิก</button>
                             </div>
                         </form>
                     </td>

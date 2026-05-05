@@ -32,7 +32,7 @@ class Teams extends BaseController
     public function update($id)
     {
         if (! $this->model->find($id)) {
-            return redirect()->back()->with('error', 'Team not found');
+            return redirect()->back()->with('error', 'ไม่พบข้อมูลทีม');
         }
 
         $this->model->update($id, [
@@ -43,7 +43,7 @@ class Teams extends BaseController
             'status' => $this->request->getPost('status') ?: 'active',
         ]);
 
-        return redirect()->back()->with('success', 'Updated team details');
+        return redirect()->back()->with('success', 'อัปเดตรายละเอียดทีมแล้ว');
     }
 
     public function delete($id)

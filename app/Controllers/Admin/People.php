@@ -77,7 +77,7 @@ class People extends BaseController
         $user = $userModel->find($id);
 
         if (! $user || $user['role'] === 'admin') {
-            return redirect()->back()->with('error', 'Member not found');
+            return redirect()->back()->with('error', 'ไม่พบข้อมูลสมาชิก');
         }
 
         $role = (string) $this->request->getPost('role');
@@ -115,7 +115,7 @@ class People extends BaseController
         }
 
         return redirect()->to(site_url('adminz/people?role=' . ($this->request->getPost('selected_role') ?: 'athletes')))
-            ->with('success', 'Updated member details');
+            ->with('success', 'อัปเดตรายละเอียดสมาชิกแล้ว');
     }
 
     public function delete($id)
