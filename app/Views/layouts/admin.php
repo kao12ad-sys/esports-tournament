@@ -61,10 +61,23 @@
         html, body, .page-wrapper, .page-container, .page-content-wrapper, .page-content {
             background: var(--es-bg) !important;
             color: var(--es-text) !important;
+            border-left: 0 !important;
+            border-right: 0 !important;
+            outline: 0 !important;
+            box-shadow: none;
             transition: background 0.25s, color 0.25s;
         }
         body { font-family: Poppins, Arial, sans-serif; }
         .page-content { min-height: calc(100vh - 117px); padding-bottom: 28px; }
+        body::before, body::after,
+        .page-wrapper::before, .page-wrapper::after,
+        .page-container::before, .page-container::after {
+            display: none !important;
+            content: none !important;
+        }
+        .settingSidebar, .settingPanelToggle {
+            display: none !important;
+        }
 
         /* ===== Header & Sidebar ===== */
         .page-header, .page-logo, .sidebar-container, .sidemenu-container, .left-sidemenu, .page-footer {
