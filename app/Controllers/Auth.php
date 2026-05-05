@@ -11,7 +11,7 @@ class Auth extends BaseController
     {
         if ($this->request->getMethod() === 'POST') {
             $rules = [
-                'email' => 'required|valid_email',
+                'login' => 'required',
                 'password' => 'required|min_length[8]',
             ];
 
@@ -19,7 +19,7 @@ class Auth extends BaseController
                 return redirect()->back()->withInput()->with('error', 'กรุณากรอกอีเมลและรหัสผ่านให้ถูกต้อง');
             }
 
-            $user = (new UserModel())->where('email', $this->request->getPost('email'))->first();
+            $user = $this->findUserByLogin((string) $this->request->getPost('login'));
             if (! $user || $user['role'] !== 'admin' || $user['status'] !== 'active' || ! password_verify((string) $this->request->getPost('password'), $user['password_hash'])) {
                 return redirect()->back()->withInput()->with('error', 'บัญชีผู้ดูแลระบบหรือรหัสผ่านไม่ถูกต้อง');
             }
@@ -37,7 +37,7 @@ class Auth extends BaseController
         if ($this->request->getMethod() === 'POST') {
             $rules = [
                 'login_role' => 'required|in_list[staff,member,manager,coach]',
-                'email' => 'required|valid_email',
+                'login' => 'required',
                 'password' => 'required|min_length[8]',
             ];
 
@@ -46,9 +46,16 @@ class Auth extends BaseController
             }
 
             $loginRole = (string) $this->request->getPost('login_role');
-            $user = (new UserModel())->where('email', $this->request->getPost('email'))->first();
+            $user = $this->findUserByLogin((string) $this->request->getPost('login'));
             if (! $user || $user['status'] !== 'active' || ! password_verify((string) $this->request->getPost('password'), $user['password_hash'])) {
                 return redirect()->back()->withInput()->with('error', 'อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+            }
+
+            if ($user['role'] === 'admin') {
+                $effectiveRole = $this->roleForLoginType($loginRole);
+                $this->startUserSession($user, $effectiveRole);
+
+                return redirect()->to($effectiveRole === 'staff' ? '/adminz' : '/member');
             }
 
             if (! $this->roleMatchesLoginType($user['role'], $loginRole)) {
@@ -128,15 +135,18 @@ class Auth extends BaseController
         return redirect()->to('/login')->with('success', 'ออกจากระบบเรียบร้อย');
     }
 
-    private function startUserSession(array $user): void
+    private function startUserSession(array $user, ?string $effectiveRole = null): void
     {
+        $role = $effectiveRole ?: $user['role'];
+
         session()->regenerate(true);
         session()->set([
             'isLoggedIn' => true,
             'user_id' => $user['id'],
             'team_id' => $user['team_id'],
             'username' => $user['username'],
-            'role' => $user['role'],
+            'role' => $role,
+            'actual_role' => $user['role'],
         ]);
 
         (new UserModel())->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
@@ -157,13 +167,37 @@ class Auth extends BaseController
 
     private function roleMatchesLoginType(string $role, string $loginRole): bool
     {
-        return match ($loginRole) {
-            'staff' => $role === 'staff',
-            'manager' => $role === 'team_manager',
-            'coach' => $role === 'coach',
-            'member' => in_array($role, ['amateur_athlete', 'pro_athlete'], true),
-            default => false,
-        };
+        if ($loginRole === 'member') {
+            return in_array($role, ['amateur_athlete', 'pro_athlete'], true);
+        }
+
+        return $role === $this->roleForLoginType($loginRole);
+    }
+
+    private function roleForLoginType(string $loginRole): string
+    {
+        return [
+            'staff' => 'staff',
+            'manager' => 'team_manager',
+            'coach' => 'coach',
+            'member' => 'amateur_athlete',
+        ][$loginRole] ?? 'amateur_athlete';
+    }
+
+    private function findUserByLogin(string $login): ?array
+    {
+        $login = trim($login);
+
+        if ($login === '') {
+            return null;
+        }
+
+        return (new UserModel())
+            ->groupStart()
+                ->where('email', $login)
+                ->orWhere('username', $login)
+            ->groupEnd()
+            ->first();
     }
 
     private function getBotChallenge(): array

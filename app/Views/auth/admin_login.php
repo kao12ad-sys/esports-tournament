@@ -34,7 +34,7 @@
                         <form class="register-form" id="login-form" method="post" action="<?= site_url('adminz/login') ?>">
                             <?= csrf_field() ?>
                             <div class="form-group">
-                                <input name="email" type="email" placeholder="Admin Email" class="form-control input-height" value="<?= esc(old('email')) ?>" required />
+                                <input name="login" type="text" placeholder="Admin Username or Email" class="form-control input-height" value="<?= esc(old('login')) ?>" required />
                             </div>
                             <div class="form-group">
                                 <input name="password" type="password" placeholder="Password" class="form-control input-height" minlength="8" required />
@@ -47,7 +47,7 @@
                                 <button class="btn btn-round btn-primary" name="signin" id="signin" type="submit">Login</button>
                             </div>
                         </form>
-                        <p class="mt-3">admin@example.test / Password@123</p>
+                        <p class="mt-3">admin หรือ admin@example.test / Password@123</p>
                     </div>
                 </div>
             </div>

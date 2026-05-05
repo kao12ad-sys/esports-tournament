@@ -18,6 +18,7 @@
             <p>เลือกประเภทผู้ใช้งานก่อนเข้าสู่ระบบ เพื่อพาไปยังพื้นที่ทำงานที่ถูกต้องและจำกัดสิทธิ์ตาม role ของบัญชี</p>
         </div>
         <div class="login-examples">
+            <div class="login-example"><span>Admin</span><strong>admin</strong></div>
             <div class="login-example"><span>Staff</span><strong>staff@example.test</strong></div>
             <div class="login-example"><span>Manager</span><strong>manager@example.test</strong></div>
             <div class="login-example"><span>Coach</span><strong>coach@example.test</strong></div>
@@ -46,8 +47,8 @@
             <?php endforeach ?>
         </div>
 
-        <label>อีเมล</label>
-        <input class="form-control mb-3" type="email" name="email" value="<?= esc(old('email')) ?>" required autocomplete="email">
+        <label>Username หรือ Email</label>
+        <input class="form-control mb-3" type="text" name="login" value="<?= esc(old('login')) ?>" required autocomplete="username">
 
         <label>รหัสผ่าน</label>
         <input class="form-control mb-3" type="password" name="password" required minlength="8" autocomplete="current-password">
