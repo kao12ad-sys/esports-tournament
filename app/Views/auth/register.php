@@ -1,71 +1,47 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="National Esports Tournament Registration" />
-    <title><?= esc($title ?? 'สมัครสมาชิก') ?> | National Esports</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url('templates/source/assets/plugins/iconic/css/material-design-iconic-font.min.css') ?>">
-    <link href="<?= base_url('templates/source/assets/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url('templates/source/assets/css/theme/theme_style.css') ?>" rel="stylesheet" id="rt_style_components" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url('templates/source/assets/css/pages/login.css') ?>">
-    <link rel="shortcut icon" href="<?= base_url('templates/source/assets/img/favicon.ico') ?>" />
-    <link href="<?= base_url('templates/source/assets/css/setting-panel.css') ?>" rel="stylesheet" type="text/css" />
-    <style>
-        body{background:#f8f8f8}.main{padding:58px 0}.signup-content{align-items:flex-start}.signup-form{width:430px;margin-right:70px}.signup-image{margin-top:12px}.signup-image img{border-radius:10px}.form-title{margin-bottom:12px}.form-subtitle{color:#6b7280;margin-bottom:18px}.input-height{height:44px}.form-group{margin-bottom:14px}.form-control{border:1px solid #e5e7eb;border-radius:6px;box-shadow:none}.form-control:focus{border-color:#188ae2;box-shadow:0 0 0 3px rgba(24,138,226,.1)}.alert{border-radius:8px;padding:10px 12px;margin-bottom:14px}.register-note{background:#f8fafc;border:1px solid #edf1f5;border-radius:8px;padding:12px;color:#6b7280;font-size:13px;margin-bottom:15px}.captcha-box{display:flex;gap:10px;align-items:center}.captcha-question{min-width:112px;border:1px solid #d9e3ef;border-radius:8px;background:#f4f9ff;color:#1f2937;font-weight:700;text-align:center;padding:11px 12px}.btn-round{border-radius:24px;padding:8px 24px}.signup-image-link+.signup-image-link{margin-top:8px}@media(max-width:991px){.signup-form{width:100%;margin-right:0}.signup-content{display:block}.signup-image{margin-top:24px}.main{padding:24px 0}.captcha-box{display:block}.captcha-question{margin-bottom:10px}}
-    </style>
-</head>
-<body>
-    <div class="main">
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <p class="form-subtitle">สมัครบัญชี Member สำหรับนักกีฬา</p>
-                        <div class="register-note">กรอกเฉพาะข้อมูลจำเป็น และยืนยันตัวตนด้วย bot ก่อนสร้างบัญชี</div>
-
-                        <?php if (session('error')): ?><div class="alert alert-danger"><?= session('error') ?></div><?php endif ?>
-                        <?php if (session('success')): ?><div class="alert alert-success"><?= session('success') ?></div><?php endif ?>
-
-                        <form method="post" action="<?= site_url('register') ?>" class="register-form" id="register-form">
-                            <?= csrf_field() ?>
-                            <div class="form-group">
-                                <input class="form-control input-height" name="username" placeholder="Username" value="<?= esc(old('username')) ?>" required minlength="3" maxlength="80">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control input-height" type="email" name="email" placeholder="Email" value="<?= esc(old('email')) ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control input-height" type="password" name="password" placeholder="Password" required minlength="8">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control input-height" type="password" name="password_confirm" placeholder="Repeat Password" required minlength="8">
-                            </div>
-                            <div class="form-group">
-                                <label class="mb-2">ยืนยันตัวตนด้วย bot</label>
-                                <div class="captcha-box">
-                                    <div class="captcha-question"><?= esc($botQuestion ?? '') ?></div>
-                                    <input class="form-control input-height" type="number" name="bot_answer" placeholder="Answer" required>
-                                </div>
-                            </div>
-                            <div class="form-group form-button">
-                                <button class="btn btn-round btn-primary" name="signup" id="register" type="submit">Register</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="<?= base_url('templates/source/assets/img/pages/signup.jpg') ?>" alt="sign up image"></figure>
-                        <a href="<?= site_url('login') ?>" class="signup-image-link">มีบัญชีแล้ว เข้าสู่ระบบ</a>
-                        <a href="<?= site_url('/') ?>" class="signup-image-link">กลับหน้าเว็บไซต์</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<?= $this->extend('layouts/public') ?>
+<?= $this->section('content') ?>
+<section class="register-shell">
+    <div class="register-intro">
+        <div>
+            <div class="muted mb-2">National Esports Tournament Platform</div>
+            <h1>สร้างบัญชี Member สำหรับนักกีฬา</h1>
+            <p class="muted">กรอกข้อมูลที่จำเป็นเท่านั้น ระบบจะสร้างบัญชี member ปกติ และ role ระดับ manager หรือ coach จะต้องให้ admin กำหนดภายหลัง</p>
+        </div>
+        <div class="register-notes">
+            <div class="register-note"><span>Username</span><strong>ใช้เข้าสู่โปรไฟล์</strong></div>
+            <div class="register-note"><span>Email</span><strong>ใช้สำหรับ login</strong></div>
+            <div class="register-note"><span>Bot check</span><strong>ยืนยันว่าไม่ใช่ bot</strong></div>
+        </div>
     </div>
-    <script src="<?= base_url('templates/source/assets/plugins/jquery/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('templates/source/assets/plugins/bootstrap/js/bootstrap.min.js') ?>"></script>
-</body>
-</html>
+
+    <form method="post" action="<?= site_url('register') ?>" class="register-panel">
+        <?= csrf_field() ?>
+        <h3 class="mb-2">Sign up</h3>
+        <p class="form-subtitle">สมัครบัญชี Member สำหรับนักกีฬา</p>
+
+        <?php if (session('error')): ?><div class="alert alert-danger"><?= session('error') ?></div><?php endif ?>
+        <?php if (session('success')): ?><div class="alert alert-success"><?= session('success') ?></div><?php endif ?>
+
+        <label>Username</label>
+        <input class="form-control mb-3" name="username" placeholder="Username" value="<?= esc(old('username')) ?>" required minlength="3" maxlength="80" autocomplete="username">
+
+        <label>Email</label>
+        <input class="form-control mb-3" type="email" name="email" placeholder="Email" value="<?= esc(old('email')) ?>" required autocomplete="email">
+
+        <label>Password</label>
+        <input class="form-control mb-3" type="password" name="password" placeholder="Password" required minlength="8" autocomplete="new-password">
+
+        <label>Repeat Password</label>
+        <input class="form-control mb-3" type="password" name="password_confirm" placeholder="Repeat Password" required minlength="8" autocomplete="new-password">
+
+        <label>ยืนยันตัวตนด้วย bot</label>
+        <div class="captcha-box mb-3">
+            <div class="captcha-question"><?= esc($botQuestion ?? '') ?></div>
+            <input class="form-control" type="number" name="bot_answer" placeholder="Answer" required>
+        </div>
+
+        <button class="register-submit w-100" type="submit">Register</button>
+        <p class="muted mt-3 mb-0">มีบัญชีแล้ว? <a href="<?= site_url('login') ?>">เข้าสู่ระบบ</a></p>
+    </form>
+</section>
+<?= $this->endSection() ?>
