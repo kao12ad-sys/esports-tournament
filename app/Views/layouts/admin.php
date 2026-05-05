@@ -33,28 +33,28 @@
     <style {csp-style-nonce}>
         /* ===== Dark Mode (Default) ===== */
         :root {
-            --es-bg:      #0b1020;
-            --es-panel:   #101624;
-            --es-card:    #161d2f;
-            --es-line:    #263149;
+            --es-bg:      #222736;
+            --es-panel:   #2a3042;
+            --es-card:    #2a3042;
+            --es-line:    #35384a;
             --es-text:    #f5f7fb;
-            --es-muted:   #9aa7bd;
-            --es-accent:  #00e5ff;
-            --es-accent2: #7c3cff;
+            --es-muted:   #96a2b4;
+            --es-accent:  #4680ff;
+            --es-accent2: #6673fc;
             --es-success: #31d0aa;
             --es-warning: #ffc857;
             --es-danger:  #ff5470;
         }
         /* ===== Light Mode ===== */
         [data-theme="light"] {
-            --es-bg:      #f1f4f9;
+            --es-bg:      #f4f6f9;
             --es-panel:   #ffffff;
             --es-card:    #ffffff;
             --es-line:    #dae1ed;
             --es-text:    #1e293b;
             --es-muted:   #64748b;
-            --es-accent:  #0ea5e9;
-            --es-accent2: #6366f1;
+            --es-accent:  #4680ff;
+            --es-accent2: #6673fc;
         }
 
         /* ===== Base ===== */
@@ -83,7 +83,7 @@
         /* ===== Sidebar Menu ===== */
         .sidemenu .nav-link { border-radius: 8px; margin: 2px 10px; color: var(--es-muted) !important; }
         .sidemenu .nav-link:hover, .sidemenu .nav-item.active > .nav-link {
-            background: rgba(0, 229, 255, .1) !important;
+            background: rgba(70, 128, 255, .1) !important;
             color: var(--es-accent) !important;
         }
         .sidemenu .nav-link i, .sidemenu .nav-link svg { color: inherit !important; stroke: currentColor !important; }
@@ -115,7 +115,7 @@
         [data-theme="dark"] .table thead th { background: #101827 !important; }
         .table td { background: transparent !important; border-color: var(--es-line) !important; color: var(--es-muted) !important; vertical-align: middle; }
         .table-striped tbody tr:nth-of-type(odd) { background: rgba(255,255,255,.02) !important; }
-        .table-hover tbody tr:hover { background: rgba(0,229,255,.08) !important; }
+        .table-hover tbody tr:hover { background: rgba(70,128,255,.08) !important; }
         .table-hover tbody tr:hover td { color: var(--es-accent) !important; }
 
         /* ===== Buttons ===== */
@@ -141,11 +141,11 @@
         .stat-value { font-size: 28px; font-weight: 700; margin-bottom: 5px; color: #fff !important; }
         .stat-label { font-size: 14px; opacity: .88; color: #d9e2f2 !important; }
         .bg-purple  { background: linear-gradient(135deg,#292d58,#7c3cff) !important; }
-        .bg-primary { background: linear-gradient(135deg,#0e7490,#00e5ff) !important; }
+        .bg-primary { background: linear-gradient(135deg,#1880c9,#4680ff) !important; }
         .bg-success { background: linear-gradient(135deg,#0f766e,#31d0aa) !important; }
         .bg-warning { background: linear-gradient(135deg,#9a6700,#ffc857) !important; }
         .bg-danger  { background: linear-gradient(135deg,#9f1239,#ff5470) !important; }
-        .bg-info    { background: linear-gradient(135deg,#155e75,#00e5ff) !important; }
+        .bg-info    { background: linear-gradient(135deg,#1880c9,#4abad2) !important; }
 
         /* ===== Alerts ===== */
         .alert { border-radius: 8px; border: 1px solid var(--es-line); }
@@ -155,7 +155,7 @@
         #theme-switch:hover { color: var(--es-accent); }
     </style>
 </head>
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-white">
 <div class="page-wrapper">
 
     <!-- ===== HEADER ===== -->

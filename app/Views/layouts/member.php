@@ -31,28 +31,28 @@
     <style {csp-style-nonce}>
         /* ===== Dark Mode (Default) ===== */
         :root {
-            --es-bg:      #0b1020;
-            --es-panel:   #101624;
-            --es-card:    #161d2f;
-            --es-line:    #263149;
+            --es-bg:      #222736;
+            --es-panel:   #2a3042;
+            --es-card:    #2a3042;
+            --es-line:    #35384a;
             --es-text:    #f5f7fb;
-            --es-muted:   #9aa7bd;
-            --es-accent:  #00e5ff;
-            --es-accent2: #7c3cff;
+            --es-muted:   #96a2b4;
+            --es-accent:  #4680ff;
+            --es-accent2: #6673fc;
             --es-success: #31d0aa;
             --es-warning: #ffc857;
             --es-danger:  #ff5470;
         }
         /* ===== Light Mode ===== */
         [data-theme="light"] {
-            --es-bg:      #f1f4f9;
+            --es-bg:      #f4f6f9;
             --es-panel:   #ffffff;
             --es-card:    #ffffff;
             --es-line:    #dae1ed;
             --es-text:    #1e293b;
             --es-muted:   #64748b;
-            --es-accent:  #0ea5e9;
-            --es-accent2: #6366f1;
+            --es-accent:  #4680ff;
+            --es-accent2: #6673fc;
         }
 
         /* ===== Base ===== */
@@ -81,7 +81,7 @@
         /* ===== Sidebar Menu ===== */
         .sidemenu .nav-link { border-radius: 8px; margin: 2px 10px; color: var(--es-muted) !important; }
         .sidemenu .nav-link:hover, .sidemenu .nav-item.active > .nav-link {
-            background: rgba(0,229,255,.1) !important;
+            background: rgba(70,128,255,.1) !important;
             color: var(--es-accent) !important;
         }
         .sidemenu .nav-link i, .sidemenu .nav-link svg { color: inherit !important; stroke: currentColor !important; }
@@ -114,7 +114,7 @@
         [data-theme="dark"] .table thead th { background: #101827 !important; }
         .table td, .member-table td { background: transparent !important; border-color: var(--es-line) !important; color: var(--es-muted) !important; vertical-align: middle; }
         .table-striped tbody tr:nth-of-type(odd) { background: rgba(255,255,255,.02) !important; }
-        .table-hover tbody tr:hover { background: rgba(0,229,255,.08) !important; }
+        .table-hover tbody tr:hover { background: rgba(70,128,255,.08) !important; }
         .table-hover tbody tr:hover td { color: var(--es-accent) !important; }
 
         /* ===== Buttons ===== */
@@ -135,20 +135,20 @@
         .member-stat .label { margin-top: 9px; color: #d9e2f2 !important; }
         .member-stat .icon { position: absolute; right: 22px; bottom: 18px; font-size: 38px; opacity: .3; }
 
-        .bg-member-blue   { background: linear-gradient(135deg,#0e7490,#00e5ff) !important; }
+        .bg-member-blue   { background: linear-gradient(135deg,#1880c9,#4680ff) !important; }
         .bg-member-purple { background: linear-gradient(135deg,#292d58,#7c3cff) !important; }
         .bg-member-green  { background: linear-gradient(135deg,#0f766e,#31d0aa) !important; }
         .bg-member-orange { background: linear-gradient(135deg,#9a6700,#ffc857) !important; }
 
         /* ===== Member Labels & Badges ===== */
         .member-label { color: var(--es-accent) !important; font-size: 12px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; display: block; }
-        .status-pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 11px; background: rgba(0,229,255,.1) !important; border: 1px solid rgba(0,229,255,.35); color: var(--es-accent) !important; font-size: 12px; font-weight: 600; }
+        .status-pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 11px; background: rgba(70,128,255,.1) !important; border: 1px solid rgba(70,128,255,.35); color: var(--es-accent) !important; font-size: 12px; font-weight: 600; }
         .status-pill.approved { background: rgba(49,208,170,.14) !important; color: var(--es-success) !important; border-color: rgba(49,208,170,.35); }
         .status-pill.pending  { background: rgba(255,200,87,.16) !important; color: var(--es-warning) !important; border-color: rgba(255,200,87,.35); }
         .status-pill.rejected { background: rgba(255,84,112,.14)  !important; color: var(--es-danger)  !important; border-color: rgba(255,84,112,.35); }
 
         /* ===== Profile & Tournament Mini ===== */
-        .profile-avatar { width: 86px; height: 86px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(0,229,255,.4); }
+        .profile-avatar { width: 86px; height: 86px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(70,128,255,.4); }
         .tournament-mini { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--es-line); }
         .tournament-mini:last-child { border-bottom: 0; }
         .empty-state { padding: 20px; color: var(--es-muted) !important; text-align: center; }
@@ -166,7 +166,7 @@
         }
     </style>
 </head>
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-white">
 <div class="page-wrapper">
 
     <!-- ===== HEADER ===== -->

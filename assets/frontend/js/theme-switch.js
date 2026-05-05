@@ -1,6 +1,5 @@
 /**
- * Theme Switcher - External Script (CSP-safe)
- * Handles Light/Dark mode toggle and persistence via localStorage
+ * Theme switcher for SmartUniversity template layouts.
  */
 (function () {
     var saved = 'dark';
