@@ -14,11 +14,16 @@ class Tournament extends BaseController
             'title' => 'สมัครและตรวจสอบการแข่งขัน',
             'tournaments' => (new TournamentModel())->orderBy('start_at', 'ASC')->findAll(),
             'registrations' => (new RegistrationModel())->where('team_id', session('team_id'))->orWhere('user_id', session('user_id'))->findAll(),
+            'canRegisterTournament' => $this->canRegisterTournament(),
         ]);
     }
 
     public function register(int $id)
     {
+        if (! $this->canRegisterTournament()) {
+            return redirect()->back()->with('error', 'เฉพาะผู้จัดการทีมเท่านั้นที่สามารถสมัครการแข่งขันได้');
+        }
+
         $tournament = (new TournamentModel())->find($id);
         if (! $tournament || $tournament['status'] !== 'open') {
             return redirect()->back()->with('error', 'รายการนี้ยังไม่เปิดรับสมัคร');
@@ -43,5 +48,10 @@ class Tournament extends BaseController
         (new RegistrationModel())->insert($data);
 
         return redirect()->back()->with('success', 'ส่งใบสมัครแล้ว รอผู้ดูแลอนุมัติ');
+    }
+
+    private function canRegisterTournament(): bool
+    {
+        return session('role') === 'team_manager';
     }
 }

@@ -260,7 +260,7 @@
         <div class="member-card">
             <h5>เมนูลัด</h5>
             <div class="quick-actions mt-3">
-                <a class="btn default-btn" href="<?= site_url('member/tournaments') ?>"><i class="fa fa-trophy me-2"></i> สมัครแข่งขัน</a>
+                <a class="btn default-btn" href="<?= site_url('member/tournaments') ?>"><i class="fa fa-trophy me-2"></i> <?= ($canRegisterTournament ?? false) ? 'สมัครแข่งขัน' : 'ตรวจสอบการแข่งขัน' ?></a>
                 <a class="btn btn-outline-primary" href="<?= site_url('member/profile') ?>"><i class="fa fa-user me-2"></i> แก้ไขโปรไฟล์</a>
                 <a class="btn btn-outline-primary" href="<?= site_url('member/team') ?>"><i class="fa fa-users me-2"></i> ดูข้อมูลทีม</a>
                 <a class="btn btn-outline-primary" href="<?= site_url('member/reports') ?>"><i class="fa fa-chart-column me-2"></i> ดูรายงาน</a>
@@ -308,7 +308,7 @@
                         <strong><?= esc($tournament['name']) ?></strong>
                         <p class="mb-0 text-muted"><?= esc($tournament['game_name']) ?> · <?= esc($tournament['competition_type'] === 'team' ? 'ทีม' : 'เดี่ยว') ?></p>
                     </div>
-                    <a class="btn default-btn" href="<?= site_url('member/tournaments') ?>">สมัคร</a>
+                    <a class="btn default-btn" href="<?= site_url('member/tournaments') ?>"><?= ($canRegisterTournament ?? false) ? 'สมัคร' : 'ดูรายละเอียด' ?></a>
                 </div>
             <?php endforeach ?>
         </div>

@@ -30,6 +30,6 @@ $routes->group('member', ['filter' => 'auth:team_manager,coach,amateur_athlete,p
     $routes->match(['get', 'post'], 'profile', 'Member\Profile::index');
     $routes->match(['get', 'post'], 'team', 'Member\Team::index');
     $routes->get('tournaments', 'Member\Tournament::index');
-    $routes->post('tournaments/register/(:num)', 'Member\Tournament::register/$1');
+    $routes->post('tournaments/register/(:num)', 'Member\Tournament::register/$1', ['filter' => 'auth:team_manager']);
     $routes->get('reports', 'Member\Reports::index');
 });

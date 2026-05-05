@@ -61,6 +61,7 @@ class Dashboard extends BaseController
             'statusCounts' => $statusCounts,
             'schedules' => $schedules,
             'openTournaments' => (new TournamentModel())->where('status', 'open')->orderBy('start_at', 'ASC')->findAll(4),
+            'canRegisterTournament' => session('role') === 'team_manager',
         ]);
     }
 }
