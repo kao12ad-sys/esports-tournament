@@ -314,5 +314,6 @@
 <script src="<?= base_url('templates/source/assets/js/layout.js') ?>"></script>
 <script src="<?= base_url('templates/source/assets/plugins/material/material.min.js') ?>"></script>
 <script src="<?= base_url('templates/source/assets/js/theme-color.js') ?>"></script>
+<?= $this->renderSection('scripts') ?>
 </body>
 </html>

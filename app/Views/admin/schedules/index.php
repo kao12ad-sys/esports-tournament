@@ -2,7 +2,12 @@
 <?= $this->section('content') ?>
 <?php $canDelete = session('role') !== 'staff'; ?>
 
-<div class="card card-box">
+<div class="admin-meta-menu mb-3">
+    <a class="btn btn-default btn-sm" href="#schedule-list">ดูตารางแข่งขัน</a>
+    <a class="btn btn-primary btn-sm" href="#schedule-create">เพิ่มตารางแข่งขัน</a>
+</div>
+
+<div class="card card-box" id="schedule-create">
     <div class="card-head"><header>เพิ่มตารางแข่งขัน</header></div>
     <div class="card-body">
         <form method="post" action="<?= site_url('adminz/schedules') ?>">
@@ -21,7 +26,7 @@
     </div>
 </div>
 
-<div class="card card-box">
+<div class="card card-box" id="schedule-list">
     <div class="card-head"><header>ตารางแข่งขัน</header></div>
     <div class="card-body table-responsive">
         <table class="table table-hover">

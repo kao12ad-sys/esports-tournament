@@ -10,10 +10,13 @@ class Registrations extends BaseController
     public function index(): string
     {
         $items = (new RegistrationModel())
-            ->select('registrations.*, tournaments.name AS tournament_name, teams.name AS team_name, users.username AS player_name')
+            ->select('registrations.*, tournaments.name AS tournament_name, teams.name AS team_name, users.username AS player_name, GROUP_CONCAT(roster.username ORDER BY roster.username SEPARATOR ", ") AS athlete_names')
             ->join('tournaments', 'tournaments.id = registrations.tournament_id')
             ->join('teams', 'teams.id = registrations.team_id', 'left')
             ->join('users', 'users.id = registrations.user_id', 'left')
+            ->join('registration_players', 'registration_players.registration_id = registrations.id', 'left')
+            ->join('users roster', 'roster.id = registration_players.user_id', 'left')
+            ->groupBy('registrations.id')
             ->orderBy('registrations.id', 'DESC')
             ->findAll();
 

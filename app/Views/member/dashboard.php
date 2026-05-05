@@ -324,7 +324,10 @@
                     <tbody>
                     <?php if ($members === []): ?><tr><td><div class="empty-state">ยังไม่มีสมาชิกทีม</div></td></tr><?php endif ?>
                     <?php foreach ($members as $member): ?>
-                        <tr><td><?= esc($member['username']) ?></td><td><?= esc($roleLabels[$member['role']] ?? $member['role']) ?></td></tr>
+                        <tr>
+                            <td><a href="<?= site_url('profiles/' . $member['id']) ?>"><?= esc($member['username']) ?></a></td>
+                            <td><?= esc($roleLabels[$member['role']] ?? $member['role']) ?></td>
+                        </tr>
                     <?php endforeach ?>
                     </tbody>
                 </table>

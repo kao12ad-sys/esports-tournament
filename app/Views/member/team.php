@@ -68,7 +68,7 @@
             <h5>รายชื่อสมาชิกทีม</h5>
             <div class="table-responsive">
                 <table class="table member-table">
-                    <thead><tr><th>ชื่อผู้ใช้</th><th>บทบาท</th><th>สถานะ</th></tr></thead>
+                    <thead><tr><th>ชื่อผู้ใช้</th><th>บทบาท</th><th>สถานะ</th><th></th></tr></thead>
                     <tbody>
                     <?php if ($members === []): ?>
                         <tr><td colspan="3"><div class="empty-state">ยังไม่มีสมาชิกทีม</div></td></tr>
@@ -78,6 +78,11 @@
                             <td><?= esc($member['username']) ?></td>
                             <td><?= esc($roleLabels[$member['role']] ?? $member['role']) ?></td>
                             <td><span class="status-pill"><?= esc($member['status']) ?></span></td>
+                            <td class="text-end">
+                                <a href="<?= site_url('profiles/' . $member['id']) ?>" class="btn btn-light btn-sm">
+                                    <i class="fa fa-eye"></i> ดูโปรไฟล์
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                     </tbody>

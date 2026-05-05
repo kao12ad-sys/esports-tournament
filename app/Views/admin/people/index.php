@@ -11,7 +11,12 @@
     ];
 ?>
 
-<div class="card card-box">
+<div class="admin-meta-menu mb-3">
+    <a class="btn btn-default btn-sm" href="#people-list">ดูรายชื่อ</a>
+    <a class="btn btn-primary btn-sm" href="#people-create">เพิ่มสมาชิก</a>
+</div>
+
+<div class="card card-box" id="people-create">
     <div class="card-head"><header>เพิ่มสมาชิกโดยผู้ดูแลระบบ</header></div>
     <div class="card-body">
         <form method="post" action="<?= site_url('adminz/people') ?>">
@@ -45,7 +50,7 @@
     </div>
 </div>
 
-<div class="card card-box">
+<div class="card card-box" id="people-list">
     <div class="card-head"><header><?= esc($title) ?></header></div>
     <div class="card-body table-responsive">
         <table class="table table-hover">
@@ -63,7 +68,7 @@
             <tbody>
             <?php foreach ($items as $item): ?>
                 <tr>
-                    <td><?= esc($item['display_name'] ?: $item['username']) ?></td>
+                    <td><a href="<?= site_url('profiles/' . $item['id']) ?>"><?= esc($item['display_name'] ?: $item['username']) ?></a></td>
                     <td><?= esc($item['email']) ?></td>
                     <td><span class="badge badge-info"><?= esc($roleOptions[$item['role']] ?? $item['role']) ?></span></td>
                     <td><?= esc($item['team_name'] ?? '-') ?></td>

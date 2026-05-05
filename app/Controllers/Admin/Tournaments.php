@@ -27,7 +27,7 @@ class Tournaments extends BaseController
     public function create()
     {
         $data = $this->request->getPost([
-            'name', 'game_name', 'competition_type', 'division', 'application_criteria',
+            'name', 'game_name', 'competition_type', 'division', 'min_players', 'max_players', 'application_criteria',
             'rules', 'format', 'venue', 'registration_open_at', 'registration_close_at',
             'start_at', 'end_at', 'status',
         ]);
@@ -47,7 +47,7 @@ class Tournaments extends BaseController
     public function update($id)
     {
         $data = $this->request->getPost([
-            'name', 'game_name', 'competition_type', 'division', 'application_criteria',
+            'name', 'game_name', 'competition_type', 'division', 'min_players', 'max_players', 'application_criteria',
             'rules', 'format', 'venue', 'registration_open_at', 'registration_close_at',
             'start_at', 'end_at', 'status',
         ]);
@@ -61,6 +61,10 @@ class Tournaments extends BaseController
 
     public function delete($id)
     {
+        if (session('role') === 'staff') {
+            return redirect()->back()->with('error', 'บัญชี Staff ไม่มีสิทธิ์ลบข้อมูล');
+        }
+
         $this->model->delete($id);
 
         return redirect()->to('/adminz/tournaments')->with('success', 'ลบข้อมูลแล้ว');

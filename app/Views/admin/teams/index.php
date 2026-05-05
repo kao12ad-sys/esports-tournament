@@ -2,7 +2,12 @@
 <?= $this->section('content') ?>
 <?php $canDelete = session('role') !== 'staff'; ?>
 
-<div class="card card-box">
+<div class="admin-meta-menu mb-3">
+    <a class="btn btn-default btn-sm" href="#team-list">ดูข้อมูลทีม</a>
+    <a class="btn btn-primary btn-sm" href="#team-create">เพิ่มทีม</a>
+</div>
+
+<div class="card card-box" id="team-create">
     <div class="card-head"><header>เพิ่มทีมใหม่</header></div>
     <div class="card-body">
         <form method="post" action="<?= site_url('adminz/teams') ?>">
@@ -39,7 +44,7 @@
     </div>
 </div>
 
-<div class="card card-box">
+<div class="card card-box" id="team-list">
     <div class="card-head"><header>รายการทีมทั้งหมด</header></div>
     <div class="card-body table-responsive">
         <table class="table table-hover">

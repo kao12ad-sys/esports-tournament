@@ -27,6 +27,14 @@
                     <label>รุ่นการแข่งขัน</label>
                     <input class="form-control" name="division" value="<?= esc(old('division', $item['division'] ?? '')) ?>">
                 </div>
+                <div class="col-md-2">
+                    <label>จำนวนนักกีฬาขั้นต่ำ</label>
+                    <input class="form-control" type="number" min="1" name="min_players" value="<?= esc(old('min_players', $item['min_players'] ?? 1)) ?>">
+                </div>
+                <div class="col-md-2">
+                    <label>จำนวนนักกีฬาสูงสุด</label>
+                    <input class="form-control" type="number" min="1" name="max_players" value="<?= esc(old('max_players', $item['max_players'] ?? 5)) ?>">
+                </div>
                 <div class="col-md-4">
                     <label>สถานะ</label>
                     <select class="form-select" name="status">

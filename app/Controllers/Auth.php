@@ -36,7 +36,7 @@ class Auth extends BaseController
     {
         if ($this->request->getMethod() === 'POST') {
             $rules = [
-                'login_role' => 'required|in_list[staff,member,manager,coach]',
+                'login_role' => 'required|in_list[admin,staff,member,manager,coach]',
                 'login' => 'required',
                 'password' => 'required|min_length[8]',
             ];
@@ -52,10 +52,16 @@ class Auth extends BaseController
             }
 
             if ($user['role'] === 'admin') {
-                $effectiveRole = $this->roleForLoginType($loginRole);
-                $this->startUserSession($user, $effectiveRole);
+                if ($loginRole !== 'admin') {
+                    $effectiveRole = $this->roleForLoginType($loginRole);
+                    $this->startUserSession($user, $effectiveRole);
 
-                return redirect()->to($effectiveRole === 'staff' ? '/adminz' : '/member');
+                    return redirect()->to($effectiveRole === 'staff' ? '/adminz' : '/member');
+                }
+
+                $this->startUserSession($user);
+
+                return redirect()->to('/adminz');
             }
 
             if (! $this->roleMatchesLoginType($user['role'], $loginRole)) {
@@ -177,10 +183,11 @@ class Auth extends BaseController
     private function roleForLoginType(string $loginRole): string
     {
         return [
-            'staff' => 'staff',
+            'admin'   => 'admin',
+            'staff'   => 'staff',
             'manager' => 'team_manager',
-            'coach' => 'coach',
-            'member' => 'amateur_athlete',
+            'coach'   => 'coach',
+            'member'  => 'amateur_athlete',
         ][$loginRole] ?? 'amateur_athlete';
     }
 
