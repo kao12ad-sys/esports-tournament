@@ -314,11 +314,17 @@
                                 $active = '';
 
                                 if ($item['url'] === site_url('adminz/teams')) {
+                                    $item['label'] = 'Teams';
+                                    $item['icon'] = 'users';
                                     $active = $currentPath === 'adminz/teams' ? 'active' : '';
                                     $metaItems = [
                                         ['url' => site_url('adminz/teams#team-list'), 'icon' => 'fa-list', 'label' => 'ดูรายชื่อ'],
                                         ['url' => site_url('adminz/teams#team-create'), 'icon' => 'fa-plus', 'label' => 'เพิ่ม'],
                                     ];
+                                    $metaItems[0]['label'] = 'ดูรายชื่อ';
+                                    $metaItems[1]['label'] = 'เพิ่มรายชื่อ';
+                                    $metaItems[0]['section'] = 'team-list';
+                                    $metaItems[1]['section'] = 'team-create';
                                 } elseif ($item['url'] === site_url('adminz/schedules')) {
                                     $active = $currentPath === 'adminz/schedules' ? 'active' : '';
                                     $metaItems = [
@@ -358,7 +364,7 @@
                                     <ul class="nav-meta">
                                         <?php foreach ($metaItems as $meta): ?>
                                             <li>
-                                                <a href="<?= esc($meta['url'], 'attr') ?>">
+                                                <a href="<?= esc($meta['url'], 'attr') ?>" <?= isset($meta['section']) ? 'data-admin-section="' . esc($meta['section'], 'attr') . '"' : '' ?>>
                                                     <i class="fa <?= esc($meta['icon'], 'attr') ?>"></i>
                                                     <span><?= esc($meta['label']) ?></span>
                                                 </a>
@@ -443,6 +449,35 @@ document.addEventListener('click', function (event) {
 
     var isOpen = item.classList.toggle('meta-open');
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+document.addEventListener('click', function (event) {
+    var link = event.target.closest('[data-admin-section]');
+    if (! link) {
+        return;
+    }
+
+    var sectionId = link.getAttribute('data-admin-section');
+    var sections = document.querySelectorAll('.admin-team-section');
+    if (! sectionId || sections.length === 0) {
+        return;
+    }
+
+    sections.forEach(function (section) {
+        section.style.display = section.id === sectionId ? '' : 'none';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var sections = document.querySelectorAll('.admin-team-section');
+    if (sections.length === 0) {
+        return;
+    }
+
+    var target = window.location.hash ? window.location.hash.substring(1) : 'team-list';
+    sections.forEach(function (section) {
+        section.style.display = section.id === target ? '' : 'none';
+    });
 });
 </script>
 <?php if (isset($scripts)): ?>
