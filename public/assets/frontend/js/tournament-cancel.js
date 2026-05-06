@@ -1,68 +1,55 @@
 (function () {
     'use strict';
 
-    /* Read data passed from PHP via a hidden data-element */
-    var dataEl      = document.getElementById('esCancelData');
-    var REASONS     = dataEl ? JSON.parse(dataEl.dataset.reasons) : [];
-    var CSRF_NAME   = dataEl ? dataEl.dataset.csrfName  : 'csrf_token';
-    var CSRF_HASH   = dataEl ? dataEl.dataset.csrfHash  : '';
+    var dataEl    = document.getElementById('esCancelData');
+    var REASONS   = dataEl ? JSON.parse(dataEl.dataset.reasons) : [];
+    var CSRF_NAME = dataEl ? dataEl.dataset.csrfName : 'csrf_token';
+    var CSRF_HASH = dataEl ? dataEl.dataset.csrfHash : '';
 
     function esc(s) {
         return String(s)
-            .replace(/&/g,'&amp;')
-            .replace(/</g,'&lt;')
-            .replace(/>/g,'&gt;')
-            .replace(/"/g,'&quot;');
+            .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
+    /* All styling via CSS classes defined in <style {csp-nonce}> in the view */
     function buildHtml(name) {
         var rows = REASONS.map(function (r) {
-            return '<div class="swal2-reason-option" data-val="' + esc(r) + '">'
-                 + '<i class="fas fa-circle-dot"></i><span>' + esc(r) + '</span></div>';
+            return '<button type="button" class="es-opt" data-val="' + esc(r) + '">'
+                 + '<i class="fas fa-circle-dot" aria-hidden="true"></i>'
+                 + '<span>' + esc(r) + '</span></button>';
         }).join('');
+        rows += '<button type="button" class="es-opt" data-val="other">'
+              + '<i class="fas fa-pen" aria-hidden="true"></i>'
+              + '<span>เหตุผลอื่นๆ (โปรดระบุ)</span></button>';
 
-        rows += '<div class="swal2-reason-option" data-val="other">'
-              + '<i class="fas fa-pen"></i><span>เหตุผลอื่นๆ (โปรดระบุ)</span></div>';
-
-        return '<p style="font-size:13px;color:var(--es-muted,#96a2b4);margin-bottom:14px;">'
-             + 'กรุณาระบุเหตุผลในการยกเลิก<br>'
-             + '<strong style="color:var(--es-text,#f5f7fb);">' + esc(name) + '</strong></p>'
-             + '<div class="swal2-cancel-reasons" id="esSwalReasons">' + rows + '</div>'
-             + '<div class="swal2-other-box" id="esSwalOtherBox" style="display:none;">'
-             +   '<textarea id="esSwalOtherTxt" rows="3" maxlength="500"'
-             +   ' placeholder="กรอกเหตุผลของคุณที่นี่..."></textarea>'
-             +   '<div class="swal2-char-count"><span id="esSwalCharCnt">0</span>/500</div>'
+        return '<p id="esPN">ยกเลิก: <strong>' + esc(name) + '</strong></p>'
+             + '<div id="esRL">' + rows + '</div>'
+             + '<div id="esOB">'
+             +   '<textarea id="esOT" rows="2" maxlength="500" placeholder="กรอกเหตุผลของคุณที่นี่..."></textarea>'
+             +   '<div><span id="esCH">0</span>/500</div>'
              + '</div>'
-             + '<div class="swal2-cancel-warning">'
-             +   '<i class="fas fa-triangle-exclamation"></i>'
+             + '<div id="esWN">'
+             +   '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i>'
              +   '<span>การยกเลิกจะลบข้อมูลการสมัครออกจากระบบ และไม่สามารถกู้คืนได้</span>'
              + '</div>';
     }
 
-    /* Submit via a dynamically created form (no hidden form needed in view) */
     function doSubmit(url, reason, other) {
         var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = url;
-        form.style.display = 'none';
-
-        function addField(n, v) {
+        form.method = 'POST'; form.action = url; form.style.display = 'none';
+        function f(n, v) {
             var el = document.createElement('input');
-            el.type  = 'hidden';
-            el.name  = n;
-            el.value = v;
+            el.type = 'hidden'; el.name = n; el.value = v;
             form.appendChild(el);
         }
-
-        addField(CSRF_NAME, CSRF_HASH);
-        addField('cancel_reason',       reason);
-        addField('cancel_reason_other', other);
-
+        f(CSRF_NAME, CSRF_HASH);
+        f('cancel_reason', reason);
+        f('cancel_reason_other', other);
         document.body.appendChild(form);
         form.submit();
     }
 
-    /* Click delegation — works even if buttons are added later */
     document.addEventListener('click', function (e) {
         var btn = e.target.closest('.btn-cancel-reg');
         if (!btn) return;
@@ -73,54 +60,74 @@
 
         Swal.fire({
             customClass: { popup: 'es-cancel-popup' },
-            title: '<i class="fas fa-exclamation-triangle" style="color:#ff5470;margin-right:8px;"></i>'
-                 + 'ยกเลิกการสมัครแข่งขัน',
+            title: '<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> ยกเลิกการสมัครแข่งขัน',
             html: buildHtml(name),
             showCancelButton: true,
-            confirmButtonText: '<i class="fas fa-trash-can"></i>&nbsp;ยืนยันการยกเลิก',
+            confirmButtonText: '<i class="fas fa-trash-can"></i>&nbsp;ยืนยัน',
             cancelButtonText:  '<i class="fas fa-arrow-left"></i>&nbsp;ย้อนกลับ',
             reverseButtons: true,
-            width: 520,
-            didOpen: function () {
-                var list     = document.getElementById('esSwalReasons');
-                var otherBox = document.getElementById('esSwalOtherBox');
-                var textarea = document.getElementById('esSwalOtherTxt');
-                var charCnt  = document.getElementById('esSwalCharCnt');
+            width: 480,
+            padding: '1rem 1.2rem 1.2rem',
+            onOpen: function () {
+                var list    = document.getElementById('esRL');
+                var ob      = document.getElementById('esOB');
+                var ot      = document.getElementById('esOT');
+                var charCnt = document.getElementById('esCH');
+                var pn      = document.getElementById('esPN');
 
-                list.addEventListener('click', function (ev) {
-                    var opt = ev.target.closest('.swal2-reason-option');
-                    if (!opt) return;
+                /* Style name paragraph — class approach */
+                if (pn) {
+                    pn.className = 'es-pn';
+                }
 
-                    list.querySelectorAll('.swal2-reason-option').forEach(function (o) {
-                        o.classList.remove('selected');
+                /* Option click — use class toggle only (no inline style) */
+                if (list) {
+                    list.addEventListener('click', function (ev) {
+                        var opt = ev.target.closest('.es-opt');
+                        if (!opt) return;
+                        ev.preventDefault();
+                        ev.stopPropagation();
+
+                        selectedVal = opt.dataset.val;
+
+                        /* Toggle es-selected class */
+                        var allOpts = list.querySelectorAll('.es-opt');
+                        [].forEach.call(allOpts, function (o) {
+                            o.classList.remove('es-selected');
+                        });
+                        opt.classList.add('es-selected');
+
+                        /* Show/hide textarea using class */
+                        if (ob) {
+                            if (selectedVal === 'other') {
+                                ob.classList.add('visible');
+                                if (ot) ot.focus();
+                            } else {
+                                ob.classList.remove('visible');
+                                if (ot) { ot.value = ''; }
+                                if (charCnt) charCnt.textContent = '0';
+                            }
+                        }
                     });
-                    opt.classList.add('selected');
-                    selectedVal = opt.dataset.val;
+                }
 
-                    if (selectedVal === 'other') {
-                        otherBox.style.display = 'block';
-                        textarea.focus();
-                    } else {
-                        otherBox.style.display = 'none';
-                        textarea.value = '';
-                        charCnt.textContent = '0';
-                    }
-                });
-
-                textarea.addEventListener('input', function () {
-                    charCnt.textContent = this.value.length;
-                });
+                /* Character counter */
+                if (ot && charCnt) {
+                    ot.addEventListener('input', function () {
+                        charCnt.textContent = this.value.length;
+                    });
+                }
             },
             preConfirm: function () {
                 if (!selectedVal) {
                     Swal.showValidationMessage('กรุณาเลือกเหตุผลในการยกเลิกก่อน');
                     return false;
                 }
-                var txt   = document.getElementById('esSwalOtherTxt');
-                var other = txt ? txt.value.trim() : '';
+                var ot    = document.getElementById('esOT');
+                var other = ot ? ot.value.trim() : '';
                 if (selectedVal === 'other' && other === '') {
                     Swal.showValidationMessage('กรุณากรอกเหตุผลของคุณด้วย');
-                    if (txt) txt.focus();
+                    if (ot) ot.focus();
                     return false;
                 }
                 return { reason: selectedVal, other: other };

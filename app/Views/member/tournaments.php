@@ -149,7 +149,7 @@
                     $tid       = $t['id'];
                     $status    = $registeredStatus[$tid] ?? null;
                     $isReg     = $status !== null;
-                    $canCancel = $canRegisterTournament && $isReg && $status !== 'approved';
+                    $canCancel = $canRegisterTournament && $isReg;
                 ?>
                 <tr>
                     <td><a href="<?= site_url('member/tournaments/' . $tid) ?>"><?= esc($t['name']) ?></a></td>
@@ -193,10 +193,6 @@
                             >
                                 <i class="fas fa-xmark"></i> ยกเลิกการสมัคร
                             </button>
-                        <?php elseif ($canRegisterTournament && $isReg && $status === 'approved'): ?>
-                            <span style="font-size:11px; color:var(--es-success);">
-                                <i class="fas fa-check-circle"></i> อนุมัติแล้ว
-                            </span>
                         <?php endif ?>
                     </td>
                 </tr>

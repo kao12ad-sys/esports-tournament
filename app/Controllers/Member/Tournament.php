@@ -138,10 +138,6 @@ class Tournament extends BaseController
             return redirect()->back()->with('error', 'ไม่พบข้อมูลการสมัครที่จะยกเลิก');
         }
 
-        if ($reg['status'] === 'approved') {
-            return redirect()->back()->with('error', 'ไม่สามารถยกเลิกการสมัครที่ได้รับการอนุมัติแล้ว กรุณาติดต่อผู้ดูแลระบบ');
-        }
-
         $cancelReason = (string) $this->request->getPost('cancel_reason');
         $otherReason  = (string) $this->request->getPost('cancel_reason_other');
 
