@@ -184,15 +184,18 @@
                         <?php endif ?>
 
                         <?php if ($canCancel): ?>
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-sm btn-cancel-reg"
-                                style="margin-top:4px;"
-                                data-name="<?= esc($t['name'], 'attr') ?>"
-                                data-url="<?= site_url('member/tournaments/cancel/' . $tid) ?>"
-                            >
-                                <i class="fas fa-xmark"></i> ยกเลิกการสมัคร
-                            </button>
+                            <form method="post" action="<?= site_url('member/tournaments/cancel/' . $tid) ?>" style="display:inline-block; margin-top:4px;">
+                                <?= csrf_field() ?>
+                                <input type="hidden" name="cancel_reason" value="manager_cancel">
+                                <input type="hidden" name="cancel_reason_other" value="">
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('ยืนยันการยกเลิกสมัครแข่งขันรายการนี้? ข้อมูลการสมัครจะถูกลบออกจากระบบทันที')"
+                                >
+                                    <i class="fas fa-xmark"></i> ยกเลิกการสมัคร
+                                </button>
+                            </form>
                         <?php endif ?>
                     </td>
                 </tr>

@@ -151,6 +151,7 @@ class Tournament extends BaseController
             return redirect()->back()->with('error', 'กรุณาระบุเหตุผลในการยกเลิก');
         }
 
+        (new RegistrationPlayerModel())->where('registration_id', $reg['id'])->delete();
         $model->delete($reg['id']);
 
         return redirect()->back()->with('success', 'ยกเลิกการสมัครแข่งขันเรียบร้อย เหตุผล: ' . esc($reason));
