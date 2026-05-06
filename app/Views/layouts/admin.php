@@ -100,33 +100,6 @@
             color: var(--es-accent) !important;
         }
         .sidemenu .nav-link i, .sidemenu .nav-link svg { color: inherit !important; stroke: currentColor !important; }
-        .sidemenu .nav-meta {
-            list-style: none;
-            margin: -2px 10px 8px 44px;
-            padding: 0 0 0 12px;
-            border-left: 1px solid var(--es-line);
-        }
-        .sidemenu .nav-meta a {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 10px;
-            margin: 2px 0;
-            border-radius: 7px;
-            color: var(--es-muted) !important;
-            font-size: 12px;
-            line-height: 1.2;
-        }
-        .sidemenu .nav-meta a:hover {
-            background: rgba(70, 128, 255, .08) !important;
-            color: var(--es-accent) !important;
-            text-decoration: none;
-        }
-        .sidemenu .nav-meta i {
-            width: 14px;
-            text-align: center;
-            color: inherit !important;
-        }
 
         /* ===== Cards / Panels ===== */
         .card, .card-box, .white-box, .panel, .modal-content, .dropdown-menu, .table-responsive {
@@ -265,9 +238,7 @@
                             </div>
                         </li>
                         <?php
-                            $request = service('request');
-                            $currentPath = trim(uri_string(), '/');
-                            $currentRole = (string) $request->getGet('role');
+                            $current_url = current_url();
                             $menuItems = [
                                 ['url' => site_url('adminz'),                        'icon' => 'airplay',     'label' => 'Dashboard'],
                                 ['url' => site_url('adminz/tournaments'),            'icon' => 'award',       'label' => 'จัดการการแข่งขัน'],
@@ -281,60 +252,12 @@
                             ];
                         ?>
                         <?php foreach ($menuItems as $item): ?>
-                            <?php
-                                $metaItems = [];
-                                $active = '';
-
-                                if ($item['url'] === site_url('adminz/teams')) {
-                                    $active = $currentPath === 'adminz/teams' ? 'active' : '';
-                                    $metaItems = [
-                                        ['url' => site_url('adminz/teams#team-list'), 'icon' => 'fa-list', 'label' => 'ดูรายชื่อ'],
-                                        ['url' => site_url('adminz/teams#team-create'), 'icon' => 'fa-plus', 'label' => 'เพิ่ม'],
-                                    ];
-                                } elseif ($item['url'] === site_url('adminz/schedules')) {
-                                    $active = $currentPath === 'adminz/schedules' ? 'active' : '';
-                                    $metaItems = [
-                                        ['url' => site_url('adminz/schedules#schedule-list'), 'icon' => 'fa-list', 'label' => 'ดูรายชื่อ'],
-                                        ['url' => site_url('adminz/schedules#schedule-create'), 'icon' => 'fa-plus', 'label' => 'เพิ่ม'],
-                                    ];
-                                } elseif ($item['url'] === site_url('adminz/people?role=team_manager')) {
-                                    $active = ($currentPath === 'adminz/people' && $currentRole === 'team_manager') ? 'active' : '';
-                                    $metaItems = [
-                                        ['url' => site_url('adminz/people?role=team_manager#people-list'), 'icon' => 'fa-list', 'label' => 'ดูรายชื่อ'],
-                                        ['url' => site_url('adminz/people?role=team_manager#people-create'), 'icon' => 'fa-plus', 'label' => 'เพิ่ม'],
-                                    ];
-                                } elseif ($item['url'] === site_url('adminz/people?role=athletes')) {
-                                    $active = ($currentPath === 'adminz/people' && $currentRole === 'athletes') ? 'active' : '';
-                                    $metaItems = [
-                                        ['url' => site_url('adminz/people?role=athletes#people-list'), 'icon' => 'fa-list', 'label' => 'ดูรายชื่อ'],
-                                        ['url' => site_url('adminz/people?role=athletes#people-create'), 'icon' => 'fa-plus', 'label' => 'เพิ่ม'],
-                                    ];
-                                } elseif ($item['url'] === site_url('adminz')) {
-                                    $active = $currentPath === 'adminz' ? 'active' : '';
-                                } else {
-                                    $itemPath = trim(parse_url($item['url'], PHP_URL_PATH) ?? '', '/');
-                                    $adminPos = strpos($itemPath, 'adminz');
-                                    $itemPath = $adminPos === false ? $itemPath : substr($itemPath, $adminPos);
-                                    $active = $currentPath === $itemPath ? 'active' : '';
-                                }
-                            ?>
+                            <?php $active = (strpos($current_url, $item['url']) !== false) ? 'active' : ''; ?>
                             <li class="nav-item <?= $active ?>">
                                 <a href="<?= esc($item['url'], 'attr') ?>" class="nav-link">
                                     <i data-feather="<?= esc($item['icon'], 'attr') ?>"></i>
                                     <span class="title"><?= esc($item['label']) ?></span>
                                 </a>
-                                <?php if ($metaItems !== []): ?>
-                                    <ul class="nav-meta">
-                                        <?php foreach ($metaItems as $meta): ?>
-                                            <li>
-                                                <a href="<?= esc($meta['url'], 'attr') ?>">
-                                                    <i class="fa <?= esc($meta['icon'], 'attr') ?>"></i>
-                                                    <span><?= esc($meta['label']) ?></span>
-                                                </a>
-                                            </li>
-                                        <?php endforeach ?>
-                                    </ul>
-                                <?php endif ?>
                             </li>
                         <?php endforeach ?>
                     </ul>
