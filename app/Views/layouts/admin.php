@@ -100,34 +100,6 @@
             color: var(--es-accent) !important;
         }
         .sidemenu .nav-link i, .sidemenu .nav-link svg { color: inherit !important; stroke: currentColor !important; }
-        .page-content > .admin-meta-menu { display: none !important; }
-        .sidemenu .nav-item.has-meta { position: relative; }
-        .sidemenu .nav-item.has-meta:not(.meta-open) .nav-meta { display: none; }
-        .sidemenu .meta-toggle {
-            position: absolute;
-            right: 14px;
-            top: 8px;
-            width: 28px;
-            height: 28px;
-            border: 0;
-            border-radius: 7px;
-            background: transparent;
-            color: var(--es-muted);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .sidemenu .meta-toggle:hover {
-            background: rgba(70, 128, 255, .1);
-            color: var(--es-accent);
-        }
-        .sidemenu .nav-item.meta-open .meta-toggle i {
-            transform: rotate(180deg);
-        }
-        .sidemenu .meta-toggle i {
-            transition: transform .2s ease;
-        }
         .sidemenu .nav-meta {
             list-style: none;
             margin: -2px 10px 8px 44px;
@@ -346,15 +318,12 @@
                                     $active = $currentPath === $itemPath ? 'active' : '';
                                 }
                             ?>
-                            <li class="nav-item <?= $active ?> <?= $metaItems !== [] ? 'has-meta meta-open' : '' ?>">
+                            <li class="nav-item <?= $active ?>">
                                 <a href="<?= esc($item['url'], 'attr') ?>" class="nav-link">
                                     <i data-feather="<?= esc($item['icon'], 'attr') ?>"></i>
                                     <span class="title"><?= esc($item['label']) ?></span>
                                 </a>
                                 <?php if ($metaItems !== []): ?>
-                                    <button class="meta-toggle" type="button" aria-label="ซ่อนหรือแสดงเมนูย่อย" aria-expanded="true">
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
                                     <ul class="nav-meta">
                                         <?php foreach ($metaItems as $meta): ?>
                                             <li>
@@ -429,22 +398,6 @@
 <script src="<?= base_url('templates/source/assets/js/layout.js') ?>"></script>
 <script src="<?= base_url('templates/source/assets/plugins/material/material.min.js') ?>"></script>
 <script src="<?= base_url('templates/source/assets/js/theme-color.js') ?>"></script>
-<script>
-document.addEventListener('click', function (event) {
-    var toggle = event.target.closest('.meta-toggle');
-    if (! toggle) {
-        return;
-    }
-
-    var item = toggle.closest('.nav-item.has-meta');
-    if (! item) {
-        return;
-    }
-
-    var isOpen = item.classList.toggle('meta-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-});
-</script>
 <?php if (isset($scripts)): ?>
     <?= $scripts ?>
 <?php endif ?>
