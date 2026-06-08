@@ -13,7 +13,7 @@ class TournamentModel extends Model
     protected $allowedFields = [
         'name', 'game_name', 'competition_type', 'division', 'min_players', 'max_players', 'application_criteria',
         'rules', 'format', 'venue', 'registration_open_at', 'registration_close_at',
-        'start_at', 'end_at', 'status',
+        'start_at', 'end_at', 'status', 'level',
     ];
     protected $validationRules = [
         'name'             => 'required|max_length[190]',
@@ -23,5 +23,6 @@ class TournamentModel extends Model
         'min_players'      => 'permit_empty|integer|greater_than_equal_to[1]',
         'max_players'      => 'permit_empty|integer|greater_than_equal_to[1]',
         'status'           => 'required|in_list[draft,open,closed,running,finished]',
+        'level'            => 'required|in_list[1,2,3,4]',
     ];
 }

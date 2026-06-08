@@ -16,6 +16,7 @@
                     <th>เกม</th>
                     <th>ประเภท</th>
                     <th>รุ่น</th>
+                    <th>ระดับ</th>
                     <th>สถานที่</th>
                     <th>สถานะ</th>
                     <th>การจัดการ</th>
@@ -28,6 +29,7 @@
                     <td><?= esc($item['game_name']) ?></td>
                     <td><span class="badge badge-outline-primary"><?= esc($item['competition_type'] === 'team' ? 'ทีม' : 'เดี่ยว') ?></span></td>
                     <td><?= esc($item['division'] ?: '-') ?></td>
+                    <td><span class="badge badge-warning">Level <?= esc($item['level'] ?? 1) ?></span></td>
                     <td><i class="fas fa-map-marker-alt m-r-5"></i><?= esc($item['venue'] ?: '-') ?></td>
                     <td>
                         <?php if ($item['status'] === 'open'): ?>

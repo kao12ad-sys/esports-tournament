@@ -52,6 +52,23 @@ class Tournament extends BaseController
             return redirect()->back()->with('error', 'รายการนี้ยังไม่เปิดรับสมัคร');
         }
 
+        if (session('team_id')) {
+            $team = (new \App\Models\TeamModel())->find(session('team_id'));
+            if ($team) {
+                $teamLevel = (int) ($team['level'] ?? 1);
+                $tournamentLevel = (int) ($tournament['level'] ?? 1);
+                $role = session('role');
+
+                if ($role === 'team_manager' && $teamLevel !== $tournamentLevel) {
+                    return redirect()->back()->with('error', 'ระดับของทีม (' . $teamLevel . ') ไม่ตรงกับระดับของการแข่งขัน (' . $tournamentLevel . ')');
+                }
+
+                if ($role === 'manager_level_2' && $tournamentLevel < 2) {
+                    return redirect()->back()->with('error', 'สิทธิ์ Manager Level 2 สามารถสมัครการแข่งขันระดับ 2 ขึ้นไปได้เท่านั้น');
+                }
+            }
+        }
+
         $registrationModel = new RegistrationModel();
         $existing = $registrationModel
             ->where('tournament_id', $id)
@@ -159,6 +176,6 @@ class Tournament extends BaseController
 
     private function canRegisterTournament(): bool
     {
-        return session('role') === 'team_manager';
+        return in_array(session('role'), ['team_manager', 'manager_level_2'], true);
     }
 }

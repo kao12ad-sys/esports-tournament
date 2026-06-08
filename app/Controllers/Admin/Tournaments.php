@@ -29,7 +29,7 @@ class Tournaments extends BaseController
         $data = $this->request->getPost([
             'name', 'game_name', 'competition_type', 'division', 'min_players', 'max_players', 'application_criteria',
             'rules', 'format', 'venue', 'registration_open_at', 'registration_close_at',
-            'start_at', 'end_at', 'status',
+            'start_at', 'end_at', 'status', 'level',
         ]);
 
         if (! $this->model->insert($data)) {
@@ -49,7 +49,7 @@ class Tournaments extends BaseController
         $data = $this->request->getPost([
             'name', 'game_name', 'competition_type', 'division', 'min_players', 'max_players', 'application_criteria',
             'rules', 'format', 'venue', 'registration_open_at', 'registration_close_at',
-            'start_at', 'end_at', 'status',
+            'start_at', 'end_at', 'status', 'level',
         ]);
 
         if (! $this->model->update($id, $data)) {

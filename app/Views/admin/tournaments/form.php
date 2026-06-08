@@ -35,7 +35,16 @@
                     <label>จำนวนนักกีฬาสูงสุด</label>
                     <input class="form-control" type="number" min="1" name="max_players" value="<?= esc(old('max_players', $item['max_players'] ?? 5)) ?>">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                    <label>ระดับการแข่งขัน</label>
+                    <select class="form-select" name="level">
+                        <option value="1" <?= (($item['level'] ?? 1) == 1) ? 'selected' : '' ?>>Level 1</option>
+                        <option value="2" <?= (($item['level'] ?? 1) == 2) ? 'selected' : '' ?>>Level 2</option>
+                        <option value="3" <?= (($item['level'] ?? 1) == 3) ? 'selected' : '' ?>>Level 3</option>
+                        <option value="4" <?= (($item['level'] ?? 1) == 4) ? 'selected' : '' ?>>Level 4</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
                     <label>สถานะ</label>
                     <select class="form-select" name="status">
                         <?php foreach (['draft' => 'ร่าง', 'open' => 'เปิดรับสมัคร', 'closed' => 'ปิดรับสมัคร', 'running' => 'กำลังแข่งขัน', 'finished' => 'จบการแข่งขัน'] as $status => $label): ?>

@@ -21,7 +21,16 @@
                     <label>ตัวย่อ (Tag)</label>
                     <input class="form-control" name="tag" placeholder="เช่น MG">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                    <label>ระดับทีม (Level)</label>
+                    <select class="form-select" name="level">
+                        <option value="1">Level 1</option>
+                        <option value="2">Level 2</option>
+                        <option value="3">Level 3</option>
+                        <option value="4">Level 4</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
                     <label>ช่องทางติดต่อ</label>
                     <input class="form-control" name="contact_channel" placeholder="เบอร์โทร / Line / Facebook">
                 </div>
@@ -55,6 +64,7 @@
                     <th>ตัวย่อ</th>
                     <th>ช่องทางติดต่อ</th>
                     <th>สถานะ</th>
+                    <th>ระดับ</th>
                     <th>การจัดการ</th>
                 </tr>
             </thead>
@@ -72,6 +82,7 @@
                             <span class="badge badge-danger">Inactive</span>
                         <?php endif ?>
                     </td>
+                    <td><span class="badge badge-warning">Level <?= esc($item['level'] ?? 1) ?></span></td>
                     <td>
                         <button class="btn btn-xs btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#team-edit-<?= esc($item['id'], 'attr') ?>">
                             <i class="fa fa-pen"></i>
@@ -99,7 +110,16 @@
                                     <label>ตัวย่อ (Tag)</label>
                                     <input class="form-control" name="tag" value="<?= esc($item['tag'] ?? '', 'attr') ?>">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
+                                    <label>ระดับทีม (Level)</label>
+                                    <select class="form-select" name="level">
+                                        <option value="1" <?= ($item['level'] ?? 1) == 1 ? 'selected' : '' ?>>Level 1</option>
+                                        <option value="2" <?= ($item['level'] ?? 1) == 2 ? 'selected' : '' ?>>Level 2</option>
+                                        <option value="3" <?= ($item['level'] ?? 1) == 3 ? 'selected' : '' ?>>Level 3</option>
+                                        <option value="4" <?= ($item['level'] ?? 1) == 4 ? 'selected' : '' ?>>Level 4</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
                                     <label>ช่องทางติดต่อ</label>
                                     <input class="form-control" name="contact_channel" value="<?= esc($item['contact_channel'] ?? '', 'attr') ?>">
                                 </div>

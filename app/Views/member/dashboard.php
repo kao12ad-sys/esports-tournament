@@ -245,7 +245,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <div class="member-label">ทีมปัจจุบัน</div>
-                    <strong><?= esc($teamName) ?></strong>
+                    <strong><?= esc($teamName) ?></strong> <span class="badge badge-warning" style="font-size: 10px;">Level <?= esc($team['level'] ?? 1) ?></span>
                     <p class="text-muted mb-0"><?= esc($team['description'] ?? 'ยังไม่มีคำอธิบายทีม') ?></p>
                 </div>
                 <div class="col-md-6 mb-3">

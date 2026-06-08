@@ -24,7 +24,7 @@ class Teams extends BaseController
 
     public function create()
     {
-        $this->model->insert($this->request->getPost(['name', 'tag', 'description', 'contact_channel', 'status']));
+        $this->model->insert($this->request->getPost(['name', 'tag', 'description', 'contact_channel', 'status', 'level']));
 
         return redirect()->back()->with('success', 'บันทึกทีมแล้ว');
     }
@@ -41,6 +41,7 @@ class Teams extends BaseController
             'description' => $this->request->getPost('description'),
             'contact_channel' => $this->request->getPost('contact_channel'),
             'status' => $this->request->getPost('status') ?: 'active',
+            'level' => $this->request->getPost('level') ?: 1,
         ]);
 
         return redirect()->back()->with('success', 'อัปเดตรายละเอียดทีมแล้ว');

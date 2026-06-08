@@ -5,6 +5,7 @@
     $roleOptions = [
         'staff' => 'Staff',
         'team_manager' => 'ผู้จัดการทีม',
+        'manager_level_2' => 'ผู้จัดการทีม ระดับ 2',
         'coach' => 'ผู้ฝึกสอน',
         'amateur_athlete' => 'นักกีฬาทั่วไป',
         'pro_athlete' => 'นักกีฬาอาชีพ',

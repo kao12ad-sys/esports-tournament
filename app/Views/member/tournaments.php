@@ -139,6 +139,7 @@
             <thead><tr>
                 <th>การแข่งขัน</th>
                 <th>เกม</th>
+                <th>ระดับ</th>
                 <th>ประเภท</th>
                 <th>สถานะสมัคร</th>
                 <th></th>
@@ -154,6 +155,7 @@
                 <tr>
                     <td><a href="<?= site_url('member/tournaments/' . $tid) ?>"><?= esc($t['name']) ?></a></td>
                     <td><?= esc($t['game_name']) ?></td>
+                    <td><span class="badge badge-warning">Level <?= esc($t['level'] ?? 1) ?></span></td>
                     <td><?= esc($t['competition_type'] === 'team' ? 'ทีม' : 'เดี่ยว') ?></td>
                     <td>
                         <?php if ($status): ?>

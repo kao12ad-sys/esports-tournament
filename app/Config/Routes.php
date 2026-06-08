@@ -14,7 +14,7 @@ $routes->match(['get', 'post'], 'register', 'Auth::register');
 $routes->get('logout', 'Auth::logout');
 $routes->match(['get', 'post'], 'adminz/login', 'Auth::adminLogin');
 $routes->get('adminz/logout', 'Auth::logout');
-$routes->get('profiles/(:num)', 'Member\Profile::view/$1', ['filter' => 'auth:admin,staff,team_manager,coach,amateur_athlete,pro_athlete']);
+$routes->get('profiles/(:num)', 'Member\Profile::view/$1', ['filter' => 'auth:admin,staff,team_manager,manager_level_2,coach,amateur_athlete,pro_athlete']);
 
 $routes->group('adminz', ['filter' => 'auth:admin,staff'], static function ($routes) {
     $routes->get('/', 'Admin\Dashboard::index');
@@ -26,14 +26,14 @@ $routes->group('adminz', ['filter' => 'auth:admin,staff'], static function ($rou
     $routes->resource('schedules', ['controller' => 'Admin\Schedules']);
 });
 
-$routes->group('member', ['filter' => 'auth:team_manager,coach,amateur_athlete,pro_athlete'], static function ($routes) {
+$routes->group('member', ['filter' => 'auth:team_manager,manager_level_2,coach,amateur_athlete,pro_athlete'], static function ($routes) {
     $routes->get('/', 'Member\Dashboard::index');
     $routes->match(['get', 'post'], 'profile', 'Member\Profile::index');
     $routes->get('profile/(:num)', 'Member\Profile::view/$1');
     $routes->match(['get', 'post'], 'team', 'Member\Team::index');
     $routes->get('tournaments', 'Member\Tournament::index');
     $routes->get('tournaments/(:num)', 'Member\Tournament::show/$1');
-    $routes->post('tournaments/register/(:num)', 'Member\Tournament::register/$1', ['filter' => 'auth:team_manager']);
-    $routes->post('tournaments/cancel/(:num)', 'Member\Tournament::cancel/$1', ['filter' => 'auth:team_manager']);
+    $routes->post('tournaments/register/(:num)', 'Member\Tournament::register/$1', ['filter' => 'auth:team_manager,manager_level_2']);
+    $routes->post('tournaments/cancel/(:num)', 'Member\Tournament::cancel/$1', ['filter' => 'auth:team_manager,manager_level_2']);
     $routes->get('reports', 'Member\Reports::index');
 });
